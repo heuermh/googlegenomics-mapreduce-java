@@ -33,14 +33,14 @@ public final class ReadGroup extends com.google.api.client.json.GenericJson {
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String date;
+  private java.lang.String date;
 
   /**
    * (DS) Description.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String description;
+  private java.lang.String description;
 
   /**
    * (FO) Flow order. The array of nucleotide bases that correspond to the nucleotides used for each
@@ -48,76 +48,76 @@ public final class ReadGroup extends com.google.api.client.json.GenericJson {
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String flowOrder;
+  private java.lang.String flowOrder;
 
   /**
    * (ID) Read group identifier.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String id;
+  private java.lang.String id;
 
   /**
    * (KS) The array of nucleotide bases that correspond to the key sequence of each read.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String keySequence;
+  private java.lang.String keySequence;
 
   /**
    * (LS) Library.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String library;
+  private java.lang.String library;
 
   /**
    * (PU) Platform unit.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String platformUnit;
+  private java.lang.String platformUnit;
 
   /**
    * (PI) Predicted median insert size.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private Integer predictedInsertSize;
+  private java.lang.Integer predictedInsertSize;
 
   /**
    * (PG) Programs used for processing the read group.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String processingProgram;
+  private java.lang.String processingProgram;
 
   /**
    * (SM) Sample.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String sample;
+  private java.lang.String sample;
 
   /**
    * (CN) Name of sequencing center producing the read.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String sequencingCenterName;
+  private java.lang.String sequencingCenterName;
 
   /**
    * (PL) Platform/technology used to produce the reads.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String sequencingTechnology;
+  private java.lang.String sequencingTechnology;
 
   /**
    * (DT) Date the run was produced (ISO8601 date or date/time.)
    * @return value or {@code null} for none
    */
-  public String getDate() {
+  public java.lang.String getDate() {
     return date;
   }
 
@@ -125,7 +125,7 @@ public final class ReadGroup extends com.google.api.client.json.GenericJson {
    * (DT) Date the run was produced (ISO8601 date or date/time.)
    * @param date date or {@code null} for none
    */
-  public ReadGroup setDate(String date) {
+  public ReadGroup setDate(java.lang.String date) {
     this.date = date;
     return this;
   }
@@ -134,7 +134,7 @@ public final class ReadGroup extends com.google.api.client.json.GenericJson {
    * (DS) Description.
    * @return value or {@code null} for none
    */
-  public String getDescription() {
+  public java.lang.String getDescription() {
     return description;
   }
 
@@ -142,7 +142,7 @@ public final class ReadGroup extends com.google.api.client.json.GenericJson {
    * (DS) Description.
    * @param description description or {@code null} for none
    */
-  public ReadGroup setDescription(String description) {
+  public ReadGroup setDescription(java.lang.String description) {
     this.description = description;
     return this;
   }
@@ -152,7 +152,7 @@ public final class ReadGroup extends com.google.api.client.json.GenericJson {
    * flow of each read.
    * @return value or {@code null} for none
    */
-  public String getFlowOrder() {
+  public java.lang.String getFlowOrder() {
     return flowOrder;
   }
 
@@ -161,7 +161,7 @@ public final class ReadGroup extends com.google.api.client.json.GenericJson {
    * flow of each read.
    * @param flowOrder flowOrder or {@code null} for none
    */
-  public ReadGroup setFlowOrder(String flowOrder) {
+  public ReadGroup setFlowOrder(java.lang.String flowOrder) {
     this.flowOrder = flowOrder;
     return this;
   }
@@ -170,7 +170,7 @@ public final class ReadGroup extends com.google.api.client.json.GenericJson {
    * (ID) Read group identifier.
    * @return value or {@code null} for none
    */
-  public String getId() {
+  public java.lang.String getId() {
     return id;
   }
 
@@ -178,7 +178,7 @@ public final class ReadGroup extends com.google.api.client.json.GenericJson {
    * (ID) Read group identifier.
    * @param id id or {@code null} for none
    */
-  public ReadGroup setId(String id) {
+  public ReadGroup setId(java.lang.String id) {
     this.id = id;
     return this;
   }
@@ -187,7 +187,7 @@ public final class ReadGroup extends com.google.api.client.json.GenericJson {
    * (KS) The array of nucleotide bases that correspond to the key sequence of each read.
    * @return value or {@code null} for none
    */
-  public String getKeySequence() {
+  public java.lang.String getKeySequence() {
     return keySequence;
   }
 
@@ -195,7 +195,7 @@ public final class ReadGroup extends com.google.api.client.json.GenericJson {
    * (KS) The array of nucleotide bases that correspond to the key sequence of each read.
    * @param keySequence keySequence or {@code null} for none
    */
-  public ReadGroup setKeySequence(String keySequence) {
+  public ReadGroup setKeySequence(java.lang.String keySequence) {
     this.keySequence = keySequence;
     return this;
   }
@@ -204,7 +204,7 @@ public final class ReadGroup extends com.google.api.client.json.GenericJson {
    * (LS) Library.
    * @return value or {@code null} for none
    */
-  public String getLibrary() {
+  public java.lang.String getLibrary() {
     return library;
   }
 
@@ -212,7 +212,7 @@ public final class ReadGroup extends com.google.api.client.json.GenericJson {
    * (LS) Library.
    * @param library library or {@code null} for none
    */
-  public ReadGroup setLibrary(String library) {
+  public ReadGroup setLibrary(java.lang.String library) {
     this.library = library;
     return this;
   }
@@ -221,7 +221,7 @@ public final class ReadGroup extends com.google.api.client.json.GenericJson {
    * (PU) Platform unit.
    * @return value or {@code null} for none
    */
-  public String getPlatformUnit() {
+  public java.lang.String getPlatformUnit() {
     return platformUnit;
   }
 
@@ -229,7 +229,7 @@ public final class ReadGroup extends com.google.api.client.json.GenericJson {
    * (PU) Platform unit.
    * @param platformUnit platformUnit or {@code null} for none
    */
-  public ReadGroup setPlatformUnit(String platformUnit) {
+  public ReadGroup setPlatformUnit(java.lang.String platformUnit) {
     this.platformUnit = platformUnit;
     return this;
   }
@@ -238,7 +238,7 @@ public final class ReadGroup extends com.google.api.client.json.GenericJson {
    * (PI) Predicted median insert size.
    * @return value or {@code null} for none
    */
-  public Integer getPredictedInsertSize() {
+  public java.lang.Integer getPredictedInsertSize() {
     return predictedInsertSize;
   }
 
@@ -246,7 +246,7 @@ public final class ReadGroup extends com.google.api.client.json.GenericJson {
    * (PI) Predicted median insert size.
    * @param predictedInsertSize predictedInsertSize or {@code null} for none
    */
-  public ReadGroup setPredictedInsertSize(Integer predictedInsertSize) {
+  public ReadGroup setPredictedInsertSize(java.lang.Integer predictedInsertSize) {
     this.predictedInsertSize = predictedInsertSize;
     return this;
   }
@@ -255,7 +255,7 @@ public final class ReadGroup extends com.google.api.client.json.GenericJson {
    * (PG) Programs used for processing the read group.
    * @return value or {@code null} for none
    */
-  public String getProcessingProgram() {
+  public java.lang.String getProcessingProgram() {
     return processingProgram;
   }
 
@@ -263,7 +263,7 @@ public final class ReadGroup extends com.google.api.client.json.GenericJson {
    * (PG) Programs used for processing the read group.
    * @param processingProgram processingProgram or {@code null} for none
    */
-  public ReadGroup setProcessingProgram(String processingProgram) {
+  public ReadGroup setProcessingProgram(java.lang.String processingProgram) {
     this.processingProgram = processingProgram;
     return this;
   }
@@ -272,7 +272,7 @@ public final class ReadGroup extends com.google.api.client.json.GenericJson {
    * (SM) Sample.
    * @return value or {@code null} for none
    */
-  public String getSample() {
+  public java.lang.String getSample() {
     return sample;
   }
 
@@ -280,7 +280,7 @@ public final class ReadGroup extends com.google.api.client.json.GenericJson {
    * (SM) Sample.
    * @param sample sample or {@code null} for none
    */
-  public ReadGroup setSample(String sample) {
+  public ReadGroup setSample(java.lang.String sample) {
     this.sample = sample;
     return this;
   }
@@ -289,7 +289,7 @@ public final class ReadGroup extends com.google.api.client.json.GenericJson {
    * (CN) Name of sequencing center producing the read.
    * @return value or {@code null} for none
    */
-  public String getSequencingCenterName() {
+  public java.lang.String getSequencingCenterName() {
     return sequencingCenterName;
   }
 
@@ -297,7 +297,7 @@ public final class ReadGroup extends com.google.api.client.json.GenericJson {
    * (CN) Name of sequencing center producing the read.
    * @param sequencingCenterName sequencingCenterName or {@code null} for none
    */
-  public ReadGroup setSequencingCenterName(String sequencingCenterName) {
+  public ReadGroup setSequencingCenterName(java.lang.String sequencingCenterName) {
     this.sequencingCenterName = sequencingCenterName;
     return this;
   }
@@ -306,7 +306,7 @@ public final class ReadGroup extends com.google.api.client.json.GenericJson {
    * (PL) Platform/technology used to produce the reads.
    * @return value or {@code null} for none
    */
-  public String getSequencingTechnology() {
+  public java.lang.String getSequencingTechnology() {
     return sequencingTechnology;
   }
 
@@ -314,7 +314,7 @@ public final class ReadGroup extends com.google.api.client.json.GenericJson {
    * (PL) Platform/technology used to produce the reads.
    * @param sequencingTechnology sequencingTechnology or {@code null} for none
    */
-  public ReadGroup setSequencingTechnology(String sequencingTechnology) {
+  public ReadGroup setSequencingTechnology(java.lang.String sequencingTechnology) {
     this.sequencingTechnology = sequencingTechnology;
     return this;
   }

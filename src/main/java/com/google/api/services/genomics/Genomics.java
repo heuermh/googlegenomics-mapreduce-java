@@ -30,7 +30,7 @@ package com.google.api.services.genomics;
  *
  * <p>
  * This service uses {@link GenomicsRequestInitializer} to initialize global parameters via its
- * {@link com.google.api.services.genomics.Genomics.Builder}.
+ * {@link Builder}.
  * </p>
  *
  * @since 1.3
@@ -74,7 +74,7 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
    * Constructor.
    *
    * <p>
-   * Use {@link com.google.api.services.genomics.Genomics.Builder} if you need to specify any of the optional parameters.
+   * Use {@link Builder} if you need to specify any of the optional parameters.
    * </p>
    *
    * @param transport HTTP transport, which should normally be:
@@ -114,6 +114,771 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
   }
 
   /**
+   * An accessor for creating requests from the Beacons collection.
+   *
+   * <p>The typical use is:</p>
+   * <pre>
+   *   {@code Genomics genomics = new Genomics(...);}
+   *   {@code Genomics.Beacons.List request = genomics.beacons().list(parameters ...)}
+   * </pre>
+   *
+   * @return the resource collection
+   */
+  public Beacons beacons() {
+    return new Beacons();
+  }
+
+  /**
+   * The "beacons" collection of methods.
+   */
+  public class Beacons {
+
+    /**
+     * This is an experimental API that provides a Global Alliance for Genomics and Health Beacon. It
+     * may change at any time.
+     *
+     * Create a request for the method "beacons.get".
+     *
+     * This request holds the parameters needed by the genomics server.  After setting any optional
+     * parameters, call the {@link Get#execute()} method to invoke the remote operation.
+     *
+     * @param datasetId The ID of the dataset to query over. It must be public. Private datasets will return an unauthorized
+     *        exception.
+     * @return the request
+     */
+    public Get get(java.lang.String datasetId) throws java.io.IOException {
+      Get result = new Get(datasetId);
+      initialize(result);
+      return result;
+    }
+
+    public class Get extends GenomicsRequest<com.google.api.services.genomics.model.Beacon> {
+
+      private static final String REST_PATH = "beacons/{datasetId}";
+
+      /**
+       * This is an experimental API that provides a Global Alliance for Genomics and Health Beacon. It
+       * may change at any time.
+       *
+       * Create a request for the method "beacons.get".
+       *
+       * This request holds the parameters needed by the the genomics server.  After setting any
+       * optional parameters, call the {@link Get#execute()} method to invoke the remote operation. <p>
+       * {@link Get#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)}
+       * must be called to initialize this instance immediately after invoking the constructor. </p>
+       *
+       * @param datasetId The ID of the dataset to query over. It must be public. Private datasets will return an unauthorized
+     *        exception.
+       * @since 1.13
+       */
+      protected Get(java.lang.String datasetId) {
+        super(Genomics.this, "GET", REST_PATH, null, com.google.api.services.genomics.model.Beacon.class);
+        this.datasetId = com.google.api.client.util.Preconditions.checkNotNull(datasetId, "Required parameter datasetId must be specified.");
+      }
+
+      @Override
+      public com.google.api.client.http.HttpResponse executeUsingHead() throws java.io.IOException {
+        return super.executeUsingHead();
+      }
+
+      @Override
+      public com.google.api.client.http.HttpRequest buildHttpRequestUsingHead() throws java.io.IOException {
+        return super.buildHttpRequestUsingHead();
+      }
+
+      @Override
+      public Get setAlt(java.lang.String alt) {
+        return (Get) super.setAlt(alt);
+      }
+
+      @Override
+      public Get setFields(java.lang.String fields) {
+        return (Get) super.setFields(fields);
+      }
+
+      @Override
+      public Get setKey(java.lang.String key) {
+        return (Get) super.setKey(key);
+      }
+
+      @Override
+      public Get setOauthToken(java.lang.String oauthToken) {
+        return (Get) super.setOauthToken(oauthToken);
+      }
+
+      @Override
+      public Get setPrettyPrint(java.lang.Boolean prettyPrint) {
+        return (Get) super.setPrettyPrint(prettyPrint);
+      }
+
+      @Override
+      public Get setQuotaUser(java.lang.String quotaUser) {
+        return (Get) super.setQuotaUser(quotaUser);
+      }
+
+      @Override
+      public Get setUserIp(java.lang.String userIp) {
+        return (Get) super.setUserIp(userIp);
+      }
+
+      /**
+       * The ID of the dataset to query over. It must be public. Private datasets will return an
+       * unauthorized exception.
+       */
+      @com.google.api.client.util.Key
+      private java.lang.String datasetId;
+
+      /** The ID of the dataset to query over. It must be public. Private datasets will return an
+     unauthorized exception.
+       */
+      public java.lang.String getDatasetId() {
+        return datasetId;
+      }
+
+      /**
+       * The ID of the dataset to query over. It must be public. Private datasets will return an
+       * unauthorized exception.
+       */
+      public Get setDatasetId(java.lang.String datasetId) {
+        this.datasetId = datasetId;
+        return this;
+      }
+
+      /** Required. The allele to look for ('A', 'C', 'G' or 'T'). */
+      @com.google.api.client.util.Key
+      private java.lang.String allele;
+
+      /** Required. The allele to look for ('A', 'C', 'G' or 'T').
+       */
+      public java.lang.String getAllele() {
+        return allele;
+      }
+
+      /** Required. The allele to look for ('A', 'C', 'G' or 'T'). */
+      public Get setAllele(java.lang.String allele) {
+        this.allele = allele;
+        return this;
+      }
+
+      /** Required. The contig to query over. */
+      @com.google.api.client.util.Key
+      private java.lang.String contig;
+
+      /** Required. The contig to query over.
+       */
+      public java.lang.String getContig() {
+        return contig;
+      }
+
+      /** Required. The contig to query over. */
+      public Get setContig(java.lang.String contig) {
+        this.contig = contig;
+        return this;
+      }
+
+      /** Required. The 1-based position to query at. */
+      @com.google.api.client.util.Key
+      private java.lang.Long position;
+
+      /** Required. The 1-based position to query at.
+       */
+      public java.lang.Long getPosition() {
+        return position;
+      }
+
+      /** Required. The 1-based position to query at. */
+      public Get setPosition(java.lang.Long position) {
+        this.position = position;
+        return this;
+      }
+
+      @Override
+      public Get set(String parameterName, Object value) {
+        return (Get) super.set(parameterName, value);
+      }
+    }
+
+  }
+
+  /**
+   * An accessor for creating requests from the Callsets collection.
+   *
+   * <p>The typical use is:</p>
+   * <pre>
+   *   {@code Genomics genomics = new Genomics(...);}
+   *   {@code Genomics.Callsets.List request = genomics.callsets().list(parameters ...)}
+   * </pre>
+   *
+   * @return the resource collection
+   */
+  public Callsets callsets() {
+    return new Callsets();
+  }
+
+  /**
+   * The "callsets" collection of methods.
+   */
+  public class Callsets {
+
+    /**
+     * Creates a new callset.
+     *
+     * Create a request for the method "callsets.create".
+     *
+     * This request holds the parameters needed by the genomics server.  After setting any optional
+     * parameters, call the {@link Create#execute()} method to invoke the remote operation.
+     *
+     * @param content the {@link com.google.api.services.genomics.model.Callset}
+     * @return the request
+     */
+    public Create create(com.google.api.services.genomics.model.Callset content) throws java.io.IOException {
+      Create result = new Create(content);
+      initialize(result);
+      return result;
+    }
+
+    public class Create extends GenomicsRequest<com.google.api.services.genomics.model.Callset> {
+
+      private static final String REST_PATH = "callsets";
+
+      /**
+       * Creates a new callset.
+       *
+       * Create a request for the method "callsets.create".
+       *
+       * This request holds the parameters needed by the the genomics server.  After setting any
+       * optional parameters, call the {@link Create#execute()} method to invoke the remote operation.
+       * <p> {@link
+       * Create#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
+       * be called to initialize this instance immediately after invoking the constructor. </p>
+       *
+       * @param content the {@link com.google.api.services.genomics.model.Callset}
+       * @since 1.13
+       */
+      protected Create(com.google.api.services.genomics.model.Callset content) {
+        super(Genomics.this, "POST", REST_PATH, content, com.google.api.services.genomics.model.Callset.class);
+      }
+
+      @Override
+      public Create setAlt(java.lang.String alt) {
+        return (Create) super.setAlt(alt);
+      }
+
+      @Override
+      public Create setFields(java.lang.String fields) {
+        return (Create) super.setFields(fields);
+      }
+
+      @Override
+      public Create setKey(java.lang.String key) {
+        return (Create) super.setKey(key);
+      }
+
+      @Override
+      public Create setOauthToken(java.lang.String oauthToken) {
+        return (Create) super.setOauthToken(oauthToken);
+      }
+
+      @Override
+      public Create setPrettyPrint(java.lang.Boolean prettyPrint) {
+        return (Create) super.setPrettyPrint(prettyPrint);
+      }
+
+      @Override
+      public Create setQuotaUser(java.lang.String quotaUser) {
+        return (Create) super.setQuotaUser(quotaUser);
+      }
+
+      @Override
+      public Create setUserIp(java.lang.String userIp) {
+        return (Create) super.setUserIp(userIp);
+      }
+
+      @Override
+      public Create set(String parameterName, Object value) {
+        return (Create) super.set(parameterName, value);
+      }
+    }
+    /**
+     * Deletes a callset.
+     *
+     * Create a request for the method "callsets.delete".
+     *
+     * This request holds the parameters needed by the genomics server.  After setting any optional
+     * parameters, call the {@link Delete#execute()} method to invoke the remote operation.
+     *
+     * @param callsetId The ID of the callset to be deleted.
+     * @return the request
+     */
+    public Delete delete(java.lang.String callsetId) throws java.io.IOException {
+      Delete result = new Delete(callsetId);
+      initialize(result);
+      return result;
+    }
+
+    public class Delete extends GenomicsRequest<Void> {
+
+      private static final String REST_PATH = "callsets/{callsetId}";
+
+      /**
+       * Deletes a callset.
+       *
+       * Create a request for the method "callsets.delete".
+       *
+       * This request holds the parameters needed by the the genomics server.  After setting any
+       * optional parameters, call the {@link Delete#execute()} method to invoke the remote operation.
+       * <p> {@link
+       * Delete#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
+       * be called to initialize this instance immediately after invoking the constructor. </p>
+       *
+       * @param callsetId The ID of the callset to be deleted.
+       * @since 1.13
+       */
+      protected Delete(java.lang.String callsetId) {
+        super(Genomics.this, "DELETE", REST_PATH, null, Void.class);
+        this.callsetId = com.google.api.client.util.Preconditions.checkNotNull(callsetId, "Required parameter callsetId must be specified.");
+      }
+
+      @Override
+      public Delete setAlt(java.lang.String alt) {
+        return (Delete) super.setAlt(alt);
+      }
+
+      @Override
+      public Delete setFields(java.lang.String fields) {
+        return (Delete) super.setFields(fields);
+      }
+
+      @Override
+      public Delete setKey(java.lang.String key) {
+        return (Delete) super.setKey(key);
+      }
+
+      @Override
+      public Delete setOauthToken(java.lang.String oauthToken) {
+        return (Delete) super.setOauthToken(oauthToken);
+      }
+
+      @Override
+      public Delete setPrettyPrint(java.lang.Boolean prettyPrint) {
+        return (Delete) super.setPrettyPrint(prettyPrint);
+      }
+
+      @Override
+      public Delete setQuotaUser(java.lang.String quotaUser) {
+        return (Delete) super.setQuotaUser(quotaUser);
+      }
+
+      @Override
+      public Delete setUserIp(java.lang.String userIp) {
+        return (Delete) super.setUserIp(userIp);
+      }
+
+      /** The ID of the callset to be deleted. */
+      @com.google.api.client.util.Key
+      private java.lang.String callsetId;
+
+      /** The ID of the callset to be deleted.
+       */
+      public java.lang.String getCallsetId() {
+        return callsetId;
+      }
+
+      /** The ID of the callset to be deleted. */
+      public Delete setCallsetId(java.lang.String callsetId) {
+        this.callsetId = callsetId;
+        return this;
+      }
+
+      @Override
+      public Delete set(String parameterName, Object value) {
+        return (Delete) super.set(parameterName, value);
+      }
+    }
+    /**
+     * Gets a callset by ID.
+     *
+     * Create a request for the method "callsets.get".
+     *
+     * This request holds the parameters needed by the genomics server.  After setting any optional
+     * parameters, call the {@link Get#execute()} method to invoke the remote operation.
+     *
+     * @param callsetId The ID of the callset.
+     * @return the request
+     */
+    public Get get(java.lang.String callsetId) throws java.io.IOException {
+      Get result = new Get(callsetId);
+      initialize(result);
+      return result;
+    }
+
+    public class Get extends GenomicsRequest<com.google.api.services.genomics.model.Callset> {
+
+      private static final String REST_PATH = "callsets/{callsetId}";
+
+      /**
+       * Gets a callset by ID.
+       *
+       * Create a request for the method "callsets.get".
+       *
+       * This request holds the parameters needed by the the genomics server.  After setting any
+       * optional parameters, call the {@link Get#execute()} method to invoke the remote operation. <p>
+       * {@link Get#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)}
+       * must be called to initialize this instance immediately after invoking the constructor. </p>
+       *
+       * @param callsetId The ID of the callset.
+       * @since 1.13
+       */
+      protected Get(java.lang.String callsetId) {
+        super(Genomics.this, "GET", REST_PATH, null, com.google.api.services.genomics.model.Callset.class);
+        this.callsetId = com.google.api.client.util.Preconditions.checkNotNull(callsetId, "Required parameter callsetId must be specified.");
+      }
+
+      @Override
+      public com.google.api.client.http.HttpResponse executeUsingHead() throws java.io.IOException {
+        return super.executeUsingHead();
+      }
+
+      @Override
+      public com.google.api.client.http.HttpRequest buildHttpRequestUsingHead() throws java.io.IOException {
+        return super.buildHttpRequestUsingHead();
+      }
+
+      @Override
+      public Get setAlt(java.lang.String alt) {
+        return (Get) super.setAlt(alt);
+      }
+
+      @Override
+      public Get setFields(java.lang.String fields) {
+        return (Get) super.setFields(fields);
+      }
+
+      @Override
+      public Get setKey(java.lang.String key) {
+        return (Get) super.setKey(key);
+      }
+
+      @Override
+      public Get setOauthToken(java.lang.String oauthToken) {
+        return (Get) super.setOauthToken(oauthToken);
+      }
+
+      @Override
+      public Get setPrettyPrint(java.lang.Boolean prettyPrint) {
+        return (Get) super.setPrettyPrint(prettyPrint);
+      }
+
+      @Override
+      public Get setQuotaUser(java.lang.String quotaUser) {
+        return (Get) super.setQuotaUser(quotaUser);
+      }
+
+      @Override
+      public Get setUserIp(java.lang.String userIp) {
+        return (Get) super.setUserIp(userIp);
+      }
+
+      /** The ID of the callset. */
+      @com.google.api.client.util.Key
+      private java.lang.String callsetId;
+
+      /** The ID of the callset.
+       */
+      public java.lang.String getCallsetId() {
+        return callsetId;
+      }
+
+      /** The ID of the callset. */
+      public Get setCallsetId(java.lang.String callsetId) {
+        this.callsetId = callsetId;
+        return this;
+      }
+
+      @Override
+      public Get set(String parameterName, Object value) {
+        return (Get) super.set(parameterName, value);
+      }
+    }
+    /**
+     * Updates a callset. This method supports patch semantics.
+     *
+     * Create a request for the method "callsets.patch".
+     *
+     * This request holds the parameters needed by the genomics server.  After setting any optional
+     * parameters, call the {@link Patch#execute()} method to invoke the remote operation.
+     *
+     * @param callsetId The ID of the callset to be updated.
+     * @param content the {@link com.google.api.services.genomics.model.Callset}
+     * @return the request
+     */
+    public Patch patch(java.lang.String callsetId, com.google.api.services.genomics.model.Callset content) throws java.io.IOException {
+      Patch result = new Patch(callsetId, content);
+      initialize(result);
+      return result;
+    }
+
+    public class Patch extends GenomicsRequest<com.google.api.services.genomics.model.Callset> {
+
+      private static final String REST_PATH = "callsets/{callsetId}";
+
+      /**
+       * Updates a callset. This method supports patch semantics.
+       *
+       * Create a request for the method "callsets.patch".
+       *
+       * This request holds the parameters needed by the the genomics server.  After setting any
+       * optional parameters, call the {@link Patch#execute()} method to invoke the remote operation.
+       * <p> {@link
+       * Patch#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
+       * be called to initialize this instance immediately after invoking the constructor. </p>
+       *
+       * @param callsetId The ID of the callset to be updated.
+       * @param content the {@link com.google.api.services.genomics.model.Callset}
+       * @since 1.13
+       */
+      protected Patch(java.lang.String callsetId, com.google.api.services.genomics.model.Callset content) {
+        super(Genomics.this, "PATCH", REST_PATH, content, com.google.api.services.genomics.model.Callset.class);
+        this.callsetId = com.google.api.client.util.Preconditions.checkNotNull(callsetId, "Required parameter callsetId must be specified.");
+      }
+
+      @Override
+      public Patch setAlt(java.lang.String alt) {
+        return (Patch) super.setAlt(alt);
+      }
+
+      @Override
+      public Patch setFields(java.lang.String fields) {
+        return (Patch) super.setFields(fields);
+      }
+
+      @Override
+      public Patch setKey(java.lang.String key) {
+        return (Patch) super.setKey(key);
+      }
+
+      @Override
+      public Patch setOauthToken(java.lang.String oauthToken) {
+        return (Patch) super.setOauthToken(oauthToken);
+      }
+
+      @Override
+      public Patch setPrettyPrint(java.lang.Boolean prettyPrint) {
+        return (Patch) super.setPrettyPrint(prettyPrint);
+      }
+
+      @Override
+      public Patch setQuotaUser(java.lang.String quotaUser) {
+        return (Patch) super.setQuotaUser(quotaUser);
+      }
+
+      @Override
+      public Patch setUserIp(java.lang.String userIp) {
+        return (Patch) super.setUserIp(userIp);
+      }
+
+      /** The ID of the callset to be updated. */
+      @com.google.api.client.util.Key
+      private java.lang.String callsetId;
+
+      /** The ID of the callset to be updated.
+       */
+      public java.lang.String getCallsetId() {
+        return callsetId;
+      }
+
+      /** The ID of the callset to be updated. */
+      public Patch setCallsetId(java.lang.String callsetId) {
+        this.callsetId = callsetId;
+        return this;
+      }
+
+      @Override
+      public Patch set(String parameterName, Object value) {
+        return (Patch) super.set(parameterName, value);
+      }
+    }
+    /**
+     * Gets a list of callsets matching the criteria.
+     *
+     * Create a request for the method "callsets.search".
+     *
+     * This request holds the parameters needed by the genomics server.  After setting any optional
+     * parameters, call the {@link Search#execute()} method to invoke the remote operation.
+     *
+     * @param content the {@link com.google.api.services.genomics.model.SearchCallsetsRequest}
+     * @return the request
+     */
+    public Search search(com.google.api.services.genomics.model.SearchCallsetsRequest content) throws java.io.IOException {
+      Search result = new Search(content);
+      initialize(result);
+      return result;
+    }
+
+    public class Search extends GenomicsRequest<com.google.api.services.genomics.model.SearchCallsetsResponse> {
+
+      private static final String REST_PATH = "callsets/search";
+
+      /**
+       * Gets a list of callsets matching the criteria.
+       *
+       * Create a request for the method "callsets.search".
+       *
+       * This request holds the parameters needed by the the genomics server.  After setting any
+       * optional parameters, call the {@link Search#execute()} method to invoke the remote operation.
+       * <p> {@link
+       * Search#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
+       * be called to initialize this instance immediately after invoking the constructor. </p>
+       *
+       * @param content the {@link com.google.api.services.genomics.model.SearchCallsetsRequest}
+       * @since 1.13
+       */
+      protected Search(com.google.api.services.genomics.model.SearchCallsetsRequest content) {
+        super(Genomics.this, "POST", REST_PATH, content, com.google.api.services.genomics.model.SearchCallsetsResponse.class);
+      }
+
+      @Override
+      public Search setAlt(java.lang.String alt) {
+        return (Search) super.setAlt(alt);
+      }
+
+      @Override
+      public Search setFields(java.lang.String fields) {
+        return (Search) super.setFields(fields);
+      }
+
+      @Override
+      public Search setKey(java.lang.String key) {
+        return (Search) super.setKey(key);
+      }
+
+      @Override
+      public Search setOauthToken(java.lang.String oauthToken) {
+        return (Search) super.setOauthToken(oauthToken);
+      }
+
+      @Override
+      public Search setPrettyPrint(java.lang.Boolean prettyPrint) {
+        return (Search) super.setPrettyPrint(prettyPrint);
+      }
+
+      @Override
+      public Search setQuotaUser(java.lang.String quotaUser) {
+        return (Search) super.setQuotaUser(quotaUser);
+      }
+
+      @Override
+      public Search setUserIp(java.lang.String userIp) {
+        return (Search) super.setUserIp(userIp);
+      }
+
+      @Override
+      public Search set(String parameterName, Object value) {
+        return (Search) super.set(parameterName, value);
+      }
+    }
+    /**
+     * Updates a callset.
+     *
+     * Create a request for the method "callsets.update".
+     *
+     * This request holds the parameters needed by the genomics server.  After setting any optional
+     * parameters, call the {@link Update#execute()} method to invoke the remote operation.
+     *
+     * @param callsetId The ID of the callset to be updated.
+     * @param content the {@link com.google.api.services.genomics.model.Callset}
+     * @return the request
+     */
+    public Update update(java.lang.String callsetId, com.google.api.services.genomics.model.Callset content) throws java.io.IOException {
+      Update result = new Update(callsetId, content);
+      initialize(result);
+      return result;
+    }
+
+    public class Update extends GenomicsRequest<com.google.api.services.genomics.model.Callset> {
+
+      private static final String REST_PATH = "callsets/{callsetId}";
+
+      /**
+       * Updates a callset.
+       *
+       * Create a request for the method "callsets.update".
+       *
+       * This request holds the parameters needed by the the genomics server.  After setting any
+       * optional parameters, call the {@link Update#execute()} method to invoke the remote operation.
+       * <p> {@link
+       * Update#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
+       * be called to initialize this instance immediately after invoking the constructor. </p>
+       *
+       * @param callsetId The ID of the callset to be updated.
+       * @param content the {@link com.google.api.services.genomics.model.Callset}
+       * @since 1.13
+       */
+      protected Update(java.lang.String callsetId, com.google.api.services.genomics.model.Callset content) {
+        super(Genomics.this, "PUT", REST_PATH, content, com.google.api.services.genomics.model.Callset.class);
+        this.callsetId = com.google.api.client.util.Preconditions.checkNotNull(callsetId, "Required parameter callsetId must be specified.");
+      }
+
+      @Override
+      public Update setAlt(java.lang.String alt) {
+        return (Update) super.setAlt(alt);
+      }
+
+      @Override
+      public Update setFields(java.lang.String fields) {
+        return (Update) super.setFields(fields);
+      }
+
+      @Override
+      public Update setKey(java.lang.String key) {
+        return (Update) super.setKey(key);
+      }
+
+      @Override
+      public Update setOauthToken(java.lang.String oauthToken) {
+        return (Update) super.setOauthToken(oauthToken);
+      }
+
+      @Override
+      public Update setPrettyPrint(java.lang.Boolean prettyPrint) {
+        return (Update) super.setPrettyPrint(prettyPrint);
+      }
+
+      @Override
+      public Update setQuotaUser(java.lang.String quotaUser) {
+        return (Update) super.setQuotaUser(quotaUser);
+      }
+
+      @Override
+      public Update setUserIp(java.lang.String userIp) {
+        return (Update) super.setUserIp(userIp);
+      }
+
+      /** The ID of the callset to be updated. */
+      @com.google.api.client.util.Key
+      private java.lang.String callsetId;
+
+      /** The ID of the callset to be updated.
+       */
+      public java.lang.String getCallsetId() {
+        return callsetId;
+      }
+
+      /** The ID of the callset to be updated. */
+      public Update setCallsetId(java.lang.String callsetId) {
+        this.callsetId = callsetId;
+        return this;
+      }
+
+      @Override
+      public Update set(String parameterName, Object value) {
+        return (Update) super.set(parameterName, value);
+      }
+    }
+
+  }
+
+  /**
    * An accessor for creating requests from the Datasets collection.
    *
    * <p>The typical use is:</p>
@@ -139,7 +904,7 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
      * Create a request for the method "datasets.create".
      *
      * This request holds the parameters needed by the genomics server.  After setting any optional
-     * parameters, call the {@link com.google.api.services.genomics.Genomics.Datasets.Create#execute()} method to invoke the remote operation.
+     * parameters, call the {@link Create#execute()} method to invoke the remote operation.
      *
      * @param content the {@link com.google.api.services.genomics.model.Dataset}
      * @return the request
@@ -160,9 +925,9 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
        * Create a request for the method "datasets.create".
        *
        * This request holds the parameters needed by the the genomics server.  After setting any
-       * optional parameters, call the {@link com.google.api.services.genomics.Genomics.Datasets.Create#execute()} method to invoke the remote operation.
+       * optional parameters, call the {@link Create#execute()} method to invoke the remote operation.
        * <p> {@link
-       * com.google.api.services.genomics.Genomics.Datasets.Create#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
+       * Create#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
        * be called to initialize this instance immediately after invoking the constructor. </p>
        *
        * @param content the {@link com.google.api.services.genomics.model.Dataset}
@@ -173,37 +938,37 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
       }
 
       @Override
-      public Create setAlt(String alt) {
+      public Create setAlt(java.lang.String alt) {
         return (Create) super.setAlt(alt);
       }
 
       @Override
-      public Create setFields(String fields) {
+      public Create setFields(java.lang.String fields) {
         return (Create) super.setFields(fields);
       }
 
       @Override
-      public Create setKey(String key) {
+      public Create setKey(java.lang.String key) {
         return (Create) super.setKey(key);
       }
 
       @Override
-      public Create setOauthToken(String oauthToken) {
+      public Create setOauthToken(java.lang.String oauthToken) {
         return (Create) super.setOauthToken(oauthToken);
       }
 
       @Override
-      public Create setPrettyPrint(Boolean prettyPrint) {
+      public Create setPrettyPrint(java.lang.Boolean prettyPrint) {
         return (Create) super.setPrettyPrint(prettyPrint);
       }
 
       @Override
-      public Create setQuotaUser(String quotaUser) {
+      public Create setQuotaUser(java.lang.String quotaUser) {
         return (Create) super.setQuotaUser(quotaUser);
       }
 
       @Override
-      public Create setUserIp(String userIp) {
+      public Create setUserIp(java.lang.String userIp) {
         return (Create) super.setUserIp(userIp);
       }
 
@@ -218,12 +983,12 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
      * Create a request for the method "datasets.delete".
      *
      * This request holds the parameters needed by the genomics server.  After setting any optional
-     * parameters, call the {@link com.google.api.services.genomics.Genomics.Datasets.Delete#execute()} method to invoke the remote operation.
+     * parameters, call the {@link Delete#execute()} method to invoke the remote operation.
      *
      * @param datasetId The ID of the dataset to be deleted.
      * @return the request
      */
-    public Delete delete(String datasetId) throws java.io.IOException {
+    public Delete delete(java.lang.String datasetId) throws java.io.IOException {
       Delete result = new Delete(datasetId);
       initialize(result);
       return result;
@@ -239,66 +1004,66 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
        * Create a request for the method "datasets.delete".
        *
        * This request holds the parameters needed by the the genomics server.  After setting any
-       * optional parameters, call the {@link com.google.api.services.genomics.Genomics.Datasets.Delete#execute()} method to invoke the remote operation.
+       * optional parameters, call the {@link Delete#execute()} method to invoke the remote operation.
        * <p> {@link
-       * com.google.api.services.genomics.Genomics.Datasets.Delete#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
+       * Delete#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
        * be called to initialize this instance immediately after invoking the constructor. </p>
        *
        * @param datasetId The ID of the dataset to be deleted.
        * @since 1.13
        */
-      protected Delete(String datasetId) {
+      protected Delete(java.lang.String datasetId) {
         super(Genomics.this, "DELETE", REST_PATH, null, Void.class);
         this.datasetId = com.google.api.client.util.Preconditions.checkNotNull(datasetId, "Required parameter datasetId must be specified.");
       }
 
       @Override
-      public Delete setAlt(String alt) {
+      public Delete setAlt(java.lang.String alt) {
         return (Delete) super.setAlt(alt);
       }
 
       @Override
-      public Delete setFields(String fields) {
+      public Delete setFields(java.lang.String fields) {
         return (Delete) super.setFields(fields);
       }
 
       @Override
-      public Delete setKey(String key) {
+      public Delete setKey(java.lang.String key) {
         return (Delete) super.setKey(key);
       }
 
       @Override
-      public Delete setOauthToken(String oauthToken) {
+      public Delete setOauthToken(java.lang.String oauthToken) {
         return (Delete) super.setOauthToken(oauthToken);
       }
 
       @Override
-      public Delete setPrettyPrint(Boolean prettyPrint) {
+      public Delete setPrettyPrint(java.lang.Boolean prettyPrint) {
         return (Delete) super.setPrettyPrint(prettyPrint);
       }
 
       @Override
-      public Delete setQuotaUser(String quotaUser) {
+      public Delete setQuotaUser(java.lang.String quotaUser) {
         return (Delete) super.setQuotaUser(quotaUser);
       }
 
       @Override
-      public Delete setUserIp(String userIp) {
+      public Delete setUserIp(java.lang.String userIp) {
         return (Delete) super.setUserIp(userIp);
       }
 
       /** The ID of the dataset to be deleted. */
       @com.google.api.client.util.Key
-      private String datasetId;
+      private java.lang.String datasetId;
 
       /** The ID of the dataset to be deleted.
        */
-      public String getDatasetId() {
+      public java.lang.String getDatasetId() {
         return datasetId;
       }
 
       /** The ID of the dataset to be deleted. */
-      public Delete setDatasetId(String datasetId) {
+      public Delete setDatasetId(java.lang.String datasetId) {
         this.datasetId = datasetId;
         return this;
       }
@@ -314,12 +1079,12 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
      * Create a request for the method "datasets.get".
      *
      * This request holds the parameters needed by the genomics server.  After setting any optional
-     * parameters, call the {@link com.google.api.services.genomics.Genomics.Datasets.Get#execute()} method to invoke the remote operation.
+     * parameters, call the {@link Get#execute()} method to invoke the remote operation.
      *
      * @param datasetId The ID of the dataset.
      * @return the request
      */
-    public Get get(String datasetId) throws java.io.IOException {
+    public Get get(java.lang.String datasetId) throws java.io.IOException {
       Get result = new Get(datasetId);
       initialize(result);
       return result;
@@ -335,14 +1100,14 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
        * Create a request for the method "datasets.get".
        *
        * This request holds the parameters needed by the the genomics server.  After setting any
-       * optional parameters, call the {@link com.google.api.services.genomics.Genomics.Datasets.Get#execute()} method to invoke the remote operation. <p>
-       * {@link com.google.api.services.genomics.Genomics.Datasets.Get#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)}
+       * optional parameters, call the {@link Get#execute()} method to invoke the remote operation. <p>
+       * {@link Get#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)}
        * must be called to initialize this instance immediately after invoking the constructor. </p>
        *
        * @param datasetId The ID of the dataset.
        * @since 1.13
        */
-      protected Get(String datasetId) {
+      protected Get(java.lang.String datasetId) {
         super(Genomics.this, "GET", REST_PATH, null, com.google.api.services.genomics.model.Dataset.class);
         this.datasetId = com.google.api.client.util.Preconditions.checkNotNull(datasetId, "Required parameter datasetId must be specified.");
       }
@@ -358,52 +1123,52 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
       }
 
       @Override
-      public Get setAlt(String alt) {
+      public Get setAlt(java.lang.String alt) {
         return (Get) super.setAlt(alt);
       }
 
       @Override
-      public Get setFields(String fields) {
+      public Get setFields(java.lang.String fields) {
         return (Get) super.setFields(fields);
       }
 
       @Override
-      public Get setKey(String key) {
+      public Get setKey(java.lang.String key) {
         return (Get) super.setKey(key);
       }
 
       @Override
-      public Get setOauthToken(String oauthToken) {
+      public Get setOauthToken(java.lang.String oauthToken) {
         return (Get) super.setOauthToken(oauthToken);
       }
 
       @Override
-      public Get setPrettyPrint(Boolean prettyPrint) {
+      public Get setPrettyPrint(java.lang.Boolean prettyPrint) {
         return (Get) super.setPrettyPrint(prettyPrint);
       }
 
       @Override
-      public Get setQuotaUser(String quotaUser) {
+      public Get setQuotaUser(java.lang.String quotaUser) {
         return (Get) super.setQuotaUser(quotaUser);
       }
 
       @Override
-      public Get setUserIp(String userIp) {
+      public Get setUserIp(java.lang.String userIp) {
         return (Get) super.setUserIp(userIp);
       }
 
       /** The ID of the dataset. */
       @com.google.api.client.util.Key
-      private String datasetId;
+      private java.lang.String datasetId;
 
       /** The ID of the dataset.
        */
-      public String getDatasetId() {
+      public java.lang.String getDatasetId() {
         return datasetId;
       }
 
       /** The ID of the dataset. */
-      public Get setDatasetId(String datasetId) {
+      public Get setDatasetId(java.lang.String datasetId) {
         this.datasetId = datasetId;
         return this;
       }
@@ -419,7 +1184,7 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
      * Create a request for the method "datasets.list".
      *
      * This request holds the parameters needed by the genomics server.  After setting any optional
-     * parameters, call the {@link com.google.api.services.genomics.Genomics.Datasets.List#execute()} method to invoke the remote operation.
+     * parameters, call the {@link List#execute()} method to invoke the remote operation.
      *
      * @return the request
      */
@@ -439,8 +1204,8 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
        * Create a request for the method "datasets.list".
        *
        * This request holds the parameters needed by the the genomics server.  After setting any
-       * optional parameters, call the {@link com.google.api.services.genomics.Genomics.Datasets.List#execute()} method to invoke the remote operation. <p>
-       * {@link com.google.api.services.genomics.Genomics.Datasets.List#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)}
+       * optional parameters, call the {@link List#execute()} method to invoke the remote operation. <p>
+       * {@link List#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)}
        * must be called to initialize this instance immediately after invoking the constructor. </p>
        *
        * @since 1.13
@@ -460,37 +1225,37 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
       }
 
       @Override
-      public List setAlt(String alt) {
+      public List setAlt(java.lang.String alt) {
         return (List) super.setAlt(alt);
       }
 
       @Override
-      public List setFields(String fields) {
+      public List setFields(java.lang.String fields) {
         return (List) super.setFields(fields);
       }
 
       @Override
-      public List setKey(String key) {
+      public List setKey(java.lang.String key) {
         return (List) super.setKey(key);
       }
 
       @Override
-      public List setOauthToken(String oauthToken) {
+      public List setOauthToken(java.lang.String oauthToken) {
         return (List) super.setOauthToken(oauthToken);
       }
 
       @Override
-      public List setPrettyPrint(Boolean prettyPrint) {
+      public List setPrettyPrint(java.lang.Boolean prettyPrint) {
         return (List) super.setPrettyPrint(prettyPrint);
       }
 
       @Override
-      public List setQuotaUser(String quotaUser) {
+      public List setQuotaUser(java.lang.String quotaUser) {
         return (List) super.setQuotaUser(quotaUser);
       }
 
       @Override
-      public List setUserIp(String userIp) {
+      public List setUserIp(java.lang.String userIp) {
         return (List) super.setUserIp(userIp);
       }
 
@@ -500,12 +1265,12 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
        * response.
        */
       @com.google.api.client.util.Key
-      private String pageToken;
+      private java.lang.String pageToken;
 
       /** The continuation token, which is used to page through large result sets. To get the next page of
      results, set this parameter to the value of "nextPageToken" from the previous response.
        */
-      public String getPageToken() {
+      public java.lang.String getPageToken() {
         return pageToken;
       }
 
@@ -514,23 +1279,23 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
        * page of results, set this parameter to the value of "nextPageToken" from the previous
        * response.
        */
-      public List setPageToken(String pageToken) {
+      public List setPageToken(java.lang.String pageToken) {
         this.pageToken = pageToken;
         return this;
       }
 
       /** The Google Cloud Console project number. */
       @com.google.api.client.util.Key
-      private Long projectId;
+      private java.lang.Long projectId;
 
       /** The Google Cloud Console project number.
        */
-      public Long getProjectId() {
+      public java.lang.Long getProjectId() {
         return projectId;
       }
 
       /** The Google Cloud Console project number. */
-      public List setProjectId(Long projectId) {
+      public List setProjectId(java.lang.Long projectId) {
         this.projectId = projectId;
         return this;
       }
@@ -546,13 +1311,13 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
      * Create a request for the method "datasets.patch".
      *
      * This request holds the parameters needed by the genomics server.  After setting any optional
-     * parameters, call the {@link com.google.api.services.genomics.Genomics.Datasets.Patch#execute()} method to invoke the remote operation.
+     * parameters, call the {@link Patch#execute()} method to invoke the remote operation.
      *
      * @param datasetId The ID of the dataset to be updated.
      * @param content the {@link com.google.api.services.genomics.model.Dataset}
      * @return the request
      */
-    public Patch patch(String datasetId, com.google.api.services.genomics.model.Dataset content) throws java.io.IOException {
+    public Patch patch(java.lang.String datasetId, com.google.api.services.genomics.model.Dataset content) throws java.io.IOException {
       Patch result = new Patch(datasetId, content);
       initialize(result);
       return result;
@@ -568,67 +1333,67 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
        * Create a request for the method "datasets.patch".
        *
        * This request holds the parameters needed by the the genomics server.  After setting any
-       * optional parameters, call the {@link com.google.api.services.genomics.Genomics.Datasets.Patch#execute()} method to invoke the remote operation.
+       * optional parameters, call the {@link Patch#execute()} method to invoke the remote operation.
        * <p> {@link
-       * com.google.api.services.genomics.Genomics.Datasets.Patch#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
+       * Patch#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
        * be called to initialize this instance immediately after invoking the constructor. </p>
        *
        * @param datasetId The ID of the dataset to be updated.
        * @param content the {@link com.google.api.services.genomics.model.Dataset}
        * @since 1.13
        */
-      protected Patch(String datasetId, com.google.api.services.genomics.model.Dataset content) {
+      protected Patch(java.lang.String datasetId, com.google.api.services.genomics.model.Dataset content) {
         super(Genomics.this, "PATCH", REST_PATH, content, com.google.api.services.genomics.model.Dataset.class);
         this.datasetId = com.google.api.client.util.Preconditions.checkNotNull(datasetId, "Required parameter datasetId must be specified.");
       }
 
       @Override
-      public Patch setAlt(String alt) {
+      public Patch setAlt(java.lang.String alt) {
         return (Patch) super.setAlt(alt);
       }
 
       @Override
-      public Patch setFields(String fields) {
+      public Patch setFields(java.lang.String fields) {
         return (Patch) super.setFields(fields);
       }
 
       @Override
-      public Patch setKey(String key) {
+      public Patch setKey(java.lang.String key) {
         return (Patch) super.setKey(key);
       }
 
       @Override
-      public Patch setOauthToken(String oauthToken) {
+      public Patch setOauthToken(java.lang.String oauthToken) {
         return (Patch) super.setOauthToken(oauthToken);
       }
 
       @Override
-      public Patch setPrettyPrint(Boolean prettyPrint) {
+      public Patch setPrettyPrint(java.lang.Boolean prettyPrint) {
         return (Patch) super.setPrettyPrint(prettyPrint);
       }
 
       @Override
-      public Patch setQuotaUser(String quotaUser) {
+      public Patch setQuotaUser(java.lang.String quotaUser) {
         return (Patch) super.setQuotaUser(quotaUser);
       }
 
       @Override
-      public Patch setUserIp(String userIp) {
+      public Patch setUserIp(java.lang.String userIp) {
         return (Patch) super.setUserIp(userIp);
       }
 
       /** The ID of the dataset to be updated. */
       @com.google.api.client.util.Key
-      private String datasetId;
+      private java.lang.String datasetId;
 
       /** The ID of the dataset to be updated.
        */
-      public String getDatasetId() {
+      public java.lang.String getDatasetId() {
         return datasetId;
       }
 
       /** The ID of the dataset to be updated. */
-      public Patch setDatasetId(String datasetId) {
+      public Patch setDatasetId(java.lang.String datasetId) {
         this.datasetId = datasetId;
         return this;
       }
@@ -644,13 +1409,13 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
      * Create a request for the method "datasets.update".
      *
      * This request holds the parameters needed by the genomics server.  After setting any optional
-     * parameters, call the {@link com.google.api.services.genomics.Genomics.Datasets.Update#execute()} method to invoke the remote operation.
+     * parameters, call the {@link Update#execute()} method to invoke the remote operation.
      *
      * @param datasetId The ID of the dataset to be updated.
      * @param content the {@link com.google.api.services.genomics.model.Dataset}
      * @return the request
      */
-    public Update update(String datasetId, com.google.api.services.genomics.model.Dataset content) throws java.io.IOException {
+    public Update update(java.lang.String datasetId, com.google.api.services.genomics.model.Dataset content) throws java.io.IOException {
       Update result = new Update(datasetId, content);
       initialize(result);
       return result;
@@ -666,67 +1431,67 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
        * Create a request for the method "datasets.update".
        *
        * This request holds the parameters needed by the the genomics server.  After setting any
-       * optional parameters, call the {@link com.google.api.services.genomics.Genomics.Datasets.Update#execute()} method to invoke the remote operation.
+       * optional parameters, call the {@link Update#execute()} method to invoke the remote operation.
        * <p> {@link
-       * com.google.api.services.genomics.Genomics.Datasets.Update#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
+       * Update#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
        * be called to initialize this instance immediately after invoking the constructor. </p>
        *
        * @param datasetId The ID of the dataset to be updated.
        * @param content the {@link com.google.api.services.genomics.model.Dataset}
        * @since 1.13
        */
-      protected Update(String datasetId, com.google.api.services.genomics.model.Dataset content) {
+      protected Update(java.lang.String datasetId, com.google.api.services.genomics.model.Dataset content) {
         super(Genomics.this, "PUT", REST_PATH, content, com.google.api.services.genomics.model.Dataset.class);
         this.datasetId = com.google.api.client.util.Preconditions.checkNotNull(datasetId, "Required parameter datasetId must be specified.");
       }
 
       @Override
-      public Update setAlt(String alt) {
+      public Update setAlt(java.lang.String alt) {
         return (Update) super.setAlt(alt);
       }
 
       @Override
-      public Update setFields(String fields) {
+      public Update setFields(java.lang.String fields) {
         return (Update) super.setFields(fields);
       }
 
       @Override
-      public Update setKey(String key) {
+      public Update setKey(java.lang.String key) {
         return (Update) super.setKey(key);
       }
 
       @Override
-      public Update setOauthToken(String oauthToken) {
+      public Update setOauthToken(java.lang.String oauthToken) {
         return (Update) super.setOauthToken(oauthToken);
       }
 
       @Override
-      public Update setPrettyPrint(Boolean prettyPrint) {
+      public Update setPrettyPrint(java.lang.Boolean prettyPrint) {
         return (Update) super.setPrettyPrint(prettyPrint);
       }
 
       @Override
-      public Update setQuotaUser(String quotaUser) {
+      public Update setQuotaUser(java.lang.String quotaUser) {
         return (Update) super.setQuotaUser(quotaUser);
       }
 
       @Override
-      public Update setUserIp(String userIp) {
+      public Update setUserIp(java.lang.String userIp) {
         return (Update) super.setUserIp(userIp);
       }
 
       /** The ID of the dataset to be updated. */
       @com.google.api.client.util.Key
-      private String datasetId;
+      private java.lang.String datasetId;
 
       /** The ID of the dataset to be updated.
        */
-      public String getDatasetId() {
+      public java.lang.String getDatasetId() {
         return datasetId;
       }
 
       /** The ID of the dataset to be updated. */
-      public Update setDatasetId(String datasetId) {
+      public Update setDatasetId(java.lang.String datasetId) {
         this.datasetId = datasetId;
         return this;
       }
@@ -765,12 +1530,12 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
      * Create a request for the method "jobs.get".
      *
      * This request holds the parameters needed by the genomics server.  After setting any optional
-     * parameters, call the {@link com.google.api.services.genomics.Genomics.Jobs.Get#execute()} method to invoke the remote operation.
+     * parameters, call the {@link Get#execute()} method to invoke the remote operation.
      *
      * @param jobId The ID of the job.
      * @return the request
      */
-    public Get get(String jobId) throws java.io.IOException {
+    public Get get(java.lang.String jobId) throws java.io.IOException {
       Get result = new Get(jobId);
       initialize(result);
       return result;
@@ -786,14 +1551,14 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
        * Create a request for the method "jobs.get".
        *
        * This request holds the parameters needed by the the genomics server.  After setting any
-       * optional parameters, call the {@link com.google.api.services.genomics.Genomics.Jobs.Get#execute()} method to invoke the remote operation. <p>
-       * {@link com.google.api.services.genomics.Genomics.Jobs.Get#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)}
+       * optional parameters, call the {@link Get#execute()} method to invoke the remote operation. <p>
+       * {@link Get#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)}
        * must be called to initialize this instance immediately after invoking the constructor. </p>
        *
        * @param jobId The ID of the job.
        * @since 1.13
        */
-      protected Get(String jobId) {
+      protected Get(java.lang.String jobId) {
         super(Genomics.this, "GET", REST_PATH, null, com.google.api.services.genomics.model.Job.class);
         this.jobId = com.google.api.client.util.Preconditions.checkNotNull(jobId, "Required parameter jobId must be specified.");
       }
@@ -809,52 +1574,52 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
       }
 
       @Override
-      public Get setAlt(String alt) {
+      public Get setAlt(java.lang.String alt) {
         return (Get) super.setAlt(alt);
       }
 
       @Override
-      public Get setFields(String fields) {
+      public Get setFields(java.lang.String fields) {
         return (Get) super.setFields(fields);
       }
 
       @Override
-      public Get setKey(String key) {
+      public Get setKey(java.lang.String key) {
         return (Get) super.setKey(key);
       }
 
       @Override
-      public Get setOauthToken(String oauthToken) {
+      public Get setOauthToken(java.lang.String oauthToken) {
         return (Get) super.setOauthToken(oauthToken);
       }
 
       @Override
-      public Get setPrettyPrint(Boolean prettyPrint) {
+      public Get setPrettyPrint(java.lang.Boolean prettyPrint) {
         return (Get) super.setPrettyPrint(prettyPrint);
       }
 
       @Override
-      public Get setQuotaUser(String quotaUser) {
+      public Get setQuotaUser(java.lang.String quotaUser) {
         return (Get) super.setQuotaUser(quotaUser);
       }
 
       @Override
-      public Get setUserIp(String userIp) {
+      public Get setUserIp(java.lang.String userIp) {
         return (Get) super.setUserIp(userIp);
       }
 
       /** The ID of the job. */
       @com.google.api.client.util.Key
-      private String jobId;
+      private java.lang.String jobId;
 
       /** The ID of the job.
        */
-      public String getJobId() {
+      public java.lang.String getJobId() {
         return jobId;
       }
 
       /** The ID of the job. */
-      public Get setJobId(String jobId) {
+      public Get setJobId(java.lang.String jobId) {
         this.jobId = jobId;
         return this;
       }
@@ -888,192 +1653,17 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
   public class Reads {
 
     /**
-     * Creates a new read.
-     *
-     * Create a request for the method "reads.create".
-     *
-     * This request holds the parameters needed by the genomics server.  After setting any optional
-     * parameters, call the {@link com.google.api.services.genomics.Genomics.Reads.Create#execute()} method to invoke the remote operation.
-     *
-     * @param content the {@link com.google.api.services.genomics.model.Read}
-     * @return the request
-     */
-    public Create create(com.google.api.services.genomics.model.Read content) throws java.io.IOException {
-      Create result = new Create(content);
-      initialize(result);
-      return result;
-    }
-
-    public class Create extends GenomicsRequest<com.google.api.services.genomics.model.Read> {
-
-      private static final String REST_PATH = "reads";
-
-      /**
-       * Creates a new read.
-       *
-       * Create a request for the method "reads.create".
-       *
-       * This request holds the parameters needed by the the genomics server.  After setting any
-       * optional parameters, call the {@link com.google.api.services.genomics.Genomics.Reads.Create#execute()} method to invoke the remote operation.
-       * <p> {@link
-       * com.google.api.services.genomics.Genomics.Reads.Create#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
-       * be called to initialize this instance immediately after invoking the constructor. </p>
-       *
-       * @param content the {@link com.google.api.services.genomics.model.Read}
-       * @since 1.13
-       */
-      protected Create(com.google.api.services.genomics.model.Read content) {
-        super(Genomics.this, "POST", REST_PATH, content, com.google.api.services.genomics.model.Read.class);
-      }
-
-      @Override
-      public Create setAlt(String alt) {
-        return (Create) super.setAlt(alt);
-      }
-
-      @Override
-      public Create setFields(String fields) {
-        return (Create) super.setFields(fields);
-      }
-
-      @Override
-      public Create setKey(String key) {
-        return (Create) super.setKey(key);
-      }
-
-      @Override
-      public Create setOauthToken(String oauthToken) {
-        return (Create) super.setOauthToken(oauthToken);
-      }
-
-      @Override
-      public Create setPrettyPrint(Boolean prettyPrint) {
-        return (Create) super.setPrettyPrint(prettyPrint);
-      }
-
-      @Override
-      public Create setQuotaUser(String quotaUser) {
-        return (Create) super.setQuotaUser(quotaUser);
-      }
-
-      @Override
-      public Create setUserIp(String userIp) {
-        return (Create) super.setUserIp(userIp);
-      }
-
-      @Override
-      public Create set(String parameterName, Object value) {
-        return (Create) super.set(parameterName, value);
-      }
-    }
-    /**
-     * Deletes a read.
-     *
-     * Create a request for the method "reads.delete".
-     *
-     * This request holds the parameters needed by the genomics server.  After setting any optional
-     * parameters, call the {@link com.google.api.services.genomics.Genomics.Reads.Delete#execute()} method to invoke the remote operation.
-     *
-     * @param readId The ID of the read to be deleted.
-     * @return the request
-     */
-    public Delete delete(String readId) throws java.io.IOException {
-      Delete result = new Delete(readId);
-      initialize(result);
-      return result;
-    }
-
-    public class Delete extends GenomicsRequest<Void> {
-
-      private static final String REST_PATH = "reads/{readId}";
-
-      /**
-       * Deletes a read.
-       *
-       * Create a request for the method "reads.delete".
-       *
-       * This request holds the parameters needed by the the genomics server.  After setting any
-       * optional parameters, call the {@link com.google.api.services.genomics.Genomics.Reads.Delete#execute()} method to invoke the remote operation.
-       * <p> {@link
-       * com.google.api.services.genomics.Genomics.Reads.Delete#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
-       * be called to initialize this instance immediately after invoking the constructor. </p>
-       *
-       * @param readId The ID of the read to be deleted.
-       * @since 1.13
-       */
-      protected Delete(String readId) {
-        super(Genomics.this, "DELETE", REST_PATH, null, Void.class);
-        this.readId = com.google.api.client.util.Preconditions.checkNotNull(readId, "Required parameter readId must be specified.");
-      }
-
-      @Override
-      public Delete setAlt(String alt) {
-        return (Delete) super.setAlt(alt);
-      }
-
-      @Override
-      public Delete setFields(String fields) {
-        return (Delete) super.setFields(fields);
-      }
-
-      @Override
-      public Delete setKey(String key) {
-        return (Delete) super.setKey(key);
-      }
-
-      @Override
-      public Delete setOauthToken(String oauthToken) {
-        return (Delete) super.setOauthToken(oauthToken);
-      }
-
-      @Override
-      public Delete setPrettyPrint(Boolean prettyPrint) {
-        return (Delete) super.setPrettyPrint(prettyPrint);
-      }
-
-      @Override
-      public Delete setQuotaUser(String quotaUser) {
-        return (Delete) super.setQuotaUser(quotaUser);
-      }
-
-      @Override
-      public Delete setUserIp(String userIp) {
-        return (Delete) super.setUserIp(userIp);
-      }
-
-      /** The ID of the read to be deleted. */
-      @com.google.api.client.util.Key
-      private String readId;
-
-      /** The ID of the read to be deleted.
-       */
-      public String getReadId() {
-        return readId;
-      }
-
-      /** The ID of the read to be deleted. */
-      public Delete setReadId(String readId) {
-        this.readId = readId;
-        return this;
-      }
-
-      @Override
-      public Delete set(String parameterName, Object value) {
-        return (Delete) super.set(parameterName, value);
-      }
-    }
-    /**
      * Gets a read by ID.
      *
      * Create a request for the method "reads.get".
      *
      * This request holds the parameters needed by the genomics server.  After setting any optional
-     * parameters, call the {@link com.google.api.services.genomics.Genomics.Reads.Get#execute()} method to invoke the remote operation.
+     * parameters, call the {@link Get#execute()} method to invoke the remote operation.
      *
      * @param readId The ID of the read.
      * @return the request
      */
-    public Get get(String readId) throws java.io.IOException {
+    public Get get(java.lang.String readId) throws java.io.IOException {
       Get result = new Get(readId);
       initialize(result);
       return result;
@@ -1089,14 +1679,14 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
        * Create a request for the method "reads.get".
        *
        * This request holds the parameters needed by the the genomics server.  After setting any
-       * optional parameters, call the {@link com.google.api.services.genomics.Genomics.Reads.Get#execute()} method to invoke the remote operation. <p>
-       * {@link com.google.api.services.genomics.Genomics.Reads.Get#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)}
+       * optional parameters, call the {@link Get#execute()} method to invoke the remote operation. <p>
+       * {@link Get#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)}
        * must be called to initialize this instance immediately after invoking the constructor. </p>
        *
        * @param readId The ID of the read.
        * @since 1.13
        */
-      protected Get(String readId) {
+      protected Get(java.lang.String readId) {
         super(Genomics.this, "GET", REST_PATH, null, com.google.api.services.genomics.model.Read.class);
         this.readId = com.google.api.client.util.Preconditions.checkNotNull(readId, "Required parameter readId must be specified.");
       }
@@ -1112,52 +1702,52 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
       }
 
       @Override
-      public Get setAlt(String alt) {
+      public Get setAlt(java.lang.String alt) {
         return (Get) super.setAlt(alt);
       }
 
       @Override
-      public Get setFields(String fields) {
+      public Get setFields(java.lang.String fields) {
         return (Get) super.setFields(fields);
       }
 
       @Override
-      public Get setKey(String key) {
+      public Get setKey(java.lang.String key) {
         return (Get) super.setKey(key);
       }
 
       @Override
-      public Get setOauthToken(String oauthToken) {
+      public Get setOauthToken(java.lang.String oauthToken) {
         return (Get) super.setOauthToken(oauthToken);
       }
 
       @Override
-      public Get setPrettyPrint(Boolean prettyPrint) {
+      public Get setPrettyPrint(java.lang.Boolean prettyPrint) {
         return (Get) super.setPrettyPrint(prettyPrint);
       }
 
       @Override
-      public Get setQuotaUser(String quotaUser) {
+      public Get setQuotaUser(java.lang.String quotaUser) {
         return (Get) super.setQuotaUser(quotaUser);
       }
 
       @Override
-      public Get setUserIp(String userIp) {
+      public Get setUserIp(java.lang.String userIp) {
         return (Get) super.setUserIp(userIp);
       }
 
       /** The ID of the read. */
       @com.google.api.client.util.Key
-      private String readId;
+      private java.lang.String readId;
 
       /** The ID of the read.
        */
-      public String getReadId() {
+      public java.lang.String getReadId() {
         return readId;
       }
 
       /** The ID of the read. */
-      public Get setReadId(String readId) {
+      public Get setReadId(java.lang.String readId) {
         this.readId = readId;
         return this;
       }
@@ -1168,110 +1758,12 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
       }
     }
     /**
-     * Updates a read. This method supports patch semantics.
-     *
-     * Create a request for the method "reads.patch".
-     *
-     * This request holds the parameters needed by the genomics server.  After setting any optional
-     * parameters, call the {@link com.google.api.services.genomics.Genomics.Reads.Patch#execute()} method to invoke the remote operation.
-     *
-     * @param readId The ID of the read to be updated.
-     * @param content the {@link com.google.api.services.genomics.model.Read}
-     * @return the request
-     */
-    public Patch patch(String readId, com.google.api.services.genomics.model.Read content) throws java.io.IOException {
-      Patch result = new Patch(readId, content);
-      initialize(result);
-      return result;
-    }
-
-    public class Patch extends GenomicsRequest<com.google.api.services.genomics.model.Read> {
-
-      private static final String REST_PATH = "reads/{readId}";
-
-      /**
-       * Updates a read. This method supports patch semantics.
-       *
-       * Create a request for the method "reads.patch".
-       *
-       * This request holds the parameters needed by the the genomics server.  After setting any
-       * optional parameters, call the {@link com.google.api.services.genomics.Genomics.Reads.Patch#execute()} method to invoke the remote operation.
-       * <p> {@link
-       * com.google.api.services.genomics.Genomics.Reads.Patch#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
-       * be called to initialize this instance immediately after invoking the constructor. </p>
-       *
-       * @param readId The ID of the read to be updated.
-       * @param content the {@link com.google.api.services.genomics.model.Read}
-       * @since 1.13
-       */
-      protected Patch(String readId, com.google.api.services.genomics.model.Read content) {
-        super(Genomics.this, "PATCH", REST_PATH, content, com.google.api.services.genomics.model.Read.class);
-        this.readId = com.google.api.client.util.Preconditions.checkNotNull(readId, "Required parameter readId must be specified.");
-      }
-
-      @Override
-      public Patch setAlt(String alt) {
-        return (Patch) super.setAlt(alt);
-      }
-
-      @Override
-      public Patch setFields(String fields) {
-        return (Patch) super.setFields(fields);
-      }
-
-      @Override
-      public Patch setKey(String key) {
-        return (Patch) super.setKey(key);
-      }
-
-      @Override
-      public Patch setOauthToken(String oauthToken) {
-        return (Patch) super.setOauthToken(oauthToken);
-      }
-
-      @Override
-      public Patch setPrettyPrint(Boolean prettyPrint) {
-        return (Patch) super.setPrettyPrint(prettyPrint);
-      }
-
-      @Override
-      public Patch setQuotaUser(String quotaUser) {
-        return (Patch) super.setQuotaUser(quotaUser);
-      }
-
-      @Override
-      public Patch setUserIp(String userIp) {
-        return (Patch) super.setUserIp(userIp);
-      }
-
-      /** The ID of the read to be updated. */
-      @com.google.api.client.util.Key
-      private String readId;
-
-      /** The ID of the read to be updated.
-       */
-      public String getReadId() {
-        return readId;
-      }
-
-      /** The ID of the read to be updated. */
-      public Patch setReadId(String readId) {
-        this.readId = readId;
-        return this;
-      }
-
-      @Override
-      public Patch set(String parameterName, Object value) {
-        return (Patch) super.set(parameterName, value);
-      }
-    }
-    /**
      * Gets a list of reads matching the criteria.
      *
      * Create a request for the method "reads.search".
      *
      * This request holds the parameters needed by the genomics server.  After setting any optional
-     * parameters, call the {@link com.google.api.services.genomics.Genomics.Reads.Search#execute()} method to invoke the remote operation.
+     * parameters, call the {@link Search#execute()} method to invoke the remote operation.
      *
      * @param content the {@link com.google.api.services.genomics.model.SearchReadsRequest}
      * @return the request
@@ -1292,9 +1784,9 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
        * Create a request for the method "reads.search".
        *
        * This request holds the parameters needed by the the genomics server.  After setting any
-       * optional parameters, call the {@link com.google.api.services.genomics.Genomics.Reads.Search#execute()} method to invoke the remote operation.
+       * optional parameters, call the {@link Search#execute()} method to invoke the remote operation.
        * <p> {@link
-       * com.google.api.services.genomics.Genomics.Reads.Search#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
+       * Search#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
        * be called to initialize this instance immediately after invoking the constructor. </p>
        *
        * @param content the {@link com.google.api.services.genomics.model.SearchReadsRequest}
@@ -1305,141 +1797,43 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
       }
 
       @Override
-      public Search setAlt(String alt) {
+      public Search setAlt(java.lang.String alt) {
         return (Search) super.setAlt(alt);
       }
 
       @Override
-      public Search setFields(String fields) {
+      public Search setFields(java.lang.String fields) {
         return (Search) super.setFields(fields);
       }
 
       @Override
-      public Search setKey(String key) {
+      public Search setKey(java.lang.String key) {
         return (Search) super.setKey(key);
       }
 
       @Override
-      public Search setOauthToken(String oauthToken) {
+      public Search setOauthToken(java.lang.String oauthToken) {
         return (Search) super.setOauthToken(oauthToken);
       }
 
       @Override
-      public Search setPrettyPrint(Boolean prettyPrint) {
+      public Search setPrettyPrint(java.lang.Boolean prettyPrint) {
         return (Search) super.setPrettyPrint(prettyPrint);
       }
 
       @Override
-      public Search setQuotaUser(String quotaUser) {
+      public Search setQuotaUser(java.lang.String quotaUser) {
         return (Search) super.setQuotaUser(quotaUser);
       }
 
       @Override
-      public Search setUserIp(String userIp) {
+      public Search setUserIp(java.lang.String userIp) {
         return (Search) super.setUserIp(userIp);
       }
 
       @Override
       public Search set(String parameterName, Object value) {
         return (Search) super.set(parameterName, value);
-      }
-    }
-    /**
-     * Updates a read.
-     *
-     * Create a request for the method "reads.update".
-     *
-     * This request holds the parameters needed by the genomics server.  After setting any optional
-     * parameters, call the {@link com.google.api.services.genomics.Genomics.Reads.Update#execute()} method to invoke the remote operation.
-     *
-     * @param readId The ID of the read to be updated.
-     * @param content the {@link com.google.api.services.genomics.model.Read}
-     * @return the request
-     */
-    public Update update(String readId, com.google.api.services.genomics.model.Read content) throws java.io.IOException {
-      Update result = new Update(readId, content);
-      initialize(result);
-      return result;
-    }
-
-    public class Update extends GenomicsRequest<com.google.api.services.genomics.model.Read> {
-
-      private static final String REST_PATH = "reads/{readId}";
-
-      /**
-       * Updates a read.
-       *
-       * Create a request for the method "reads.update".
-       *
-       * This request holds the parameters needed by the the genomics server.  After setting any
-       * optional parameters, call the {@link com.google.api.services.genomics.Genomics.Reads.Update#execute()} method to invoke the remote operation.
-       * <p> {@link
-       * com.google.api.services.genomics.Genomics.Reads.Update#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
-       * be called to initialize this instance immediately after invoking the constructor. </p>
-       *
-       * @param readId The ID of the read to be updated.
-       * @param content the {@link com.google.api.services.genomics.model.Read}
-       * @since 1.13
-       */
-      protected Update(String readId, com.google.api.services.genomics.model.Read content) {
-        super(Genomics.this, "PUT", REST_PATH, content, com.google.api.services.genomics.model.Read.class);
-        this.readId = com.google.api.client.util.Preconditions.checkNotNull(readId, "Required parameter readId must be specified.");
-      }
-
-      @Override
-      public Update setAlt(String alt) {
-        return (Update) super.setAlt(alt);
-      }
-
-      @Override
-      public Update setFields(String fields) {
-        return (Update) super.setFields(fields);
-      }
-
-      @Override
-      public Update setKey(String key) {
-        return (Update) super.setKey(key);
-      }
-
-      @Override
-      public Update setOauthToken(String oauthToken) {
-        return (Update) super.setOauthToken(oauthToken);
-      }
-
-      @Override
-      public Update setPrettyPrint(Boolean prettyPrint) {
-        return (Update) super.setPrettyPrint(prettyPrint);
-      }
-
-      @Override
-      public Update setQuotaUser(String quotaUser) {
-        return (Update) super.setQuotaUser(quotaUser);
-      }
-
-      @Override
-      public Update setUserIp(String userIp) {
-        return (Update) super.setUserIp(userIp);
-      }
-
-      /** The ID of the read to be updated. */
-      @com.google.api.client.util.Key
-      private String readId;
-
-      /** The ID of the read to be updated.
-       */
-      public String getReadId() {
-        return readId;
-      }
-
-      /** The ID of the read to be updated. */
-      public Update setReadId(String readId) {
-        this.readId = readId;
-        return this;
-      }
-
-      @Override
-      public Update set(String parameterName, Object value) {
-        return (Update) super.set(parameterName, value);
       }
     }
 
@@ -1471,7 +1865,7 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
      * Create a request for the method "readsets.create".
      *
      * This request holds the parameters needed by the genomics server.  After setting any optional
-     * parameters, call the {@link com.google.api.services.genomics.Genomics.Readsets.Create#execute()} method to invoke the remote operation.
+     * parameters, call the {@link Create#execute()} method to invoke the remote operation.
      *
      * @param content the {@link com.google.api.services.genomics.model.Readset}
      * @return the request
@@ -1492,9 +1886,9 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
        * Create a request for the method "readsets.create".
        *
        * This request holds the parameters needed by the the genomics server.  After setting any
-       * optional parameters, call the {@link com.google.api.services.genomics.Genomics.Readsets.Create#execute()} method to invoke the remote operation.
+       * optional parameters, call the {@link Create#execute()} method to invoke the remote operation.
        * <p> {@link
-       * com.google.api.services.genomics.Genomics.Readsets.Create#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
+       * Create#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
        * be called to initialize this instance immediately after invoking the constructor. </p>
        *
        * @param content the {@link com.google.api.services.genomics.model.Readset}
@@ -1505,37 +1899,37 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
       }
 
       @Override
-      public Create setAlt(String alt) {
+      public Create setAlt(java.lang.String alt) {
         return (Create) super.setAlt(alt);
       }
 
       @Override
-      public Create setFields(String fields) {
+      public Create setFields(java.lang.String fields) {
         return (Create) super.setFields(fields);
       }
 
       @Override
-      public Create setKey(String key) {
+      public Create setKey(java.lang.String key) {
         return (Create) super.setKey(key);
       }
 
       @Override
-      public Create setOauthToken(String oauthToken) {
+      public Create setOauthToken(java.lang.String oauthToken) {
         return (Create) super.setOauthToken(oauthToken);
       }
 
       @Override
-      public Create setPrettyPrint(Boolean prettyPrint) {
+      public Create setPrettyPrint(java.lang.Boolean prettyPrint) {
         return (Create) super.setPrettyPrint(prettyPrint);
       }
 
       @Override
-      public Create setQuotaUser(String quotaUser) {
+      public Create setQuotaUser(java.lang.String quotaUser) {
         return (Create) super.setQuotaUser(quotaUser);
       }
 
       @Override
-      public Create setUserIp(String userIp) {
+      public Create setUserIp(java.lang.String userIp) {
         return (Create) super.setUserIp(userIp);
       }
 
@@ -1550,12 +1944,12 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
      * Create a request for the method "readsets.delete".
      *
      * This request holds the parameters needed by the genomics server.  After setting any optional
-     * parameters, call the {@link com.google.api.services.genomics.Genomics.Readsets.Delete#execute()} method to invoke the remote operation.
+     * parameters, call the {@link Delete#execute()} method to invoke the remote operation.
      *
      * @param readsetId The ID of the readset to be deleted.
      * @return the request
      */
-    public Delete delete(String readsetId) throws java.io.IOException {
+    public Delete delete(java.lang.String readsetId) throws java.io.IOException {
       Delete result = new Delete(readsetId);
       initialize(result);
       return result;
@@ -1571,66 +1965,66 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
        * Create a request for the method "readsets.delete".
        *
        * This request holds the parameters needed by the the genomics server.  After setting any
-       * optional parameters, call the {@link com.google.api.services.genomics.Genomics.Readsets.Delete#execute()} method to invoke the remote operation.
+       * optional parameters, call the {@link Delete#execute()} method to invoke the remote operation.
        * <p> {@link
-       * com.google.api.services.genomics.Genomics.Readsets.Delete#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
+       * Delete#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
        * be called to initialize this instance immediately after invoking the constructor. </p>
        *
        * @param readsetId The ID of the readset to be deleted.
        * @since 1.13
        */
-      protected Delete(String readsetId) {
+      protected Delete(java.lang.String readsetId) {
         super(Genomics.this, "DELETE", REST_PATH, null, Void.class);
         this.readsetId = com.google.api.client.util.Preconditions.checkNotNull(readsetId, "Required parameter readsetId must be specified.");
       }
 
       @Override
-      public Delete setAlt(String alt) {
+      public Delete setAlt(java.lang.String alt) {
         return (Delete) super.setAlt(alt);
       }
 
       @Override
-      public Delete setFields(String fields) {
+      public Delete setFields(java.lang.String fields) {
         return (Delete) super.setFields(fields);
       }
 
       @Override
-      public Delete setKey(String key) {
+      public Delete setKey(java.lang.String key) {
         return (Delete) super.setKey(key);
       }
 
       @Override
-      public Delete setOauthToken(String oauthToken) {
+      public Delete setOauthToken(java.lang.String oauthToken) {
         return (Delete) super.setOauthToken(oauthToken);
       }
 
       @Override
-      public Delete setPrettyPrint(Boolean prettyPrint) {
+      public Delete setPrettyPrint(java.lang.Boolean prettyPrint) {
         return (Delete) super.setPrettyPrint(prettyPrint);
       }
 
       @Override
-      public Delete setQuotaUser(String quotaUser) {
+      public Delete setQuotaUser(java.lang.String quotaUser) {
         return (Delete) super.setQuotaUser(quotaUser);
       }
 
       @Override
-      public Delete setUserIp(String userIp) {
+      public Delete setUserIp(java.lang.String userIp) {
         return (Delete) super.setUserIp(userIp);
       }
 
       /** The ID of the readset to be deleted. */
       @com.google.api.client.util.Key
-      private String readsetId;
+      private java.lang.String readsetId;
 
       /** The ID of the readset to be deleted.
        */
-      public String getReadsetId() {
+      public java.lang.String getReadsetId() {
         return readsetId;
       }
 
       /** The ID of the readset to be deleted. */
-      public Delete setReadsetId(String readsetId) {
+      public Delete setReadsetId(java.lang.String readsetId) {
         this.readsetId = readsetId;
         return this;
       }
@@ -1641,17 +2035,96 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
       }
     }
     /**
+     * Exports readsets to a file.
+     *
+     * Create a request for the method "readsets.export".
+     *
+     * This request holds the parameters needed by the genomics server.  After setting any optional
+     * parameters, call the {@link Export#execute()} method to invoke the remote operation.
+     *
+     * @param content the {@link com.google.api.services.genomics.model.ExportReadsetsRequest}
+     * @return the request
+     */
+    public Export export(com.google.api.services.genomics.model.ExportReadsetsRequest content) throws java.io.IOException {
+      Export result = new Export(content);
+      initialize(result);
+      return result;
+    }
+
+    public class Export extends GenomicsRequest<com.google.api.services.genomics.model.ExportReadsetsResponse> {
+
+      private static final String REST_PATH = "readsets/export";
+
+      /**
+       * Exports readsets to a file.
+       *
+       * Create a request for the method "readsets.export".
+       *
+       * This request holds the parameters needed by the the genomics server.  After setting any
+       * optional parameters, call the {@link Export#execute()} method to invoke the remote operation.
+       * <p> {@link
+       * Export#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
+       * be called to initialize this instance immediately after invoking the constructor. </p>
+       *
+       * @param content the {@link com.google.api.services.genomics.model.ExportReadsetsRequest}
+       * @since 1.13
+       */
+      protected Export(com.google.api.services.genomics.model.ExportReadsetsRequest content) {
+        super(Genomics.this, "POST", REST_PATH, content, com.google.api.services.genomics.model.ExportReadsetsResponse.class);
+      }
+
+      @Override
+      public Export setAlt(java.lang.String alt) {
+        return (Export) super.setAlt(alt);
+      }
+
+      @Override
+      public Export setFields(java.lang.String fields) {
+        return (Export) super.setFields(fields);
+      }
+
+      @Override
+      public Export setKey(java.lang.String key) {
+        return (Export) super.setKey(key);
+      }
+
+      @Override
+      public Export setOauthToken(java.lang.String oauthToken) {
+        return (Export) super.setOauthToken(oauthToken);
+      }
+
+      @Override
+      public Export setPrettyPrint(java.lang.Boolean prettyPrint) {
+        return (Export) super.setPrettyPrint(prettyPrint);
+      }
+
+      @Override
+      public Export setQuotaUser(java.lang.String quotaUser) {
+        return (Export) super.setQuotaUser(quotaUser);
+      }
+
+      @Override
+      public Export setUserIp(java.lang.String userIp) {
+        return (Export) super.setUserIp(userIp);
+      }
+
+      @Override
+      public Export set(String parameterName, Object value) {
+        return (Export) super.set(parameterName, value);
+      }
+    }
+    /**
      * Gets a readset by ID.
      *
      * Create a request for the method "readsets.get".
      *
      * This request holds the parameters needed by the genomics server.  After setting any optional
-     * parameters, call the {@link com.google.api.services.genomics.Genomics.Readsets.Get#execute()} method to invoke the remote operation.
+     * parameters, call the {@link Get#execute()} method to invoke the remote operation.
      *
      * @param readsetId The ID of the readset.
      * @return the request
      */
-    public Get get(String readsetId) throws java.io.IOException {
+    public Get get(java.lang.String readsetId) throws java.io.IOException {
       Get result = new Get(readsetId);
       initialize(result);
       return result;
@@ -1667,14 +2140,14 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
        * Create a request for the method "readsets.get".
        *
        * This request holds the parameters needed by the the genomics server.  After setting any
-       * optional parameters, call the {@link com.google.api.services.genomics.Genomics.Readsets.Get#execute()} method to invoke the remote operation. <p>
-       * {@link com.google.api.services.genomics.Genomics.Readsets.Get#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)}
+       * optional parameters, call the {@link Get#execute()} method to invoke the remote operation. <p>
+       * {@link Get#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)}
        * must be called to initialize this instance immediately after invoking the constructor. </p>
        *
        * @param readsetId The ID of the readset.
        * @since 1.13
        */
-      protected Get(String readsetId) {
+      protected Get(java.lang.String readsetId) {
         super(Genomics.this, "GET", REST_PATH, null, com.google.api.services.genomics.model.Readset.class);
         this.readsetId = com.google.api.client.util.Preconditions.checkNotNull(readsetId, "Required parameter readsetId must be specified.");
       }
@@ -1690,52 +2163,52 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
       }
 
       @Override
-      public Get setAlt(String alt) {
+      public Get setAlt(java.lang.String alt) {
         return (Get) super.setAlt(alt);
       }
 
       @Override
-      public Get setFields(String fields) {
+      public Get setFields(java.lang.String fields) {
         return (Get) super.setFields(fields);
       }
 
       @Override
-      public Get setKey(String key) {
+      public Get setKey(java.lang.String key) {
         return (Get) super.setKey(key);
       }
 
       @Override
-      public Get setOauthToken(String oauthToken) {
+      public Get setOauthToken(java.lang.String oauthToken) {
         return (Get) super.setOauthToken(oauthToken);
       }
 
       @Override
-      public Get setPrettyPrint(Boolean prettyPrint) {
+      public Get setPrettyPrint(java.lang.Boolean prettyPrint) {
         return (Get) super.setPrettyPrint(prettyPrint);
       }
 
       @Override
-      public Get setQuotaUser(String quotaUser) {
+      public Get setQuotaUser(java.lang.String quotaUser) {
         return (Get) super.setQuotaUser(quotaUser);
       }
 
       @Override
-      public Get setUserIp(String userIp) {
+      public Get setUserIp(java.lang.String userIp) {
         return (Get) super.setUserIp(userIp);
       }
 
       /** The ID of the readset. */
       @com.google.api.client.util.Key
-      private String readsetId;
+      private java.lang.String readsetId;
 
       /** The ID of the readset.
        */
-      public String getReadsetId() {
+      public java.lang.String getReadsetId() {
         return readsetId;
       }
 
       /** The ID of the readset. */
-      public Get setReadsetId(String readsetId) {
+      public Get setReadsetId(java.lang.String readsetId) {
         this.readsetId = readsetId;
         return this;
       }
@@ -1751,7 +2224,7 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
      * Create a request for the method "readsets.import".
      *
      * This request holds the parameters needed by the genomics server.  After setting any optional
-     * parameters, call the {@link com.google.api.services.genomics.Genomics.Readsets.GenomicsImport#execute()} method to invoke the remote operation.
+     * parameters, call the {@link GenomicsImport#execute()} method to invoke the remote operation.
      *
      * @param content the {@link com.google.api.services.genomics.model.ImportReadsetsRequest}
      * @return the request
@@ -1772,8 +2245,8 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
        * Create a request for the method "readsets.import".
        *
        * This request holds the parameters needed by the the genomics server.  After setting any
-       * optional parameters, call the {@link com.google.api.services.genomics.Genomics.Readsets.GenomicsImport#execute()} method to invoke the remote
-       * operation. <p> {@link com.google.api.services.genomics.Genomics.Readsets.GenomicsImport#initialize(com.google.api.client.googleapis.services.Abstr
+       * optional parameters, call the {@link GenomicsImport#execute()} method to invoke the remote
+       * operation. <p> {@link GenomicsImport#initialize(com.google.api.client.googleapis.services.Abstr
        * actGoogleClientRequest)} must be called to initialize this instance immediately after invoking
        * the constructor. </p>
        *
@@ -1785,37 +2258,37 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
       }
 
       @Override
-      public GenomicsImport setAlt(String alt) {
+      public GenomicsImport setAlt(java.lang.String alt) {
         return (GenomicsImport) super.setAlt(alt);
       }
 
       @Override
-      public GenomicsImport setFields(String fields) {
+      public GenomicsImport setFields(java.lang.String fields) {
         return (GenomicsImport) super.setFields(fields);
       }
 
       @Override
-      public GenomicsImport setKey(String key) {
+      public GenomicsImport setKey(java.lang.String key) {
         return (GenomicsImport) super.setKey(key);
       }
 
       @Override
-      public GenomicsImport setOauthToken(String oauthToken) {
+      public GenomicsImport setOauthToken(java.lang.String oauthToken) {
         return (GenomicsImport) super.setOauthToken(oauthToken);
       }
 
       @Override
-      public GenomicsImport setPrettyPrint(Boolean prettyPrint) {
+      public GenomicsImport setPrettyPrint(java.lang.Boolean prettyPrint) {
         return (GenomicsImport) super.setPrettyPrint(prettyPrint);
       }
 
       @Override
-      public GenomicsImport setQuotaUser(String quotaUser) {
+      public GenomicsImport setQuotaUser(java.lang.String quotaUser) {
         return (GenomicsImport) super.setQuotaUser(quotaUser);
       }
 
       @Override
-      public GenomicsImport setUserIp(String userIp) {
+      public GenomicsImport setUserIp(java.lang.String userIp) {
         return (GenomicsImport) super.setUserIp(userIp);
       }
 
@@ -1830,13 +2303,13 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
      * Create a request for the method "readsets.patch".
      *
      * This request holds the parameters needed by the genomics server.  After setting any optional
-     * parameters, call the {@link com.google.api.services.genomics.Genomics.Readsets.Patch#execute()} method to invoke the remote operation.
+     * parameters, call the {@link Patch#execute()} method to invoke the remote operation.
      *
      * @param readsetId The ID of the readset to be updated.
      * @param content the {@link com.google.api.services.genomics.model.Readset}
      * @return the request
      */
-    public Patch patch(String readsetId, com.google.api.services.genomics.model.Readset content) throws java.io.IOException {
+    public Patch patch(java.lang.String readsetId, com.google.api.services.genomics.model.Readset content) throws java.io.IOException {
       Patch result = new Patch(readsetId, content);
       initialize(result);
       return result;
@@ -1852,67 +2325,67 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
        * Create a request for the method "readsets.patch".
        *
        * This request holds the parameters needed by the the genomics server.  After setting any
-       * optional parameters, call the {@link com.google.api.services.genomics.Genomics.Readsets.Patch#execute()} method to invoke the remote operation.
+       * optional parameters, call the {@link Patch#execute()} method to invoke the remote operation.
        * <p> {@link
-       * com.google.api.services.genomics.Genomics.Readsets.Patch#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
+       * Patch#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
        * be called to initialize this instance immediately after invoking the constructor. </p>
        *
        * @param readsetId The ID of the readset to be updated.
        * @param content the {@link com.google.api.services.genomics.model.Readset}
        * @since 1.13
        */
-      protected Patch(String readsetId, com.google.api.services.genomics.model.Readset content) {
+      protected Patch(java.lang.String readsetId, com.google.api.services.genomics.model.Readset content) {
         super(Genomics.this, "PATCH", REST_PATH, content, com.google.api.services.genomics.model.Readset.class);
         this.readsetId = com.google.api.client.util.Preconditions.checkNotNull(readsetId, "Required parameter readsetId must be specified.");
       }
 
       @Override
-      public Patch setAlt(String alt) {
+      public Patch setAlt(java.lang.String alt) {
         return (Patch) super.setAlt(alt);
       }
 
       @Override
-      public Patch setFields(String fields) {
+      public Patch setFields(java.lang.String fields) {
         return (Patch) super.setFields(fields);
       }
 
       @Override
-      public Patch setKey(String key) {
+      public Patch setKey(java.lang.String key) {
         return (Patch) super.setKey(key);
       }
 
       @Override
-      public Patch setOauthToken(String oauthToken) {
+      public Patch setOauthToken(java.lang.String oauthToken) {
         return (Patch) super.setOauthToken(oauthToken);
       }
 
       @Override
-      public Patch setPrettyPrint(Boolean prettyPrint) {
+      public Patch setPrettyPrint(java.lang.Boolean prettyPrint) {
         return (Patch) super.setPrettyPrint(prettyPrint);
       }
 
       @Override
-      public Patch setQuotaUser(String quotaUser) {
+      public Patch setQuotaUser(java.lang.String quotaUser) {
         return (Patch) super.setQuotaUser(quotaUser);
       }
 
       @Override
-      public Patch setUserIp(String userIp) {
+      public Patch setUserIp(java.lang.String userIp) {
         return (Patch) super.setUserIp(userIp);
       }
 
       /** The ID of the readset to be updated. */
       @com.google.api.client.util.Key
-      private String readsetId;
+      private java.lang.String readsetId;
 
       /** The ID of the readset to be updated.
        */
-      public String getReadsetId() {
+      public java.lang.String getReadsetId() {
         return readsetId;
       }
 
       /** The ID of the readset to be updated. */
-      public Patch setReadsetId(String readsetId) {
+      public Patch setReadsetId(java.lang.String readsetId) {
         this.readsetId = readsetId;
         return this;
       }
@@ -1928,7 +2401,7 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
      * Create a request for the method "readsets.search".
      *
      * This request holds the parameters needed by the genomics server.  After setting any optional
-     * parameters, call the {@link com.google.api.services.genomics.Genomics.Readsets.Search#execute()} method to invoke the remote operation.
+     * parameters, call the {@link Search#execute()} method to invoke the remote operation.
      *
      * @param content the {@link com.google.api.services.genomics.model.SearchReadsetsRequest}
      * @return the request
@@ -1949,9 +2422,9 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
        * Create a request for the method "readsets.search".
        *
        * This request holds the parameters needed by the the genomics server.  After setting any
-       * optional parameters, call the {@link com.google.api.services.genomics.Genomics.Readsets.Search#execute()} method to invoke the remote operation.
+       * optional parameters, call the {@link Search#execute()} method to invoke the remote operation.
        * <p> {@link
-       * com.google.api.services.genomics.Genomics.Readsets.Search#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
+       * Search#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
        * be called to initialize this instance immediately after invoking the constructor. </p>
        *
        * @param content the {@link com.google.api.services.genomics.model.SearchReadsetsRequest}
@@ -1962,37 +2435,37 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
       }
 
       @Override
-      public Search setAlt(String alt) {
+      public Search setAlt(java.lang.String alt) {
         return (Search) super.setAlt(alt);
       }
 
       @Override
-      public Search setFields(String fields) {
+      public Search setFields(java.lang.String fields) {
         return (Search) super.setFields(fields);
       }
 
       @Override
-      public Search setKey(String key) {
+      public Search setKey(java.lang.String key) {
         return (Search) super.setKey(key);
       }
 
       @Override
-      public Search setOauthToken(String oauthToken) {
+      public Search setOauthToken(java.lang.String oauthToken) {
         return (Search) super.setOauthToken(oauthToken);
       }
 
       @Override
-      public Search setPrettyPrint(Boolean prettyPrint) {
+      public Search setPrettyPrint(java.lang.Boolean prettyPrint) {
         return (Search) super.setPrettyPrint(prettyPrint);
       }
 
       @Override
-      public Search setQuotaUser(String quotaUser) {
+      public Search setQuotaUser(java.lang.String quotaUser) {
         return (Search) super.setQuotaUser(quotaUser);
       }
 
       @Override
-      public Search setUserIp(String userIp) {
+      public Search setUserIp(java.lang.String userIp) {
         return (Search) super.setUserIp(userIp);
       }
 
@@ -2007,13 +2480,13 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
      * Create a request for the method "readsets.update".
      *
      * This request holds the parameters needed by the genomics server.  After setting any optional
-     * parameters, call the {@link com.google.api.services.genomics.Genomics.Readsets.Update#execute()} method to invoke the remote operation.
+     * parameters, call the {@link Update#execute()} method to invoke the remote operation.
      *
      * @param readsetId The ID of the readset to be updated.
      * @param content the {@link com.google.api.services.genomics.model.Readset}
      * @return the request
      */
-    public Update update(String readsetId, com.google.api.services.genomics.model.Readset content) throws java.io.IOException {
+    public Update update(java.lang.String readsetId, com.google.api.services.genomics.model.Readset content) throws java.io.IOException {
       Update result = new Update(readsetId, content);
       initialize(result);
       return result;
@@ -2029,67 +2502,67 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
        * Create a request for the method "readsets.update".
        *
        * This request holds the parameters needed by the the genomics server.  After setting any
-       * optional parameters, call the {@link com.google.api.services.genomics.Genomics.Readsets.Update#execute()} method to invoke the remote operation.
+       * optional parameters, call the {@link Update#execute()} method to invoke the remote operation.
        * <p> {@link
-       * com.google.api.services.genomics.Genomics.Readsets.Update#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
+       * Update#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
        * be called to initialize this instance immediately after invoking the constructor. </p>
        *
        * @param readsetId The ID of the readset to be updated.
        * @param content the {@link com.google.api.services.genomics.model.Readset}
        * @since 1.13
        */
-      protected Update(String readsetId, com.google.api.services.genomics.model.Readset content) {
+      protected Update(java.lang.String readsetId, com.google.api.services.genomics.model.Readset content) {
         super(Genomics.this, "PUT", REST_PATH, content, com.google.api.services.genomics.model.Readset.class);
         this.readsetId = com.google.api.client.util.Preconditions.checkNotNull(readsetId, "Required parameter readsetId must be specified.");
       }
 
       @Override
-      public Update setAlt(String alt) {
+      public Update setAlt(java.lang.String alt) {
         return (Update) super.setAlt(alt);
       }
 
       @Override
-      public Update setFields(String fields) {
+      public Update setFields(java.lang.String fields) {
         return (Update) super.setFields(fields);
       }
 
       @Override
-      public Update setKey(String key) {
+      public Update setKey(java.lang.String key) {
         return (Update) super.setKey(key);
       }
 
       @Override
-      public Update setOauthToken(String oauthToken) {
+      public Update setOauthToken(java.lang.String oauthToken) {
         return (Update) super.setOauthToken(oauthToken);
       }
 
       @Override
-      public Update setPrettyPrint(Boolean prettyPrint) {
+      public Update setPrettyPrint(java.lang.Boolean prettyPrint) {
         return (Update) super.setPrettyPrint(prettyPrint);
       }
 
       @Override
-      public Update setQuotaUser(String quotaUser) {
+      public Update setQuotaUser(java.lang.String quotaUser) {
         return (Update) super.setQuotaUser(quotaUser);
       }
 
       @Override
-      public Update setUserIp(String userIp) {
+      public Update setUserIp(java.lang.String userIp) {
         return (Update) super.setUserIp(userIp);
       }
 
       /** The ID of the readset to be updated. */
       @com.google.api.client.util.Key
-      private String readsetId;
+      private java.lang.String readsetId;
 
       /** The ID of the readset to be updated.
        */
-      public String getReadsetId() {
+      public java.lang.String getReadsetId() {
         return readsetId;
       }
 
       /** The ID of the readset to be updated. */
-      public Update setReadsetId(String readsetId) {
+      public Update setReadsetId(java.lang.String readsetId) {
         this.readsetId = readsetId;
         return this;
       }
@@ -2103,7 +2576,743 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
   }
 
   /**
-   * Builder for {@link com.google.api.services.genomics.Genomics}.
+   * An accessor for creating requests from the Variants collection.
+   *
+   * <p>The typical use is:</p>
+   * <pre>
+   *   {@code Genomics genomics = new Genomics(...);}
+   *   {@code Genomics.Variants.List request = genomics.variants().list(parameters ...)}
+   * </pre>
+   *
+   * @return the resource collection
+   */
+  public Variants variants() {
+    return new Variants();
+  }
+
+  /**
+   * The "variants" collection of methods.
+   */
+  public class Variants {
+
+    /**
+     * Creates a new variant.
+     *
+     * Create a request for the method "variants.create".
+     *
+     * This request holds the parameters needed by the genomics server.  After setting any optional
+     * parameters, call the {@link Create#execute()} method to invoke the remote operation.
+     *
+     * @param content the {@link com.google.api.services.genomics.model.Variant}
+     * @return the request
+     */
+    public Create create(com.google.api.services.genomics.model.Variant content) throws java.io.IOException {
+      Create result = new Create(content);
+      initialize(result);
+      return result;
+    }
+
+    public class Create extends GenomicsRequest<com.google.api.services.genomics.model.Variant> {
+
+      private static final String REST_PATH = "variants";
+
+      /**
+       * Creates a new variant.
+       *
+       * Create a request for the method "variants.create".
+       *
+       * This request holds the parameters needed by the the genomics server.  After setting any
+       * optional parameters, call the {@link Create#execute()} method to invoke the remote operation.
+       * <p> {@link
+       * Create#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
+       * be called to initialize this instance immediately after invoking the constructor. </p>
+       *
+       * @param content the {@link com.google.api.services.genomics.model.Variant}
+       * @since 1.13
+       */
+      protected Create(com.google.api.services.genomics.model.Variant content) {
+        super(Genomics.this, "POST", REST_PATH, content, com.google.api.services.genomics.model.Variant.class);
+      }
+
+      @Override
+      public Create setAlt(java.lang.String alt) {
+        return (Create) super.setAlt(alt);
+      }
+
+      @Override
+      public Create setFields(java.lang.String fields) {
+        return (Create) super.setFields(fields);
+      }
+
+      @Override
+      public Create setKey(java.lang.String key) {
+        return (Create) super.setKey(key);
+      }
+
+      @Override
+      public Create setOauthToken(java.lang.String oauthToken) {
+        return (Create) super.setOauthToken(oauthToken);
+      }
+
+      @Override
+      public Create setPrettyPrint(java.lang.Boolean prettyPrint) {
+        return (Create) super.setPrettyPrint(prettyPrint);
+      }
+
+      @Override
+      public Create setQuotaUser(java.lang.String quotaUser) {
+        return (Create) super.setQuotaUser(quotaUser);
+      }
+
+      @Override
+      public Create setUserIp(java.lang.String userIp) {
+        return (Create) super.setUserIp(userIp);
+      }
+
+      @Override
+      public Create set(String parameterName, Object value) {
+        return (Create) super.set(parameterName, value);
+      }
+    }
+    /**
+     * Deletes a variant.
+     *
+     * Create a request for the method "variants.delete".
+     *
+     * This request holds the parameters needed by the genomics server.  After setting any optional
+     * parameters, call the {@link Delete#execute()} method to invoke the remote operation.
+     *
+     * @param variantId The ID of the variant to be deleted.
+     * @return the request
+     */
+    public Delete delete(java.lang.String variantId) throws java.io.IOException {
+      Delete result = new Delete(variantId);
+      initialize(result);
+      return result;
+    }
+
+    public class Delete extends GenomicsRequest<Void> {
+
+      private static final String REST_PATH = "variants/{variantId}";
+
+      /**
+       * Deletes a variant.
+       *
+       * Create a request for the method "variants.delete".
+       *
+       * This request holds the parameters needed by the the genomics server.  After setting any
+       * optional parameters, call the {@link Delete#execute()} method to invoke the remote operation.
+       * <p> {@link
+       * Delete#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
+       * be called to initialize this instance immediately after invoking the constructor. </p>
+       *
+       * @param variantId The ID of the variant to be deleted.
+       * @since 1.13
+       */
+      protected Delete(java.lang.String variantId) {
+        super(Genomics.this, "DELETE", REST_PATH, null, Void.class);
+        this.variantId = com.google.api.client.util.Preconditions.checkNotNull(variantId, "Required parameter variantId must be specified.");
+      }
+
+      @Override
+      public Delete setAlt(java.lang.String alt) {
+        return (Delete) super.setAlt(alt);
+      }
+
+      @Override
+      public Delete setFields(java.lang.String fields) {
+        return (Delete) super.setFields(fields);
+      }
+
+      @Override
+      public Delete setKey(java.lang.String key) {
+        return (Delete) super.setKey(key);
+      }
+
+      @Override
+      public Delete setOauthToken(java.lang.String oauthToken) {
+        return (Delete) super.setOauthToken(oauthToken);
+      }
+
+      @Override
+      public Delete setPrettyPrint(java.lang.Boolean prettyPrint) {
+        return (Delete) super.setPrettyPrint(prettyPrint);
+      }
+
+      @Override
+      public Delete setQuotaUser(java.lang.String quotaUser) {
+        return (Delete) super.setQuotaUser(quotaUser);
+      }
+
+      @Override
+      public Delete setUserIp(java.lang.String userIp) {
+        return (Delete) super.setUserIp(userIp);
+      }
+
+      /** The ID of the variant to be deleted. */
+      @com.google.api.client.util.Key
+      private java.lang.String variantId;
+
+      /** The ID of the variant to be deleted.
+       */
+      public java.lang.String getVariantId() {
+        return variantId;
+      }
+
+      /** The ID of the variant to be deleted. */
+      public Delete setVariantId(java.lang.String variantId) {
+        this.variantId = variantId;
+        return this;
+      }
+
+      @Override
+      public Delete set(String parameterName, Object value) {
+        return (Delete) super.set(parameterName, value);
+      }
+    }
+    /**
+     * Exports variant data to an external destination.
+     *
+     * Create a request for the method "variants.export".
+     *
+     * This request holds the parameters needed by the genomics server.  After setting any optional
+     * parameters, call the {@link Export#execute()} method to invoke the remote operation.
+     *
+     * @param content the {@link com.google.api.services.genomics.model.ExportVariantsRequest}
+     * @return the request
+     */
+    public Export export(com.google.api.services.genomics.model.ExportVariantsRequest content) throws java.io.IOException {
+      Export result = new Export(content);
+      initialize(result);
+      return result;
+    }
+
+    public class Export extends GenomicsRequest<com.google.api.services.genomics.model.ExportVariantsResponse> {
+
+      private static final String REST_PATH = "variants/export";
+
+      /**
+       * Exports variant data to an external destination.
+       *
+       * Create a request for the method "variants.export".
+       *
+       * This request holds the parameters needed by the the genomics server.  After setting any
+       * optional parameters, call the {@link Export#execute()} method to invoke the remote operation.
+       * <p> {@link
+       * Export#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
+       * be called to initialize this instance immediately after invoking the constructor. </p>
+       *
+       * @param content the {@link com.google.api.services.genomics.model.ExportVariantsRequest}
+       * @since 1.13
+       */
+      protected Export(com.google.api.services.genomics.model.ExportVariantsRequest content) {
+        super(Genomics.this, "POST", REST_PATH, content, com.google.api.services.genomics.model.ExportVariantsResponse.class);
+      }
+
+      @Override
+      public Export setAlt(java.lang.String alt) {
+        return (Export) super.setAlt(alt);
+      }
+
+      @Override
+      public Export setFields(java.lang.String fields) {
+        return (Export) super.setFields(fields);
+      }
+
+      @Override
+      public Export setKey(java.lang.String key) {
+        return (Export) super.setKey(key);
+      }
+
+      @Override
+      public Export setOauthToken(java.lang.String oauthToken) {
+        return (Export) super.setOauthToken(oauthToken);
+      }
+
+      @Override
+      public Export setPrettyPrint(java.lang.Boolean prettyPrint) {
+        return (Export) super.setPrettyPrint(prettyPrint);
+      }
+
+      @Override
+      public Export setQuotaUser(java.lang.String quotaUser) {
+        return (Export) super.setQuotaUser(quotaUser);
+      }
+
+      @Override
+      public Export setUserIp(java.lang.String userIp) {
+        return (Export) super.setUserIp(userIp);
+      }
+
+      @Override
+      public Export set(String parameterName, Object value) {
+        return (Export) super.set(parameterName, value);
+      }
+    }
+    /**
+     * Gets a variant by ID.
+     *
+     * Create a request for the method "variants.get".
+     *
+     * This request holds the parameters needed by the genomics server.  After setting any optional
+     * parameters, call the {@link Get#execute()} method to invoke the remote operation.
+     *
+     * @param variantId The ID of the variant.
+     * @return the request
+     */
+    public Get get(java.lang.String variantId) throws java.io.IOException {
+      Get result = new Get(variantId);
+      initialize(result);
+      return result;
+    }
+
+    public class Get extends GenomicsRequest<com.google.api.services.genomics.model.Variant> {
+
+      private static final String REST_PATH = "variants/{variantId}";
+
+      /**
+       * Gets a variant by ID.
+       *
+       * Create a request for the method "variants.get".
+       *
+       * This request holds the parameters needed by the the genomics server.  After setting any
+       * optional parameters, call the {@link Get#execute()} method to invoke the remote operation. <p>
+       * {@link Get#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)}
+       * must be called to initialize this instance immediately after invoking the constructor. </p>
+       *
+       * @param variantId The ID of the variant.
+       * @since 1.13
+       */
+      protected Get(java.lang.String variantId) {
+        super(Genomics.this, "GET", REST_PATH, null, com.google.api.services.genomics.model.Variant.class);
+        this.variantId = com.google.api.client.util.Preconditions.checkNotNull(variantId, "Required parameter variantId must be specified.");
+      }
+
+      @Override
+      public com.google.api.client.http.HttpResponse executeUsingHead() throws java.io.IOException {
+        return super.executeUsingHead();
+      }
+
+      @Override
+      public com.google.api.client.http.HttpRequest buildHttpRequestUsingHead() throws java.io.IOException {
+        return super.buildHttpRequestUsingHead();
+      }
+
+      @Override
+      public Get setAlt(java.lang.String alt) {
+        return (Get) super.setAlt(alt);
+      }
+
+      @Override
+      public Get setFields(java.lang.String fields) {
+        return (Get) super.setFields(fields);
+      }
+
+      @Override
+      public Get setKey(java.lang.String key) {
+        return (Get) super.setKey(key);
+      }
+
+      @Override
+      public Get setOauthToken(java.lang.String oauthToken) {
+        return (Get) super.setOauthToken(oauthToken);
+      }
+
+      @Override
+      public Get setPrettyPrint(java.lang.Boolean prettyPrint) {
+        return (Get) super.setPrettyPrint(prettyPrint);
+      }
+
+      @Override
+      public Get setQuotaUser(java.lang.String quotaUser) {
+        return (Get) super.setQuotaUser(quotaUser);
+      }
+
+      @Override
+      public Get setUserIp(java.lang.String userIp) {
+        return (Get) super.setUserIp(userIp);
+      }
+
+      /** The ID of the variant. */
+      @com.google.api.client.util.Key
+      private java.lang.String variantId;
+
+      /** The ID of the variant.
+       */
+      public java.lang.String getVariantId() {
+        return variantId;
+      }
+
+      /** The ID of the variant. */
+      public Get setVariantId(java.lang.String variantId) {
+        this.variantId = variantId;
+        return this;
+      }
+
+      @Override
+      public Get set(String parameterName, Object value) {
+        return (Get) super.set(parameterName, value);
+      }
+    }
+    /**
+     * Creates variant data by asynchronously importing the provided information.
+     *
+     * Create a request for the method "variants.import".
+     *
+     * This request holds the parameters needed by the genomics server.  After setting any optional
+     * parameters, call the {@link GenomicsImport#execute()} method to invoke the remote operation.
+     *
+     * @param content the {@link com.google.api.services.genomics.model.ImportVariantsRequest}
+     * @return the request
+     */
+    public GenomicsImport genomicsImport(com.google.api.services.genomics.model.ImportVariantsRequest content) throws java.io.IOException {
+      GenomicsImport result = new GenomicsImport(content);
+      initialize(result);
+      return result;
+    }
+
+    public class GenomicsImport extends GenomicsRequest<com.google.api.services.genomics.model.ImportVariantsResponse> {
+
+      private static final String REST_PATH = "variants/import";
+
+      /**
+       * Creates variant data by asynchronously importing the provided information.
+       *
+       * Create a request for the method "variants.import".
+       *
+       * This request holds the parameters needed by the the genomics server.  After setting any
+       * optional parameters, call the {@link GenomicsImport#execute()} method to invoke the remote
+       * operation. <p> {@link GenomicsImport#initialize(com.google.api.client.googleapis.services.Abstr
+       * actGoogleClientRequest)} must be called to initialize this instance immediately after invoking
+       * the constructor. </p>
+       *
+       * @param content the {@link com.google.api.services.genomics.model.ImportVariantsRequest}
+       * @since 1.13
+       */
+      protected GenomicsImport(com.google.api.services.genomics.model.ImportVariantsRequest content) {
+        super(Genomics.this, "POST", REST_PATH, content, com.google.api.services.genomics.model.ImportVariantsResponse.class);
+      }
+
+      @Override
+      public GenomicsImport setAlt(java.lang.String alt) {
+        return (GenomicsImport) super.setAlt(alt);
+      }
+
+      @Override
+      public GenomicsImport setFields(java.lang.String fields) {
+        return (GenomicsImport) super.setFields(fields);
+      }
+
+      @Override
+      public GenomicsImport setKey(java.lang.String key) {
+        return (GenomicsImport) super.setKey(key);
+      }
+
+      @Override
+      public GenomicsImport setOauthToken(java.lang.String oauthToken) {
+        return (GenomicsImport) super.setOauthToken(oauthToken);
+      }
+
+      @Override
+      public GenomicsImport setPrettyPrint(java.lang.Boolean prettyPrint) {
+        return (GenomicsImport) super.setPrettyPrint(prettyPrint);
+      }
+
+      @Override
+      public GenomicsImport setQuotaUser(java.lang.String quotaUser) {
+        return (GenomicsImport) super.setQuotaUser(quotaUser);
+      }
+
+      @Override
+      public GenomicsImport setUserIp(java.lang.String userIp) {
+        return (GenomicsImport) super.setUserIp(userIp);
+      }
+
+      @Override
+      public GenomicsImport set(String parameterName, Object value) {
+        return (GenomicsImport) super.set(parameterName, value);
+      }
+    }
+    /**
+     * Updates a variant. This method supports patch semantics.
+     *
+     * Create a request for the method "variants.patch".
+     *
+     * This request holds the parameters needed by the genomics server.  After setting any optional
+     * parameters, call the {@link Patch#execute()} method to invoke the remote operation.
+     *
+     * @param variantId The ID of the variant to be updated..
+     * @param content the {@link com.google.api.services.genomics.model.Variant}
+     * @return the request
+     */
+    public Patch patch(java.lang.String variantId, com.google.api.services.genomics.model.Variant content) throws java.io.IOException {
+      Patch result = new Patch(variantId, content);
+      initialize(result);
+      return result;
+    }
+
+    public class Patch extends GenomicsRequest<com.google.api.services.genomics.model.Variant> {
+
+      private static final String REST_PATH = "variants/{variantId}";
+
+      /**
+       * Updates a variant. This method supports patch semantics.
+       *
+       * Create a request for the method "variants.patch".
+       *
+       * This request holds the parameters needed by the the genomics server.  After setting any
+       * optional parameters, call the {@link Patch#execute()} method to invoke the remote operation.
+       * <p> {@link
+       * Patch#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
+       * be called to initialize this instance immediately after invoking the constructor. </p>
+       *
+       * @param variantId The ID of the variant to be updated..
+       * @param content the {@link com.google.api.services.genomics.model.Variant}
+       * @since 1.13
+       */
+      protected Patch(java.lang.String variantId, com.google.api.services.genomics.model.Variant content) {
+        super(Genomics.this, "PATCH", REST_PATH, content, com.google.api.services.genomics.model.Variant.class);
+        this.variantId = com.google.api.client.util.Preconditions.checkNotNull(variantId, "Required parameter variantId must be specified.");
+      }
+
+      @Override
+      public Patch setAlt(java.lang.String alt) {
+        return (Patch) super.setAlt(alt);
+      }
+
+      @Override
+      public Patch setFields(java.lang.String fields) {
+        return (Patch) super.setFields(fields);
+      }
+
+      @Override
+      public Patch setKey(java.lang.String key) {
+        return (Patch) super.setKey(key);
+      }
+
+      @Override
+      public Patch setOauthToken(java.lang.String oauthToken) {
+        return (Patch) super.setOauthToken(oauthToken);
+      }
+
+      @Override
+      public Patch setPrettyPrint(java.lang.Boolean prettyPrint) {
+        return (Patch) super.setPrettyPrint(prettyPrint);
+      }
+
+      @Override
+      public Patch setQuotaUser(java.lang.String quotaUser) {
+        return (Patch) super.setQuotaUser(quotaUser);
+      }
+
+      @Override
+      public Patch setUserIp(java.lang.String userIp) {
+        return (Patch) super.setUserIp(userIp);
+      }
+
+      /** The ID of the variant to be updated.. */
+      @com.google.api.client.util.Key
+      private java.lang.String variantId;
+
+      /** The ID of the variant to be updated..
+       */
+      public java.lang.String getVariantId() {
+        return variantId;
+      }
+
+      /** The ID of the variant to be updated.. */
+      public Patch setVariantId(java.lang.String variantId) {
+        this.variantId = variantId;
+        return this;
+      }
+
+      @Override
+      public Patch set(String parameterName, Object value) {
+        return (Patch) super.set(parameterName, value);
+      }
+    }
+    /**
+     * Gets a list of variants matching the criteria.
+     *
+     * Create a request for the method "variants.search".
+     *
+     * This request holds the parameters needed by the genomics server.  After setting any optional
+     * parameters, call the {@link Search#execute()} method to invoke the remote operation.
+     *
+     * @param content the {@link com.google.api.services.genomics.model.SearchVariantsRequest}
+     * @return the request
+     */
+    public Search search(com.google.api.services.genomics.model.SearchVariantsRequest content) throws java.io.IOException {
+      Search result = new Search(content);
+      initialize(result);
+      return result;
+    }
+
+    public class Search extends GenomicsRequest<com.google.api.services.genomics.model.SearchVariantsResponse> {
+
+      private static final String REST_PATH = "variants/search";
+
+      /**
+       * Gets a list of variants matching the criteria.
+       *
+       * Create a request for the method "variants.search".
+       *
+       * This request holds the parameters needed by the the genomics server.  After setting any
+       * optional parameters, call the {@link Search#execute()} method to invoke the remote operation.
+       * <p> {@link
+       * Search#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
+       * be called to initialize this instance immediately after invoking the constructor. </p>
+       *
+       * @param content the {@link com.google.api.services.genomics.model.SearchVariantsRequest}
+       * @since 1.13
+       */
+      protected Search(com.google.api.services.genomics.model.SearchVariantsRequest content) {
+        super(Genomics.this, "POST", REST_PATH, content, com.google.api.services.genomics.model.SearchVariantsResponse.class);
+      }
+
+      @Override
+      public Search setAlt(java.lang.String alt) {
+        return (Search) super.setAlt(alt);
+      }
+
+      @Override
+      public Search setFields(java.lang.String fields) {
+        return (Search) super.setFields(fields);
+      }
+
+      @Override
+      public Search setKey(java.lang.String key) {
+        return (Search) super.setKey(key);
+      }
+
+      @Override
+      public Search setOauthToken(java.lang.String oauthToken) {
+        return (Search) super.setOauthToken(oauthToken);
+      }
+
+      @Override
+      public Search setPrettyPrint(java.lang.Boolean prettyPrint) {
+        return (Search) super.setPrettyPrint(prettyPrint);
+      }
+
+      @Override
+      public Search setQuotaUser(java.lang.String quotaUser) {
+        return (Search) super.setQuotaUser(quotaUser);
+      }
+
+      @Override
+      public Search setUserIp(java.lang.String userIp) {
+        return (Search) super.setUserIp(userIp);
+      }
+
+      @Override
+      public Search set(String parameterName, Object value) {
+        return (Search) super.set(parameterName, value);
+      }
+    }
+    /**
+     * Updates a variant.
+     *
+     * Create a request for the method "variants.update".
+     *
+     * This request holds the parameters needed by the genomics server.  After setting any optional
+     * parameters, call the {@link Update#execute()} method to invoke the remote operation.
+     *
+     * @param variantId The ID of the variant to be updated..
+     * @param content the {@link com.google.api.services.genomics.model.Variant}
+     * @return the request
+     */
+    public Update update(java.lang.String variantId, com.google.api.services.genomics.model.Variant content) throws java.io.IOException {
+      Update result = new Update(variantId, content);
+      initialize(result);
+      return result;
+    }
+
+    public class Update extends GenomicsRequest<com.google.api.services.genomics.model.Variant> {
+
+      private static final String REST_PATH = "variants/{variantId}";
+
+      /**
+       * Updates a variant.
+       *
+       * Create a request for the method "variants.update".
+       *
+       * This request holds the parameters needed by the the genomics server.  After setting any
+       * optional parameters, call the {@link Update#execute()} method to invoke the remote operation.
+       * <p> {@link
+       * Update#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)} must
+       * be called to initialize this instance immediately after invoking the constructor. </p>
+       *
+       * @param variantId The ID of the variant to be updated..
+       * @param content the {@link com.google.api.services.genomics.model.Variant}
+       * @since 1.13
+       */
+      protected Update(java.lang.String variantId, com.google.api.services.genomics.model.Variant content) {
+        super(Genomics.this, "PUT", REST_PATH, content, com.google.api.services.genomics.model.Variant.class);
+        this.variantId = com.google.api.client.util.Preconditions.checkNotNull(variantId, "Required parameter variantId must be specified.");
+      }
+
+      @Override
+      public Update setAlt(java.lang.String alt) {
+        return (Update) super.setAlt(alt);
+      }
+
+      @Override
+      public Update setFields(java.lang.String fields) {
+        return (Update) super.setFields(fields);
+      }
+
+      @Override
+      public Update setKey(java.lang.String key) {
+        return (Update) super.setKey(key);
+      }
+
+      @Override
+      public Update setOauthToken(java.lang.String oauthToken) {
+        return (Update) super.setOauthToken(oauthToken);
+      }
+
+      @Override
+      public Update setPrettyPrint(java.lang.Boolean prettyPrint) {
+        return (Update) super.setPrettyPrint(prettyPrint);
+      }
+
+      @Override
+      public Update setQuotaUser(java.lang.String quotaUser) {
+        return (Update) super.setQuotaUser(quotaUser);
+      }
+
+      @Override
+      public Update setUserIp(java.lang.String userIp) {
+        return (Update) super.setUserIp(userIp);
+      }
+
+      /** The ID of the variant to be updated.. */
+      @com.google.api.client.util.Key
+      private java.lang.String variantId;
+
+      /** The ID of the variant to be updated..
+       */
+      public java.lang.String getVariantId() {
+        return variantId;
+      }
+
+      /** The ID of the variant to be updated.. */
+      public Update setVariantId(java.lang.String variantId) {
+        this.variantId = variantId;
+        return this;
+      }
+
+      @Override
+      public Update set(String parameterName, Object value) {
+        return (Update) super.set(parameterName, value);
+      }
+    }
+
+  }
+
+  /**
+   * Builder for {@link Genomics}.
    *
    * <p>
    * Implementation is not thread-safe.
@@ -2146,7 +3355,7 @@ public class Genomics extends com.google.api.client.googleapis.services.json.Abs
           false);
     }
 
-    /** Builds a new instance of {@link com.google.api.services.genomics.Genomics}. */
+    /** Builds a new instance of {@link Genomics}. */
     @Override
     public Genomics build() {
       return new Genomics(this);

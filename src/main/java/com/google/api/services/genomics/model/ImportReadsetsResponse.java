@@ -33,13 +33,13 @@ public final class ImportReadsetsResponse extends com.google.api.client.json.Gen
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String jobId;
+  private java.lang.String jobId;
 
   /**
    * A job ID that can be used to get status information.
    * @return value or {@code null} for none
    */
-  public String getJobId() {
+  public java.lang.String getJobId() {
     return jobId;
   }
 
@@ -47,7 +47,7 @@ public final class ImportReadsetsResponse extends com.google.api.client.json.Gen
    * A job ID that can be used to get status information.
    * @param jobId jobId or {@code null} for none
    */
-  public ImportReadsetsResponse setJobId(String jobId) {
+  public ImportReadsetsResponse setJobId(java.lang.String jobId) {
     this.jobId = jobId;
     return this;
   }

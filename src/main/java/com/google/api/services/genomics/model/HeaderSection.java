@@ -33,14 +33,14 @@ public final class HeaderSection extends com.google.api.client.json.GenericJson 
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private java.util.List<String> comments;
+  private java.util.List<java.lang.String> comments;
 
   /**
    * The file uri that this data was imported from.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String fileUri;
+  private java.lang.String fileUri;
 
   /**
    * (@HD) The header line.
@@ -80,7 +80,7 @@ public final class HeaderSection extends com.google.api.client.json.GenericJson 
    * (@CO) One-line text comments.
    * @return value or {@code null} for none
    */
-  public java.util.List<String> getComments() {
+  public java.util.List<java.lang.String> getComments() {
     return comments;
   }
 
@@ -88,7 +88,7 @@ public final class HeaderSection extends com.google.api.client.json.GenericJson 
    * (@CO) One-line text comments.
    * @param comments comments or {@code null} for none
    */
-  public HeaderSection setComments(java.util.List<String> comments) {
+  public HeaderSection setComments(java.util.List<java.lang.String> comments) {
     this.comments = comments;
     return this;
   }
@@ -97,7 +97,7 @@ public final class HeaderSection extends com.google.api.client.json.GenericJson 
    * The file uri that this data was imported from.
    * @return value or {@code null} for none
    */
-  public String getFileUri() {
+  public java.lang.String getFileUri() {
     return fileUri;
   }
 
@@ -105,7 +105,7 @@ public final class HeaderSection extends com.google.api.client.json.GenericJson 
    * The file uri that this data was imported from.
    * @param fileUri fileUri or {@code null} for none
    */
-  public HeaderSection setFileUri(String fileUri) {
+  public HeaderSection setFileUri(java.lang.String fileUri) {
     this.fileUri = fileUri;
     return this;
   }

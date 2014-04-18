@@ -34,7 +34,7 @@ public final class SearchReadsRequest extends com.google.api.client.json.Generic
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private java.util.List<String> datasetIds;
+  private java.util.List<java.lang.String> datasetIds;
 
   /**
    * The continuation token, which is used to page through large result sets. To get the next page
@@ -42,7 +42,7 @@ public final class SearchReadsRequest extends com.google.api.client.json.Generic
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String pageToken;
+  private java.lang.String pageToken;
 
   /**
    * If specified, will restrict this query to reads within the given readsets. At least one dataset
@@ -50,7 +50,7 @@ public final class SearchReadsRequest extends com.google.api.client.json.Generic
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private java.util.List<String> readsetIds;
+  private java.util.List<java.lang.String> readsetIds;
 
   /**
    * The end position (1-based, inclusive) of this query. If a sequence name is specified, this
@@ -66,7 +66,7 @@ public final class SearchReadsRequest extends com.google.api.client.json.Generic
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String sequenceName;
+  private java.lang.String sequenceName;
 
   /**
    * The start position (1-based) of this query. If a sequence name is specified, this defaults to
@@ -81,7 +81,7 @@ public final class SearchReadsRequest extends com.google.api.client.json.Generic
    * ID or a readset ID must be provided.
    * @return value or {@code null} for none
    */
-  public java.util.List<String> getDatasetIds() {
+  public java.util.List<java.lang.String> getDatasetIds() {
     return datasetIds;
   }
 
@@ -90,7 +90,7 @@ public final class SearchReadsRequest extends com.google.api.client.json.Generic
    * ID or a readset ID must be provided.
    * @param datasetIds datasetIds or {@code null} for none
    */
-  public SearchReadsRequest setDatasetIds(java.util.List<String> datasetIds) {
+  public SearchReadsRequest setDatasetIds(java.util.List<java.lang.String> datasetIds) {
     this.datasetIds = datasetIds;
     return this;
   }
@@ -100,7 +100,7 @@ public final class SearchReadsRequest extends com.google.api.client.json.Generic
    * of results, set this parameter to the value of "nextPageToken" from the previous response.
    * @return value or {@code null} for none
    */
-  public String getPageToken() {
+  public java.lang.String getPageToken() {
     return pageToken;
   }
 
@@ -109,7 +109,7 @@ public final class SearchReadsRequest extends com.google.api.client.json.Generic
    * of results, set this parameter to the value of "nextPageToken" from the previous response.
    * @param pageToken pageToken or {@code null} for none
    */
-  public SearchReadsRequest setPageToken(String pageToken) {
+  public SearchReadsRequest setPageToken(java.lang.String pageToken) {
     this.pageToken = pageToken;
     return this;
   }
@@ -119,7 +119,7 @@ public final class SearchReadsRequest extends com.google.api.client.json.Generic
    * ID or a readset ID must be provided.
    * @return value or {@code null} for none
    */
-  public java.util.List<String> getReadsetIds() {
+  public java.util.List<java.lang.String> getReadsetIds() {
     return readsetIds;
   }
 
@@ -128,7 +128,7 @@ public final class SearchReadsRequest extends com.google.api.client.json.Generic
    * ID or a readset ID must be provided.
    * @param readsetIds readsetIds or {@code null} for none
    */
-  public SearchReadsRequest setReadsetIds(java.util.List<String> readsetIds) {
+  public SearchReadsRequest setReadsetIds(java.util.List<java.lang.String> readsetIds) {
     this.readsetIds = readsetIds;
     return this;
   }
@@ -157,7 +157,7 @@ public final class SearchReadsRequest extends com.google.api.client.json.Generic
    * all sequences, including unmapped reads.
    * @return value or {@code null} for none
    */
-  public String getSequenceName() {
+  public java.lang.String getSequenceName() {
     return sequenceName;
   }
 
@@ -166,7 +166,7 @@ public final class SearchReadsRequest extends com.google.api.client.json.Generic
    * all sequences, including unmapped reads.
    * @param sequenceName sequenceName or {@code null} for none
    */
-  public SearchReadsRequest setSequenceName(String sequenceName) {
+  public SearchReadsRequest setSequenceName(java.lang.String sequenceName) {
     this.sequenceName = sequenceName;
     return this;
   }

@@ -35,7 +35,7 @@ public final class SearchReadsetsResponse extends com.google.api.client.json.Gen
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String nextPageToken;
+  private java.lang.String nextPageToken;
 
   /**
    * The list of matching Readsets.
@@ -56,7 +56,7 @@ public final class SearchReadsetsResponse extends com.google.api.client.json.Gen
    * aren't any additional results.
    * @return value or {@code null} for none
    */
-  public String getNextPageToken() {
+  public java.lang.String getNextPageToken() {
     return nextPageToken;
   }
 
@@ -66,7 +66,7 @@ public final class SearchReadsetsResponse extends com.google.api.client.json.Gen
    * aren't any additional results.
    * @param nextPageToken nextPageToken or {@code null} for none
    */
-  public SearchReadsetsResponse setNextPageToken(String nextPageToken) {
+  public SearchReadsetsResponse setNextPageToken(java.lang.String nextPageToken) {
     this.nextPageToken = nextPageToken;
     return this;
   }

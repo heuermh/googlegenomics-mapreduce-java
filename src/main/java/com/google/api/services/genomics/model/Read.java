@@ -35,7 +35,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String alignedBases;
+  private java.lang.String alignedBases;
 
   /**
    * Represents the quality of each base in this read. Each character represents one base. To get
@@ -43,14 +43,14 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String baseQuality;
+  private java.lang.String baseQuality;
 
   /**
    * A condensed representation of how this read matches up to the reference. (CIGAR)
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String cigar;
+  private java.lang.String cigar;
 
   /**
    * Each bit of this number has a different meaning if enabled. See the full BAM spec for more
@@ -58,14 +58,14 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private Integer flags;
+  private java.lang.Integer flags;
 
   /**
    * The read ID.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String id;
+  private java.lang.String id;
 
   /**
    * A score up to 255 that represents how likely this read's aligned position is correct. A higher
@@ -73,14 +73,14 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private Integer mappingQuality;
+  private java.lang.Integer mappingQuality;
 
   /**
    * The 1-based start position of the paired read. (PNEXT)
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private Integer matePosition;
+  private java.lang.Integer matePosition;
 
   /**
    * The name of the sequence that the paired read is aligned to. This is usually the same as
@@ -88,21 +88,21 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String mateReferenceSequenceName;
+  private java.lang.String mateReferenceSequenceName;
 
   /**
    * The name of the read. When imported from a BAM file, this is the query template name. (QNAME)
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String name;
+  private java.lang.String name;
 
   /**
    * The list of bases that this read represents (e.g. 'CATCGA'). (SEQ)
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String originalBases;
+  private java.lang.String originalBases;
 
   /**
    * The 1-based start position of the aligned read. If the first base starts at the very beginning
@@ -110,14 +110,14 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private Integer position;
+  private java.lang.Integer position;
 
   /**
    * The ID of the readset this read belongs to.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String readsetId;
+  private java.lang.String readsetId;
 
   /**
    * The name of the sequence that this read is aligned to. This would be 'X' for the X Chromosome
@@ -125,28 +125,28 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String referenceSequenceName;
+  private java.lang.String referenceSequenceName;
 
   /**
    * A map of additional read information. (TAG)
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private java.util.Map<String, java.util.List<String>> tags;
+  private java.util.Map<String, java.util.List<java.lang.String>> tags;
 
   /**
    * Length of the original piece of dna that produced both this read and the paired read. (TLEN)
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private Integer templateLength;
+  private java.lang.Integer templateLength;
 
   /**
    * The originalBases after the cigar field has been applied. Deletions are represented with '-'
    * and insertions are omitted.
    * @return value or {@code null} for none
    */
-  public String getAlignedBases() {
+  public java.lang.String getAlignedBases() {
     return alignedBases;
   }
 
@@ -155,7 +155,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * and insertions are omitted.
    * @param alignedBases alignedBases or {@code null} for none
    */
-  public Read setAlignedBases(String alignedBases) {
+  public Read setAlignedBases(java.lang.String alignedBases) {
     this.alignedBases = alignedBases;
     return this;
   }
@@ -165,7 +165,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * the quality, take the ASCII value of the character and subtract 33. (QUAL)
    * @return value or {@code null} for none
    */
-  public String getBaseQuality() {
+  public java.lang.String getBaseQuality() {
     return baseQuality;
   }
 
@@ -174,7 +174,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * the quality, take the ASCII value of the character and subtract 33. (QUAL)
    * @param baseQuality baseQuality or {@code null} for none
    */
-  public Read setBaseQuality(String baseQuality) {
+  public Read setBaseQuality(java.lang.String baseQuality) {
     this.baseQuality = baseQuality;
     return this;
   }
@@ -183,7 +183,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * A condensed representation of how this read matches up to the reference. (CIGAR)
    * @return value or {@code null} for none
    */
-  public String getCigar() {
+  public java.lang.String getCigar() {
     return cigar;
   }
 
@@ -191,7 +191,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * A condensed representation of how this read matches up to the reference. (CIGAR)
    * @param cigar cigar or {@code null} for none
    */
-  public Read setCigar(String cigar) {
+  public Read setCigar(java.lang.String cigar) {
     this.cigar = cigar;
     return this;
   }
@@ -201,7 +201,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * details. (FLAG)
    * @return value or {@code null} for none
    */
-  public Integer getFlags() {
+  public java.lang.Integer getFlags() {
     return flags;
   }
 
@@ -210,7 +210,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * details. (FLAG)
    * @param flags flags or {@code null} for none
    */
-  public Read setFlags(Integer flags) {
+  public Read setFlags(java.lang.Integer flags) {
     this.flags = flags;
     return this;
   }
@@ -219,7 +219,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * The read ID.
    * @return value or {@code null} for none
    */
-  public String getId() {
+  public java.lang.String getId() {
     return id;
   }
 
@@ -227,7 +227,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * The read ID.
    * @param id id or {@code null} for none
    */
-  public Read setId(String id) {
+  public Read setId(java.lang.String id) {
     this.id = id;
     return this;
   }
@@ -237,7 +237,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * value is better. (MAPQ)
    * @return value or {@code null} for none
    */
-  public Integer getMappingQuality() {
+  public java.lang.Integer getMappingQuality() {
     return mappingQuality;
   }
 
@@ -246,7 +246,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * value is better. (MAPQ)
    * @param mappingQuality mappingQuality or {@code null} for none
    */
-  public Read setMappingQuality(Integer mappingQuality) {
+  public Read setMappingQuality(java.lang.Integer mappingQuality) {
     this.mappingQuality = mappingQuality;
     return this;
   }
@@ -255,7 +255,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * The 1-based start position of the paired read. (PNEXT)
    * @return value or {@code null} for none
    */
-  public Integer getMatePosition() {
+  public java.lang.Integer getMatePosition() {
     return matePosition;
   }
 
@@ -263,7 +263,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * The 1-based start position of the paired read. (PNEXT)
    * @param matePosition matePosition or {@code null} for none
    */
-  public Read setMatePosition(Integer matePosition) {
+  public Read setMatePosition(java.lang.Integer matePosition) {
     this.matePosition = matePosition;
     return this;
   }
@@ -273,7 +273,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * referenceSequenceName. (RNEXT)
    * @return value or {@code null} for none
    */
-  public String getMateReferenceSequenceName() {
+  public java.lang.String getMateReferenceSequenceName() {
     return mateReferenceSequenceName;
   }
 
@@ -282,7 +282,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * referenceSequenceName. (RNEXT)
    * @param mateReferenceSequenceName mateReferenceSequenceName or {@code null} for none
    */
-  public Read setMateReferenceSequenceName(String mateReferenceSequenceName) {
+  public Read setMateReferenceSequenceName(java.lang.String mateReferenceSequenceName) {
     this.mateReferenceSequenceName = mateReferenceSequenceName;
     return this;
   }
@@ -291,7 +291,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * The name of the read. When imported from a BAM file, this is the query template name. (QNAME)
    * @return value or {@code null} for none
    */
-  public String getName() {
+  public java.lang.String getName() {
     return name;
   }
 
@@ -299,7 +299,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * The name of the read. When imported from a BAM file, this is the query template name. (QNAME)
    * @param name name or {@code null} for none
    */
-  public Read setName(String name) {
+  public Read setName(java.lang.String name) {
     this.name = name;
     return this;
   }
@@ -308,7 +308,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * The list of bases that this read represents (e.g. 'CATCGA'). (SEQ)
    * @return value or {@code null} for none
    */
-  public String getOriginalBases() {
+  public java.lang.String getOriginalBases() {
     return originalBases;
   }
 
@@ -316,7 +316,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * The list of bases that this read represents (e.g. 'CATCGA'). (SEQ)
    * @param originalBases originalBases or {@code null} for none
    */
-  public Read setOriginalBases(String originalBases) {
+  public Read setOriginalBases(java.lang.String originalBases) {
     this.originalBases = originalBases;
     return this;
   }
@@ -326,7 +326,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * of the reference sequence, then the position would be '1'. (POS)
    * @return value or {@code null} for none
    */
-  public Integer getPosition() {
+  public java.lang.Integer getPosition() {
     return position;
   }
 
@@ -335,7 +335,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * of the reference sequence, then the position would be '1'. (POS)
    * @param position position or {@code null} for none
    */
-  public Read setPosition(Integer position) {
+  public Read setPosition(java.lang.Integer position) {
     this.position = position;
     return this;
   }
@@ -344,7 +344,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * The ID of the readset this read belongs to.
    * @return value or {@code null} for none
    */
-  public String getReadsetId() {
+  public java.lang.String getReadsetId() {
     return readsetId;
   }
 
@@ -352,7 +352,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * The ID of the readset this read belongs to.
    * @param readsetId readsetId or {@code null} for none
    */
-  public Read setReadsetId(String readsetId) {
+  public Read setReadsetId(java.lang.String readsetId) {
     this.readsetId = readsetId;
     return this;
   }
@@ -362,7 +362,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * or '20' for Chromosome 20. (RNAME)
    * @return value or {@code null} for none
    */
-  public String getReferenceSequenceName() {
+  public java.lang.String getReferenceSequenceName() {
     return referenceSequenceName;
   }
 
@@ -371,7 +371,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * or '20' for Chromosome 20. (RNAME)
    * @param referenceSequenceName referenceSequenceName or {@code null} for none
    */
-  public Read setReferenceSequenceName(String referenceSequenceName) {
+  public Read setReferenceSequenceName(java.lang.String referenceSequenceName) {
     this.referenceSequenceName = referenceSequenceName;
     return this;
   }
@@ -380,7 +380,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * A map of additional read information. (TAG)
    * @return value or {@code null} for none
    */
-  public java.util.Map<String, java.util.List<String>> getTags() {
+  public java.util.Map<String, java.util.List<java.lang.String>> getTags() {
     return tags;
   }
 
@@ -388,7 +388,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * A map of additional read information. (TAG)
    * @param tags tags or {@code null} for none
    */
-  public Read setTags(java.util.Map<String, java.util.List<String>> tags) {
+  public Read setTags(java.util.Map<String, java.util.List<java.lang.String>> tags) {
     this.tags = tags;
     return this;
   }
@@ -397,7 +397,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * Length of the original piece of dna that produced both this read and the paired read. (TLEN)
    * @return value or {@code null} for none
    */
-  public Integer getTemplateLength() {
+  public java.lang.Integer getTemplateLength() {
     return templateLength;
   }
 
@@ -405,7 +405,7 @@ public final class Read extends com.google.api.client.json.GenericJson {
    * Length of the original piece of dna that produced both this read and the paired read. (TLEN)
    * @param templateLength templateLength or {@code null} for none
    */
-  public Read setTemplateLength(Integer templateLength) {
+  public Read setTemplateLength(java.lang.Integer templateLength) {
     this.templateLength = templateLength;
     return this;
   }

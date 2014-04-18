@@ -48,7 +48,7 @@ public final class ListDatasetsResponse extends com.google.api.client.json.Gener
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String nextPageToken;
+  private java.lang.String nextPageToken;
 
   /**
    * The list of matching Datasets.
@@ -73,7 +73,7 @@ public final class ListDatasetsResponse extends com.google.api.client.json.Gener
    * aren't any additional results.
    * @return value or {@code null} for none
    */
-  public String getNextPageToken() {
+  public java.lang.String getNextPageToken() {
     return nextPageToken;
   }
 
@@ -83,7 +83,7 @@ public final class ListDatasetsResponse extends com.google.api.client.json.Gener
    * aren't any additional results.
    * @param nextPageToken nextPageToken or {@code null} for none
    */
-  public ListDatasetsResponse setNextPageToken(String nextPageToken) {
+  public ListDatasetsResponse setNextPageToken(java.lang.String nextPageToken) {
     this.nextPageToken = nextPageToken;
     return this;
   }

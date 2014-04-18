@@ -33,7 +33,7 @@ public final class Dataset extends com.google.api.client.json.GenericJson {
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String id;
+  private java.lang.String id;
 
   /**
    * Flag indicating whether or not a dataset is publicly viewable. If a dataset is not public, it
@@ -41,20 +41,20 @@ public final class Dataset extends com.google.api.client.json.GenericJson {
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private Boolean isPublic;
+  private java.lang.Boolean isPublic;
 
   /**
    * The Google Cloud Console project number that this dataset belongs to.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key @com.google.api.client.json.JsonString
-  private Long projectId;
+  private java.lang.Long projectId;
 
   /**
    * The dataset ID.
    * @return value or {@code null} for none
    */
-  public String getId() {
+  public java.lang.String getId() {
     return id;
   }
 
@@ -62,7 +62,7 @@ public final class Dataset extends com.google.api.client.json.GenericJson {
    * The dataset ID.
    * @param id id or {@code null} for none
    */
-  public Dataset setId(String id) {
+  public Dataset setId(java.lang.String id) {
     this.id = id;
     return this;
   }
@@ -72,7 +72,7 @@ public final class Dataset extends com.google.api.client.json.GenericJson {
    * inherits viewing permissions from its project.
    * @return value or {@code null} for none
    */
-  public Boolean getIsPublic() {
+  public java.lang.Boolean getIsPublic() {
     return isPublic;
   }
 
@@ -81,7 +81,7 @@ public final class Dataset extends com.google.api.client.json.GenericJson {
    * inherits viewing permissions from its project.
    * @param isPublic isPublic or {@code null} for none
    */
-  public Dataset setIsPublic(Boolean isPublic) {
+  public Dataset setIsPublic(java.lang.Boolean isPublic) {
     this.isPublic = isPublic;
     return this;
   }
@@ -90,7 +90,7 @@ public final class Dataset extends com.google.api.client.json.GenericJson {
    * The Google Cloud Console project number that this dataset belongs to.
    * @return value or {@code null} for none
    */
-  public Long getProjectId() {
+  public java.lang.Long getProjectId() {
     return projectId;
   }
 
@@ -98,7 +98,7 @@ public final class Dataset extends com.google.api.client.json.GenericJson {
    * The Google Cloud Console project number that this dataset belongs to.
    * @param projectId projectId or {@code null} for none
    */
-  public Dataset setProjectId(Long projectId) {
+  public Dataset setProjectId(java.lang.Long projectId) {
     this.projectId = projectId;
     return this;
   }

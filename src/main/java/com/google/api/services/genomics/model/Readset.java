@@ -29,18 +29,18 @@ package com.google.api.services.genomics.model;
 public final class Readset extends com.google.api.client.json.GenericJson {
 
   /**
-   * The date this readset was created.
+   * The date this readset was created in milliseconds from the epoch.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key @com.google.api.client.json.JsonString
-  private Long created;
+  private java.lang.Long created;
 
   /**
    * The ID of the dataset this readset belongs to.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String datasetId;
+  private java.lang.String datasetId;
 
   /**
    * File information from the original BAM import. See the BAM format specification for additional
@@ -61,14 +61,14 @@ public final class Readset extends com.google.api.client.json.GenericJson {
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String id;
+  private java.lang.String id;
 
   /**
    * The readset name.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String name;
+  private java.lang.String name;
 
   /**
    * The number of reads in this readset.
@@ -78,18 +78,18 @@ public final class Readset extends com.google.api.client.json.GenericJson {
   private java.math.BigInteger readCount;
 
   /**
-   * The date this readset was created.
+   * The date this readset was created in milliseconds from the epoch.
    * @return value or {@code null} for none
    */
-  public Long getCreated() {
+  public java.lang.Long getCreated() {
     return created;
   }
 
   /**
-   * The date this readset was created.
+   * The date this readset was created in milliseconds from the epoch.
    * @param created created or {@code null} for none
    */
-  public Readset setCreated(Long created) {
+  public Readset setCreated(java.lang.Long created) {
     this.created = created;
     return this;
   }
@@ -98,7 +98,7 @@ public final class Readset extends com.google.api.client.json.GenericJson {
    * The ID of the dataset this readset belongs to.
    * @return value or {@code null} for none
    */
-  public String getDatasetId() {
+  public java.lang.String getDatasetId() {
     return datasetId;
   }
 
@@ -106,7 +106,7 @@ public final class Readset extends com.google.api.client.json.GenericJson {
    * The ID of the dataset this readset belongs to.
    * @param datasetId datasetId or {@code null} for none
    */
-  public Readset setDatasetId(String datasetId) {
+  public Readset setDatasetId(java.lang.String datasetId) {
     this.datasetId = datasetId;
     return this;
   }
@@ -134,7 +134,7 @@ public final class Readset extends com.google.api.client.json.GenericJson {
    * The readset ID.
    * @return value or {@code null} for none
    */
-  public String getId() {
+  public java.lang.String getId() {
     return id;
   }
 
@@ -142,7 +142,7 @@ public final class Readset extends com.google.api.client.json.GenericJson {
    * The readset ID.
    * @param id id or {@code null} for none
    */
-  public Readset setId(String id) {
+  public Readset setId(java.lang.String id) {
     this.id = id;
     return this;
   }
@@ -151,7 +151,7 @@ public final class Readset extends com.google.api.client.json.GenericJson {
    * The readset name.
    * @return value or {@code null} for none
    */
-  public String getName() {
+  public java.lang.String getName() {
     return name;
   }
 
@@ -159,7 +159,7 @@ public final class Readset extends com.google.api.client.json.GenericJson {
    * The readset name.
    * @param name name or {@code null} for none
    */
-  public Readset setName(String name) {
+  public Readset setName(java.lang.String name) {
     this.name = name;
     return this;
   }

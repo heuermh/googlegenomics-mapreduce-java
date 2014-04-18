@@ -17,7 +17,7 @@
 package com.google.api.services.genomics.model;
 
 /**
- * The readset import request.
+ * The variant data import request.
  *
  * <p> This is the Java data model class that specifies how to parse/serialize into the JSON that is
  * transmitted over HTTP when working with the Genomics API. For a detailed explanation see:
@@ -26,24 +26,25 @@ package com.google.api.services.genomics.model;
  *
  */
 @SuppressWarnings("javadoc")
-public final class ImportReadsetsRequest extends com.google.api.client.json.GenericJson {
+public final class ImportVariantsRequest extends com.google.api.client.json.GenericJson {
 
   /**
-   * Required. The ID of the dataset this readset belongs to.
+   * Required. The dataset to which variant data should be imported.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
   private java.lang.String datasetId;
 
   /**
-   * A list of URIs pointing at BAM or FASTQ files in Google Cloud Storage.
+   * A list of URIs pointing at VCF files in Google Cloud Storage. See the VCF Specification for
+   * more details on the input format.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
   private java.util.List<java.lang.String> sourceUris;
 
   /**
-   * Required. The ID of the dataset this readset belongs to.
+   * Required. The dataset to which variant data should be imported.
    * @return value or {@code null} for none
    */
   public java.lang.String getDatasetId() {
@@ -51,16 +52,17 @@ public final class ImportReadsetsRequest extends com.google.api.client.json.Gene
   }
 
   /**
-   * Required. The ID of the dataset this readset belongs to.
+   * Required. The dataset to which variant data should be imported.
    * @param datasetId datasetId or {@code null} for none
    */
-  public ImportReadsetsRequest setDatasetId(java.lang.String datasetId) {
+  public ImportVariantsRequest setDatasetId(java.lang.String datasetId) {
     this.datasetId = datasetId;
     return this;
   }
 
   /**
-   * A list of URIs pointing at BAM or FASTQ files in Google Cloud Storage.
+   * A list of URIs pointing at VCF files in Google Cloud Storage. See the VCF Specification for
+   * more details on the input format.
    * @return value or {@code null} for none
    */
   public java.util.List<java.lang.String> getSourceUris() {
@@ -68,22 +70,23 @@ public final class ImportReadsetsRequest extends com.google.api.client.json.Gene
   }
 
   /**
-   * A list of URIs pointing at BAM or FASTQ files in Google Cloud Storage.
+   * A list of URIs pointing at VCF files in Google Cloud Storage. See the VCF Specification for
+   * more details on the input format.
    * @param sourceUris sourceUris or {@code null} for none
    */
-  public ImportReadsetsRequest setSourceUris(java.util.List<java.lang.String> sourceUris) {
+  public ImportVariantsRequest setSourceUris(java.util.List<java.lang.String> sourceUris) {
     this.sourceUris = sourceUris;
     return this;
   }
 
   @Override
-  public ImportReadsetsRequest set(String fieldName, Object value) {
-    return (ImportReadsetsRequest) super.set(fieldName, value);
+  public ImportVariantsRequest set(String fieldName, Object value) {
+    return (ImportVariantsRequest) super.set(fieldName, value);
   }
 
   @Override
-  public ImportReadsetsRequest clone() {
-    return (ImportReadsetsRequest) super.clone();
+  public ImportVariantsRequest clone() {
+    return (ImportVariantsRequest) super.clone();
   }
 
 }

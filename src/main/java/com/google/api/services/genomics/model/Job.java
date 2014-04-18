@@ -33,14 +33,14 @@ public final class Job extends com.google.api.client.json.GenericJson {
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String description;
+  private java.lang.String description;
 
   /**
    * The job ID.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String id;
+  private java.lang.String id;
 
   /**
    * If this Job represents an import, this field will contain the IDs of the objects which were
@@ -48,27 +48,27 @@ public final class Job extends com.google.api.client.json.GenericJson {
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private java.util.List<String> importedIds;
+  private java.util.List<java.lang.String> importedIds;
 
   /**
    * The Google Cloud Console project number that this job belongs to.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key @com.google.api.client.json.JsonString
-  private Long projectId;
+  private java.lang.Long projectId;
 
   /**
    * The status of this job.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String status;
+  private java.lang.String status;
 
   /**
    * A more detailed description of this job's current status.
    * @return value or {@code null} for none
    */
-  public String getDescription() {
+  public java.lang.String getDescription() {
     return description;
   }
 
@@ -76,7 +76,7 @@ public final class Job extends com.google.api.client.json.GenericJson {
    * A more detailed description of this job's current status.
    * @param description description or {@code null} for none
    */
-  public Job setDescription(String description) {
+  public Job setDescription(java.lang.String description) {
     this.description = description;
     return this;
   }
@@ -85,7 +85,7 @@ public final class Job extends com.google.api.client.json.GenericJson {
    * The job ID.
    * @return value or {@code null} for none
    */
-  public String getId() {
+  public java.lang.String getId() {
     return id;
   }
 
@@ -93,7 +93,7 @@ public final class Job extends com.google.api.client.json.GenericJson {
    * The job ID.
    * @param id id or {@code null} for none
    */
-  public Job setId(String id) {
+  public Job setId(java.lang.String id) {
     this.id = id;
     return this;
   }
@@ -103,7 +103,7 @@ public final class Job extends com.google.api.client.json.GenericJson {
    * successfully imported.
    * @return value or {@code null} for none
    */
-  public java.util.List<String> getImportedIds() {
+  public java.util.List<java.lang.String> getImportedIds() {
     return importedIds;
   }
 
@@ -112,7 +112,7 @@ public final class Job extends com.google.api.client.json.GenericJson {
    * successfully imported.
    * @param importedIds importedIds or {@code null} for none
    */
-  public Job setImportedIds(java.util.List<String> importedIds) {
+  public Job setImportedIds(java.util.List<java.lang.String> importedIds) {
     this.importedIds = importedIds;
     return this;
   }
@@ -121,7 +121,7 @@ public final class Job extends com.google.api.client.json.GenericJson {
    * The Google Cloud Console project number that this job belongs to.
    * @return value or {@code null} for none
    */
-  public Long getProjectId() {
+  public java.lang.Long getProjectId() {
     return projectId;
   }
 
@@ -129,7 +129,7 @@ public final class Job extends com.google.api.client.json.GenericJson {
    * The Google Cloud Console project number that this job belongs to.
    * @param projectId projectId or {@code null} for none
    */
-  public Job setProjectId(Long projectId) {
+  public Job setProjectId(java.lang.Long projectId) {
     this.projectId = projectId;
     return this;
   }
@@ -138,7 +138,7 @@ public final class Job extends com.google.api.client.json.GenericJson {
    * The status of this job.
    * @return value or {@code null} for none
    */
-  public String getStatus() {
+  public java.lang.String getStatus() {
     return status;
   }
 
@@ -146,7 +146,7 @@ public final class Job extends com.google.api.client.json.GenericJson {
    * The status of this job.
    * @param status status or {@code null} for none
    */
-  public Job setStatus(String status) {
+  public Job setStatus(java.lang.String status) {
     this.status = status;
     return this;
   }

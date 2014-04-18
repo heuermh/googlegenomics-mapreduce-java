@@ -33,41 +33,41 @@ public final class Program extends com.google.api.client.json.GenericJson {
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String commandLine;
+  private java.lang.String commandLine;
 
   /**
    * (ID) Program record identifier.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String id;
+  private java.lang.String id;
 
   /**
    * (PN) Program name.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String name;
+  private java.lang.String name;
 
   /**
    * (PP) Previous program id.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String prevProgramId;
+  private java.lang.String prevProgramId;
 
   /**
    * (VN) Program version.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String version;
+  private java.lang.String version;
 
   /**
    * (CL) Command line.
    * @return value or {@code null} for none
    */
-  public String getCommandLine() {
+  public java.lang.String getCommandLine() {
     return commandLine;
   }
 
@@ -75,7 +75,7 @@ public final class Program extends com.google.api.client.json.GenericJson {
    * (CL) Command line.
    * @param commandLine commandLine or {@code null} for none
    */
-  public Program setCommandLine(String commandLine) {
+  public Program setCommandLine(java.lang.String commandLine) {
     this.commandLine = commandLine;
     return this;
   }
@@ -84,7 +84,7 @@ public final class Program extends com.google.api.client.json.GenericJson {
    * (ID) Program record identifier.
    * @return value or {@code null} for none
    */
-  public String getId() {
+  public java.lang.String getId() {
     return id;
   }
 
@@ -92,7 +92,7 @@ public final class Program extends com.google.api.client.json.GenericJson {
    * (ID) Program record identifier.
    * @param id id or {@code null} for none
    */
-  public Program setId(String id) {
+  public Program setId(java.lang.String id) {
     this.id = id;
     return this;
   }
@@ -101,7 +101,7 @@ public final class Program extends com.google.api.client.json.GenericJson {
    * (PN) Program name.
    * @return value or {@code null} for none
    */
-  public String getName() {
+  public java.lang.String getName() {
     return name;
   }
 
@@ -109,7 +109,7 @@ public final class Program extends com.google.api.client.json.GenericJson {
    * (PN) Program name.
    * @param name name or {@code null} for none
    */
-  public Program setName(String name) {
+  public Program setName(java.lang.String name) {
     this.name = name;
     return this;
   }
@@ -118,7 +118,7 @@ public final class Program extends com.google.api.client.json.GenericJson {
    * (PP) Previous program id.
    * @return value or {@code null} for none
    */
-  public String getPrevProgramId() {
+  public java.lang.String getPrevProgramId() {
     return prevProgramId;
   }
 
@@ -126,7 +126,7 @@ public final class Program extends com.google.api.client.json.GenericJson {
    * (PP) Previous program id.
    * @param prevProgramId prevProgramId or {@code null} for none
    */
-  public Program setPrevProgramId(String prevProgramId) {
+  public Program setPrevProgramId(java.lang.String prevProgramId) {
     this.prevProgramId = prevProgramId;
     return this;
   }
@@ -135,7 +135,7 @@ public final class Program extends com.google.api.client.json.GenericJson {
    * (VN) Program version.
    * @return value or {@code null} for none
    */
-  public String getVersion() {
+  public java.lang.String getVersion() {
     return version;
   }
 
@@ -143,7 +143,7 @@ public final class Program extends com.google.api.client.json.GenericJson {
    * (VN) Program version.
    * @param version version or {@code null} for none
    */
-  public Program setVersion(String version) {
+  public Program setVersion(java.lang.String version) {
     this.version = version;
     return this;
   }

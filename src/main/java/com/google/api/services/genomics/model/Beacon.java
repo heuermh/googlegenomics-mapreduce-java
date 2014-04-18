@@ -17,7 +17,8 @@
 package com.google.api.services.genomics.model;
 
 /**
- * Model definition for Header.
+ * A beacon represents whether any variant call in a dataset has a specific allele at a particular
+ * position.
  *
  * <p> This is the Java data model class that specifies how to parse/serialize into the JSON that is
  * transmitted over HTTP when working with the Genomics API. For a detailed explanation see:
@@ -26,64 +27,40 @@ package com.google.api.services.genomics.model;
  *
  */
 @SuppressWarnings("javadoc")
-public final class Header extends com.google.api.client.json.GenericJson {
+public final class Beacon extends com.google.api.client.json.GenericJson {
 
   /**
-   * (SO) Sorting order of alignments.
+   * True if the allele exists on any variant call, false otherwise.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private java.lang.String sortingOrder;
+  private java.lang.Boolean exists;
 
   /**
-   * (VN) BAM format version.
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key
-  private java.lang.String version;
-
-  /**
-   * (SO) Sorting order of alignments.
+   * True if the allele exists on any variant call, false otherwise.
    * @return value or {@code null} for none
    */
-  public java.lang.String getSortingOrder() {
-    return sortingOrder;
+  public java.lang.Boolean getExists() {
+    return exists;
   }
 
   /**
-   * (SO) Sorting order of alignments.
-   * @param sortingOrder sortingOrder or {@code null} for none
+   * True if the allele exists on any variant call, false otherwise.
+   * @param exists exists or {@code null} for none
    */
-  public Header setSortingOrder(java.lang.String sortingOrder) {
-    this.sortingOrder = sortingOrder;
-    return this;
-  }
-
-  /**
-   * (VN) BAM format version.
-   * @return value or {@code null} for none
-   */
-  public java.lang.String getVersion() {
-    return version;
-  }
-
-  /**
-   * (VN) BAM format version.
-   * @param version version or {@code null} for none
-   */
-  public Header setVersion(java.lang.String version) {
-    this.version = version;
+  public Beacon setExists(java.lang.Boolean exists) {
+    this.exists = exists;
     return this;
   }
 
   @Override
-  public Header set(String fieldName, Object value) {
-    return (Header) super.set(fieldName, value);
+  public Beacon set(String fieldName, Object value) {
+    return (Beacon) super.set(fieldName, value);
   }
 
   @Override
-  public Header clone() {
-    return (Header) super.clone();
+  public Beacon clone() {
+    return (Beacon) super.clone();
   }
 
 }

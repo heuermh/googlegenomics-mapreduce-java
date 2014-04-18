@@ -33,48 +33,48 @@ public final class ReferenceSequence extends com.google.api.client.json.GenericJ
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String assemblyId;
+  private java.lang.String assemblyId;
 
   /**
    * (LN) Reference sequence length.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private Integer length;
+  private java.lang.Integer length;
 
   /**
    * (M5) MD5 checksum of the sequence in the uppercase, excluding spaces but including pads as *.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String md5Checksum;
+  private java.lang.String md5Checksum;
 
   /**
    * (SN) Reference sequence name.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String name;
+  private java.lang.String name;
 
   /**
    * (SP) Species.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String species;
+  private java.lang.String species;
 
   /**
    * (UR) URI of the sequence.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String uri;
+  private java.lang.String uri;
 
   /**
    * (AS) Genome assembly identifier.
    * @return value or {@code null} for none
    */
-  public String getAssemblyId() {
+  public java.lang.String getAssemblyId() {
     return assemblyId;
   }
 
@@ -82,7 +82,7 @@ public final class ReferenceSequence extends com.google.api.client.json.GenericJ
    * (AS) Genome assembly identifier.
    * @param assemblyId assemblyId or {@code null} for none
    */
-  public ReferenceSequence setAssemblyId(String assemblyId) {
+  public ReferenceSequence setAssemblyId(java.lang.String assemblyId) {
     this.assemblyId = assemblyId;
     return this;
   }
@@ -91,7 +91,7 @@ public final class ReferenceSequence extends com.google.api.client.json.GenericJ
    * (LN) Reference sequence length.
    * @return value or {@code null} for none
    */
-  public Integer getLength() {
+  public java.lang.Integer getLength() {
     return length;
   }
 
@@ -99,7 +99,7 @@ public final class ReferenceSequence extends com.google.api.client.json.GenericJ
    * (LN) Reference sequence length.
    * @param length length or {@code null} for none
    */
-  public ReferenceSequence setLength(Integer length) {
+  public ReferenceSequence setLength(java.lang.Integer length) {
     this.length = length;
     return this;
   }
@@ -108,7 +108,7 @@ public final class ReferenceSequence extends com.google.api.client.json.GenericJ
    * (M5) MD5 checksum of the sequence in the uppercase, excluding spaces but including pads as *.
    * @return value or {@code null} for none
    */
-  public String getMd5Checksum() {
+  public java.lang.String getMd5Checksum() {
     return md5Checksum;
   }
 
@@ -116,7 +116,7 @@ public final class ReferenceSequence extends com.google.api.client.json.GenericJ
    * (M5) MD5 checksum of the sequence in the uppercase, excluding spaces but including pads as *.
    * @param md5Checksum md5Checksum or {@code null} for none
    */
-  public ReferenceSequence setMd5Checksum(String md5Checksum) {
+  public ReferenceSequence setMd5Checksum(java.lang.String md5Checksum) {
     this.md5Checksum = md5Checksum;
     return this;
   }
@@ -125,7 +125,7 @@ public final class ReferenceSequence extends com.google.api.client.json.GenericJ
    * (SN) Reference sequence name.
    * @return value or {@code null} for none
    */
-  public String getName() {
+  public java.lang.String getName() {
     return name;
   }
 
@@ -133,7 +133,7 @@ public final class ReferenceSequence extends com.google.api.client.json.GenericJ
    * (SN) Reference sequence name.
    * @param name name or {@code null} for none
    */
-  public ReferenceSequence setName(String name) {
+  public ReferenceSequence setName(java.lang.String name) {
     this.name = name;
     return this;
   }
@@ -142,7 +142,7 @@ public final class ReferenceSequence extends com.google.api.client.json.GenericJ
    * (SP) Species.
    * @return value or {@code null} for none
    */
-  public String getSpecies() {
+  public java.lang.String getSpecies() {
     return species;
   }
 
@@ -150,7 +150,7 @@ public final class ReferenceSequence extends com.google.api.client.json.GenericJ
    * (SP) Species.
    * @param species species or {@code null} for none
    */
-  public ReferenceSequence setSpecies(String species) {
+  public ReferenceSequence setSpecies(java.lang.String species) {
     this.species = species;
     return this;
   }
@@ -159,7 +159,7 @@ public final class ReferenceSequence extends com.google.api.client.json.GenericJ
    * (UR) URI of the sequence.
    * @return value or {@code null} for none
    */
-  public String getUri() {
+  public java.lang.String getUri() {
     return uri;
   }
 
@@ -167,7 +167,7 @@ public final class ReferenceSequence extends com.google.api.client.json.GenericJ
    * (UR) URI of the sequence.
    * @param uri uri or {@code null} for none
    */
-  public ReferenceSequence setUri(String uri) {
+  public ReferenceSequence setUri(java.lang.String uri) {
     this.uri = uri;
     return this;
   }

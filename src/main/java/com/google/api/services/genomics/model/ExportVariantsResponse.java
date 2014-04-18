@@ -17,7 +17,7 @@
 package com.google.api.services.genomics.model;
 
 /**
- * Model definition for Header.
+ * The variant data export response.
  *
  * <p> This is the Java data model class that specifies how to parse/serialize into the JSON that is
  * transmitted over HTTP when working with the Genomics API. For a detailed explanation see:
@@ -26,64 +26,40 @@ package com.google.api.services.genomics.model;
  *
  */
 @SuppressWarnings("javadoc")
-public final class Header extends com.google.api.client.json.GenericJson {
+public final class ExportVariantsResponse extends com.google.api.client.json.GenericJson {
 
   /**
-   * (SO) Sorting order of alignments.
+   * A job ID that can be used to get status information.
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private java.lang.String sortingOrder;
+  private java.lang.String jobId;
 
   /**
-   * (VN) BAM format version.
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key
-  private java.lang.String version;
-
-  /**
-   * (SO) Sorting order of alignments.
+   * A job ID that can be used to get status information.
    * @return value or {@code null} for none
    */
-  public java.lang.String getSortingOrder() {
-    return sortingOrder;
+  public java.lang.String getJobId() {
+    return jobId;
   }
 
   /**
-   * (SO) Sorting order of alignments.
-   * @param sortingOrder sortingOrder or {@code null} for none
+   * A job ID that can be used to get status information.
+   * @param jobId jobId or {@code null} for none
    */
-  public Header setSortingOrder(java.lang.String sortingOrder) {
-    this.sortingOrder = sortingOrder;
-    return this;
-  }
-
-  /**
-   * (VN) BAM format version.
-   * @return value or {@code null} for none
-   */
-  public java.lang.String getVersion() {
-    return version;
-  }
-
-  /**
-   * (VN) BAM format version.
-   * @param version version or {@code null} for none
-   */
-  public Header setVersion(java.lang.String version) {
-    this.version = version;
+  public ExportVariantsResponse setJobId(java.lang.String jobId) {
+    this.jobId = jobId;
     return this;
   }
 
   @Override
-  public Header set(String fieldName, Object value) {
-    return (Header) super.set(fieldName, value);
+  public ExportVariantsResponse set(String fieldName, Object value) {
+    return (ExportVariantsResponse) super.set(fieldName, value);
   }
 
   @Override
-  public Header clone() {
-    return (Header) super.clone();
+  public ExportVariantsResponse clone() {
+    return (ExportVariantsResponse) super.clone();
   }
 
 }
