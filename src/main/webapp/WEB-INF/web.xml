@@ -27,6 +27,14 @@ limitations under the License.
     <servlet-name>main</servlet-name>
     <url-pattern>/main</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>pca</servlet-name>
+    <servlet-class>com.google.cloud.genomics.mapreduce.PcaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>pca</servlet-name>
+    <url-pattern>/pca</url-pattern>
+  </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>

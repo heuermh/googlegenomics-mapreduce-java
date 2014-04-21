@@ -15,77 +15,53 @@ limitations under the License.
 */
 package com.google.cloud.genomics.mapreduce;
 
-import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.appengine.http.UrlFetchTransport;
-import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.googleapis.extensions.appengine.auth.oauth2.AppIdentityCredential;
-import com.google.api.client.http.HttpRequest;
-import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.genomics.Genomics;
-import com.google.api.services.genomics.model.Read;
-import com.google.api.services.genomics.model.SearchReadsRequest;
-import com.google.api.services.genomics.model.SearchReadsResponse;
-import com.google.appengine.tools.mapreduce.Input;
-import com.google.appengine.tools.mapreduce.InputReader;
-import com.google.appengine.tools.mapreduce.GoogleCloudStorageFileSet;
-import com.google.appengine.tools.mapreduce.MapReduceJob;
-import com.google.appengine.tools.mapreduce.MapReduceSettings;
-import com.google.appengine.tools.mapreduce.MapReduceSpecification;
-import com.google.appengine.tools.mapreduce.Mapper;
-import com.google.appengine.tools.mapreduce.Marshaller;
-import com.google.appengine.tools.mapreduce.Marshallers;
-import com.google.appengine.tools.mapreduce.Output;
-import com.google.appengine.tools.mapreduce.Reducer;
-import com.google.appengine.tools.mapreduce.ReducerInput;
-import com.google.appengine.tools.mapreduce.inputs.ConsecutiveLongInput;
+import com.google.api.services.genomics.model.Call;
+import com.google.api.services.genomics.model.SearchVariantsRequest;
+import com.google.api.services.genomics.model.SearchVariantsResponse;
+import com.google.api.services.genomics.model.Variant;
+import com.google.appengine.tools.mapreduce.*;
 import com.google.appengine.tools.mapreduce.outputs.GoogleCloudStorageFileOutput;
 import com.google.appengine.tools.mapreduce.outputs.MarshallingOutput;
-import com.google.appengine.tools.mapreduce.outputs.InMemoryOutput;
 import com.google.common.collect.Lists;
-import com.google.common.primitives.Ints;
 
-import java.lang.Integer;
-import java.lang.Object;
-import java.lang.String;
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
-import java.util.Random;
-import java.util.logging.Logger;
-
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import javax.servlet.http.*;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.logging.Logger;
 
 public class MainServlet extends HttpServlet {
 
-  public static final String BUCKET_NAME = "mybucket";
-  public static final String OUTPUT_FILE_NAME = "ReadCoverage-%04d.txt";
-  public static final String API_KEY = "myapikey";
-  public static final int SHARDS = 1;
+  public static final String BUCKET_NAME = "cloud-genomics-mapreduce-tests";
+  public static final String OUTPUT_FILE_NAME = "VariantSimilarity.txt";
+  public static final String API_KEY = "AIzaSyCepkTbGZbHcUwLu5VXjxtOGoGpv1o8hhA";
+  public static final int SHARDS = 100;
 
   @Override
   public void doPost(HttpServletRequest req, HttpServletResponse resp)
       throws IOException {
-    String readsetId = req.getParameter("readsetId");
-    String sequenceName = req.getParameter("sequenceName");
-    String sequenceStart = req.getParameter("sequenceStart");
-    String sequenceEnd = req.getParameter("sequenceEnd");
+    String datasetId = req.getParameter("datasetId");
+    String contig = req.getParameter("contig");
+    Integer start = Integer.valueOf(req.getParameter("start"));
+    Integer end = Integer.valueOf(req.getParameter("end"));
 
-    Integer start = Integer.valueOf(sequenceStart);
-    Integer end = Integer.valueOf(sequenceEnd);
+    Integer shards = end - start < 1000 ? 1 : SHARDS;
 
-    Output<String, GoogleCloudStorageFileSet> output = new MarshallingOutput(
-        new GoogleCloudStorageFileOutput(BUCKET_NAME, OUTPUT_FILE_NAME, "text/plain", SHARDS),
+    Output<String, GoogleCloudStorageFileSet> output = new MarshallingOutput<String, GoogleCloudStorageFileSet>(
+        new GoogleCloudStorageFileOutput(BUCKET_NAME, OUTPUT_FILE_NAME, "text/plain",
+            1 /* we only want one results file */),
         Marshallers.getStringMarshaller());
 
-    MapReduceSpecification spec = MapReduceSpecification.of("ReadCoverageMapreduce",
-        new GenomicsApiInput(readsetId, sequenceName, start, end, SHARDS),
-        new ReadCoverageMapper(),
-        Marshallers.getIntegerMarshaller(),
+    MapReduceSpecification spec = MapReduceSpecification.of("VariantSimilarityMapreduce",
+        new GenomicsApiInput(datasetId, contig, start, end, shards),
+        new VariantSimilarityMapper(),
+        Marshallers.getStringMarshaller(),
         Marshallers.getIntegerMarshaller(),
         new SummingReducer(),
         output);
@@ -95,33 +71,33 @@ public class MainServlet extends HttpServlet {
     resp.sendRedirect("/_ah/pipeline/status.html?root=" + jobId);
   }
 
-  private static class ReadsCoverageInput {
+  private static class VariantSimilarityInput {
     public final Integer sequenceStart;
     public final Integer sequenceEnd;
-    public final List<Read> reads;
+    public final List<Variant> variants;
 
-    public ReadsCoverageInput(Integer sequenceStart, Integer sequenceEnd, List<Read> reads) {
+    public VariantSimilarityInput(Integer sequenceStart, Integer sequenceEnd, List<Variant> variants) {
       this.sequenceStart = sequenceStart;
       this.sequenceEnd = sequenceEnd;
-      this.reads = reads;
+      this.variants = variants;
     }
   }
 
-  private static class GenomicsApiInput extends Input<ReadsCoverageInput> {
+  private static class GenomicsApiInput extends Input<VariantSimilarityInput> {
     private static final Logger LOG = Logger.getLogger(GenomicsApiInput.class.getName());
 
-    private final String readsetId;
-    private final String sequenceName;
+    private final String datasetId;
+    private final String contig;
     private final int start;
     private final int end;
     private final int shards;
 
-    public GenomicsApiInput(String readsetId, String sequenceName, int start, int end, int shards) {
-      this.readsetId = readsetId;
-      this.sequenceName = sequenceName;
+    public GenomicsApiInput(String datasetId, String contig, int start, int end, int shards) {
+      this.datasetId = datasetId;
+      this.contig = contig;
       this.start = start;
       this.end = end;
-      this.shards = end - start < 100 ? 1 : shards;
+      this.shards = shards;
     }
 
     @Override
@@ -132,7 +108,7 @@ public class MainServlet extends HttpServlet {
       for (int i = 0; i < shards; i++) {
         int rangeStart = start + (rangeLength * i);
         int rangeEnd = Math.max(end, rangeStart + rangeLength);
-        readers.add(new GenomicsApiInputReader(readsetId, sequenceName, rangeStart, rangeEnd));
+        readers.add(new GenomicsApiInputReader(datasetId, contig, rangeStart, rangeEnd));
         LOG.info("Adding reader " + rangeStart + ":" + rangeEnd);
       }
 
@@ -140,25 +116,26 @@ public class MainServlet extends HttpServlet {
     }
   }
 
-  private static class GenomicsApiInputReader extends InputReader<ReadsCoverageInput> {
+  private static class GenomicsApiInputReader extends InputReader<VariantSimilarityInput> {
     private static final Logger LOG = Logger.getLogger(GenomicsApiInputReader.class.getName());
 
-    private final String readsetId;
-    private final String sequenceName;
+    private final String datasetId;
+    private final String contig;
     private final int start;
     private final int end;
 
     private boolean firstTime = true;
     private String nextPageToken;
 
-    public GenomicsApiInputReader(String readsetId, String sequenceName, int start, int end) {
-      this.readsetId = readsetId;
-      this.sequenceName = sequenceName;
+    public GenomicsApiInputReader(String datasetId, String contig, int start, int end) {
+      this.datasetId = datasetId;
+      this.contig = contig;
       this.start = start;
       this.end = end;
     }
 
     private static Genomics getService() {
+      // TODO: This auth doesn't work when running locally
       final AppIdentityCredential credential =
           new AppIdentityCredential(Lists.newArrayList("https://www.googleapis.com/auth/genomics"));
 
@@ -169,27 +146,27 @@ public class MainServlet extends HttpServlet {
     }
 
     @Override
-    public ReadsCoverageInput next() throws IOException, NoSuchElementException {
+    public VariantSimilarityInput next() throws IOException, NoSuchElementException {
       if (!firstTime && nextPageToken == null) {
         throw new NoSuchElementException();
       }
       firstTime = false;
 
-      SearchReadsRequest request = new SearchReadsRequest()
-          .setReadsetIds(Lists.newArrayList(readsetId))
-          .setSequenceName(sequenceName)
-          .setSequenceStart(BigInteger.valueOf(start))
-          .setSequenceEnd(BigInteger.valueOf(end));
+      SearchVariantsRequest request = new SearchVariantsRequest()
+          .setDatasetId(datasetId)
+          .setContig(contig)
+          .setStartPosition((long) start)
+          .setEndPosition((long) end);
 
       if (nextPageToken != null) {
         request.setPageToken(nextPageToken);
       }
 
       try {
-        SearchReadsResponse response = getService().reads().search(request).setKey(API_KEY).execute();
+        SearchVariantsResponse response = getService().variants().search(request).setKey(API_KEY).execute();
         nextPageToken = response.getNextPageToken();
-        LOG.info("Got " + response.getReads().size() + " reads");
-        return new ReadsCoverageInput(start, end, response.getReads());
+        LOG.info("Got " + response.getVariants().size() + " variants");
+        return new VariantSimilarityInput(start, end, response.getVariants());
 
       } catch (Exception e) {
         throw new IOException(e);
@@ -197,42 +174,41 @@ public class MainServlet extends HttpServlet {
     }
   }
 
-  private static class ReadCoverageMapper extends Mapper<ReadsCoverageInput, Integer, Integer> {
-    private static final Logger LOG = Logger.getLogger(ReadCoverageMapper.class.getName());
+  private static class VariantSimilarityMapper extends Mapper<VariantSimilarityInput, String, Integer> {
+    private static final Logger LOG = Logger.getLogger(VariantSimilarityMapper.class.getName());
 
     @Override
-    public void map(ReadsCoverageInput input) {
-      Map<Integer, Integer> coverage = new HashMap<Integer, Integer>();
-
-      for (Read read : input.reads) {
-        Integer readStart = read.getPosition();
-        Integer readEnd = readStart + read.getOriginalBases().length();
-
-        for (int i = Math.max(readStart, input.sequenceStart); i < Math.min(readEnd, input.sequenceEnd); i++) {
-          Integer count = coverage.get(i);
-          coverage.put(i, count == null ? 1 : count + 1);
+    public void map(VariantSimilarityInput input) {
+      for (Variant variant : input.variants) {
+        List<String> samplesWithVariant = Lists.newArrayList();
+        for (Call call : variant.getCalls()) {
+          String genotype = call.getInfo().get("GT").get(0); // TODO: Change to use real genotype field
+          genotype = genotype.replaceAll("[\\\\|0]", "");
+          if (!genotype.isEmpty()) {
+            samplesWithVariant.add(call.getCallsetId()); // TODO: Change to callsetName once available
+          }
         }
-      }
+        LOG.info("Variant " + variant.getId() + " has " + samplesWithVariant.size() + " actual calls");
 
-      for (Map.Entry<Integer, Integer> entry : coverage.entrySet()) {
-        LOG.info("Coverage for " + entry.getKey() + " - " + entry.getValue());
-        emit(entry.getKey(), entry.getValue());
+        for (String s1 : samplesWithVariant) {
+          for (String s2 : samplesWithVariant) {
+            // TODO: Output can be reduced by half if we only output when s1 < s2
+            emit(s1 + "-" + s2, 1);
+          }
+        }
       }
     }
   }
 
-  private static class SummingReducer extends Reducer<Integer, Integer, String> {
-    private static final Logger LOG = Logger.getLogger(SummingReducer.class.getName());
-
+  private static class SummingReducer extends Reducer<String, Integer, String> {
     @Override
-    public void reduce(Integer key, ReducerInput<Integer> values) {
-      Integer coverage = 0;
+    public void reduce(String key, ReducerInput<Integer> values) {
+      Integer sum = 0;
       while (values.hasNext()) {
-        coverage += values.next();
+        sum += values.next();
       }
 
-      String output = key + ": " + coverage + "\n";
-      LOG.info("Emitting " + output);
+      String output = key + "-" + sum + ":";
       emit(output);
     }
   }

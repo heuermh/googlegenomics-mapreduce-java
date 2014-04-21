@@ -18,48 +18,48 @@ $(function() {
     $.validator.addMethod(
         "end_greater_than_start",
         function(value, element) {
-            return parseInt($('#sequenceEnd').val()) >= parseInt($('#sequenceStart').val())
+            return parseInt($('#end').val()) >= parseInt($('#start').val())
         },
         "End must be greater than or equal to start.");
     $.validator.addMethod(
         "start_less_than_end",
         function(value, element) {
-            return parseInt($('#sequenceStart').val()) <= parseInt($('#sequenceEnd').val())
+            return parseInt($('#start').val()) <= parseInt($('#end').val())
         },
         "Start must be less than or equal to end.");
     $.validator.addMethod(
         "start_greater_than_zero",
         function(value, element) {
-            return parseInt($('#sequenceStart').val()) > 0
+            return parseInt($('#start').val()) > 0
         },
         "Start must be greater than 0.");
     $("#coverageForm").validate({
         rules: {
-            readsetId: "required",
-            sequenceStart: {
+            datasetId: "required",
+            contig: "required",
+            start: {
                 required: true,
                 number: true,
                 start_greater_than_zero: true,
                 start_less_than_end: true
             },
-            sequenceEnd: {
+            end: {
                 required: true,
                 number: true,
                 end_greater_than_start: true
             }
         },
         messages: {
-            readsetId: "Please provide a Readset Id.",
-            sequenceStart: {
-                required: "Please provide a Sequence Start."
+            datasetId: "Please provide a Dataset Id.",
+            contig: "Please provide a Contig.",
+            start: {
+                required: "Please provide a Start position."
             },
-            sequenceEnd: {
-                required: "Please provide a Sequence End."
+            end: {
+                required: "Please provide an End position."
             }
          },
         submitHandler: function(form) {
-            $('#coverageResults').hide();
-            $('#progress').show();
             form.submit();
         }
     });

@@ -39,44 +39,59 @@ limitations under the License.
   </style>
 </head>
 <body role="document">
-<div class="container theme-showcase" role="main">
-  <h1>Genomics API Python Map Reduce</h1>
-  <div class="row">
-    <div class="col-md-8">
-      <br/><br/>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Generate Coverage Statistics</h3>
+<div class="container" role="main">
+  <h1>Genomics API Java Map Reduce</h1>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Generate variant similarity data</h3>
+    </div>
+    <div class="panel-body">
+      <form id="coverageForm" name="coverageForm" action="/main" method="POST">
+        <div class="form-group">
+          <label for="datasetId">Dataset Id:</label>
+            <input class="form-control" type="text" name="datasetId" id="datasetId"
+                   value="208145944813"/>
         </div>
-        <div class="panel-body">
-          <h4>Enter the parameters below to calculate the coverage statistics.</h4>
-          <form id="coverageForm" name="coverageForm" action="/main" method="POST">
-            <div class="form-group">
-              <label for="readsetId">Readset Id:</label>
-                <input class="form-control" type="text" name="readsetId" id="readsetId"
-                       value="CJ_ppJ-WCxDxrtDr5fGIhBA="/>
-            </div>
-            <div class="form-group">
-              <label for="sequenceName">Sequence Name:</label>
-              <input class="form-control" type="text" id="sequenceName" name="sequenceName"
-                                           value="chr20" required/>
-            </div>
-            <div class="form-group">
-              <label for="sequenceStart">Sequence Start:</label>
-              <input class="form-control" type="text" id="sequenceStart" name="sequenceStart"
-                                           value="68101" required/>
-            </div>
-            <div class="form-group">
-              <label for="sequenceEnd">Sequence End:</label>
-              <input class="form-control" type="text" id="sequenceEnd" name="sequenceEnd"
-                                           value="68164" />
-            </div>
-            <div class="form-group">
-              <input class="btn btn-primary" type="submit" id="submitRead" name="submitRead" value="Submit" />
-            </div>
-          </form>
+        <div class="form-group">
+          <label for="contig">Contig:</label>
+          <input class="form-control" type="text" id="contig" name="contig"
+                                       value="7" required/>
         </div>
-      </div>
+        <div class="form-group">
+          <label for="start">Start position:</label>
+          <input class="form-control" type="text" id="start" name="start"
+                                       value="141609000" required/>
+        </div>
+        <div class="form-group">
+          <label for="end">End position:</label>
+          <input class="form-control" type="text" id="end" name="end"
+                                       value="141609900" />
+        </div>
+        <div class="form-group">
+          <input class="btn btn-primary" type="submit" id="submitMapreduce" name="submitMapreduce" value="Submit" />
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Plot PCA for a similarity file</h3>
+    </div>
+    <div class="panel-body">
+      <form id="pcaForm" name="pcaForm" action="/pca" method="POST">
+        <div class="form-group">
+          <label for="bucket">Bucket:</label>
+          <input class="form-control" type="text" name="bucket" id="bucket" value="cloud-genomics-mapreduce-tests" required/>
+        </div>
+        <div class="form-group">
+          <label for="filename">Filename:</label>
+          <input class="form-control" type="text" id="filename" name="filename" value="VariantSimilarity.txt" required/>
+        </div>
+        <div class="form-group">
+          <input class="btn btn-primary" type="submit" id="submitPca" name="submitPca" value="Submit" />
+        </div>
+      </form>
     </div>
   </div>
 </div>
