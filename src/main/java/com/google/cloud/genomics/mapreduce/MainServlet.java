@@ -38,9 +38,9 @@ import java.util.logging.Logger;
 
 public class MainServlet extends HttpServlet {
 
-  public static final String BUCKET_NAME = "cloud-genomics-mapreduce-tests";
+  public static final String BUCKET_NAME = "mybucket";
   public static final String OUTPUT_FILE_NAME = "VariantSimilarity.txt";
-  public static final String API_KEY = "AIzaSyCepkTbGZbHcUwLu5VXjxtOGoGpv1o8hhA";
+  public static final String API_KEY = "mykey";
   public static final int SHARDS = 100;
 
   @Override
