@@ -1,9 +1,6 @@
 mapreduce-java
 ==============
 
-This sample is a work in progress.
-
-
 Getting started
 ---------------
 
@@ -37,3 +34,27 @@ WEB-INF/appengine-web.xml:
 
 WEB-INF/web.xml
     sets up the 3 servlets used by this application. 2 are handled by common app engine code.
+    
+    
+Project status
+--------------
+
+Goals
+~~~~~
+* Provide a real world MapReduce example that uses the Genomics API. 
+* Prove that a MapReduce is both feasible and a good idea for Genomics data. 
+  The resulting analysis should be useful.
+
+
+Current status
+~~~~~~~~~~~~~~
+This code is in active development. Currently, it generates a similarity matrix for Variant data. 
+The Variant APIs are currently in trusted tester mode, so this sample isn't widely runnable at this time.
+
+TODOs include:
+
+* Running over all Variants in a Dataset, not just a small shard of data
+* Outputting the PCA data as JSON so that a d3 graph can be displayed to the user 
+* Performance improvements
+* The ability to run locally!
+* Better parameterization of user specific values (bucket, apikey, etc)
