@@ -3,23 +3,16 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.google.cloud.genomics</groupId>
+  <parent>
+    <groupId>com.google.cloud.genomics</groupId>
+    <artifactId>genomics-tools-multimodule</artifactId>
+    <version>v1beta</version>
+  </parent>
+
+  <name>Genomics API mapreduce-java</name>
   <artifactId>mapreduce-java</artifactId>
   <packaging>war</packaging>
   <version>v1</version>
-
-  <organization>
-    <name>Google</name>
-    <url>http://www.google.com/</url>
-  </organization>
-
-  <licenses>
-    <license>
-      <name>The Apache Software License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
 
   <dependencies>
     <dependency>
