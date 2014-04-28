@@ -41,7 +41,7 @@ Project status
 
 Goals
 ~~~~~
-* Provide a real world MapReduce example that uses the Genomics API. 
+* Provide a real world MapReduce example that uses the Genomics API (in Java).
 * Prove that a MapReduce is both feasible and a good idea for Genomics data. 
   The resulting analysis should be useful.
 
