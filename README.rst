@@ -1,5 +1,8 @@
-mapreduce-java
-==============
+mapreduce-java  |Build Status|_
+==============================
+
+.. |Build Status| image:: https://travis-ci.org/googlegenomics/mapreduce-java.png?branch=master
+.. _Build Status: https://travis-ci.org/googlegenomics/mapreduce-java
 
 Getting started
 ---------------
