@@ -17,7 +17,9 @@ package com.google.cloud.genomics.mapreduce;
 
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
-import com.google.api.client.repackaged.com.google.common.base.Joiner;
+import com.google.api.client.json.JsonGenerator;
+import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.client.util.Lists;
 import com.google.api.client.util.Maps;
 import com.google.appengine.tools.cloudstorage.*;
 import com.google.appengine.tools.pipeline.util.Pair;
@@ -28,8 +30,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.ByteBuffer;
+import java.util.List;
 import java.util.Map;
 
 public class PcaServlet extends HttpServlet {
@@ -77,7 +79,13 @@ public class PcaServlet extends HttpServlet {
       matrixData[entry.getKey().getFirst()][entry.getKey().getSecond()] = entry.getValue();
     }
 
-    writePcaData(matrixData, callsetIndicies.inverse(), resp.getWriter());
+    List<GraphResult> results = getPcaData(matrixData, callsetIndicies.inverse());
+
+    resp.setContentType("application/json");
+    JsonGenerator jsonGenerator = JacksonFactory.getDefaultInstance().createJsonGenerator(resp.getWriter());
+    jsonGenerator.serialize(results);
+    jsonGenerator.flush();
+
   }
 
   private int getCallsetIndex(Map<String, Integer> callsetIndicies, String callsetName) {
@@ -87,8 +95,25 @@ public class PcaServlet extends HttpServlet {
     return callsetIndicies.get(callsetName);
   }
 
+  private static class GraphResult {
+    @com.google.api.client.util.Key
+    public String name;
+
+    @com.google.api.client.util.Key
+    public double graphX;
+
+    @com.google.api.client.util.Key
+    public double graphY;
+
+    public GraphResult(String name, double x, double y) {
+      this.name = name;
+      this.graphX = Math.floor(x * 100) / 100;
+      this.graphY = Math.floor(y * 100) / 100;
+    }
+  }
+
   // Convert the similarity matrix to an Eigen matrix.
-  private void writePcaData(double[][] data, BiMap<Integer, String> callsetNames, PrintWriter writer) {
+  private List<GraphResult> getPcaData(double[][] data, BiMap<Integer, String> callsetNames) throws IOException {
     int rows = data.length;
     int cols = data.length;
 
@@ -149,16 +174,13 @@ public class PcaServlet extends HttpServlet {
     }
 
 
-    // Output projected data as json
+    // Return projected data
+    List<GraphResult> results = Lists.newArrayList();
     for (int i = 0; i < rows; i++) {
-      String callsetName = callsetNames.get(i);
-
-      String[] result = new String[] {callsetName,
-          String.valueOf(eigenvectors.get(i, maxIndex)), String.valueOf(eigenvectors.get(i, secondIndex))};
-
-      // TODO: format as json so that this can be used to make a graph
-      writer.println(Joiner.on("\t").join(result));
+      results.add(new GraphResult(callsetNames.get(i),
+          eigenvectors.get(i, maxIndex), eigenvectors.get(i, secondIndex)));
     }
 
+    return results;
   }
 }
