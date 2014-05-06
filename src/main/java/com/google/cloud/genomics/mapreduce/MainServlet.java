@@ -38,10 +38,10 @@ import java.util.logging.Logger;
 
 public class MainServlet extends HttpServlet {
 
-  public static final String BUCKET_NAME = "mybucket";
-  public static final String OUTPUT_FILE_NAME = "VariantSimilarity.txt";
-  public static final String API_KEY = "mykey";
-  public static final int SHARDS = 100;
+  public static final String API_KEY_PROPERTY = "genomics-mapreduce.api-key";
+  public static final String BUCKET_NAME_PROPERTY = "genomics-mapreduce.bucket-name";
+  public static final String OUTPUT_FILE_NAME_PROPERTY = "genomics-mapreduce.output-file-name";
+  public static final String SHARDS_PROPERTY = "genomics-mapreduce.shards";
 
   @Override
   public void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -51,22 +51,25 @@ public class MainServlet extends HttpServlet {
     Integer start = Integer.valueOf(req.getParameter("start"));
     Integer end = Integer.valueOf(req.getParameter("end"));
 
-    Integer shards = end - start < 1000 ? 1 : SHARDS;
+    Integer shards = end - start < 1000 ? 1 : Integer.valueOf(System.getProperty(SHARDS_PROPERTY));
+    String bucketName = System.getProperty(BUCKET_NAME_PROPERTY);
+    String outputFileName = System.getProperty(OUTPUT_FILE_NAME_PROPERTY);
+    String apiKey = System.getProperty(API_KEY_PROPERTY);
 
     Output<String, GoogleCloudStorageFileSet> output = new MarshallingOutput<String, GoogleCloudStorageFileSet>(
-        new GoogleCloudStorageFileOutput(BUCKET_NAME, OUTPUT_FILE_NAME, "text/plain",
+        new GoogleCloudStorageFileOutput(bucketName, outputFileName, "text/plain",
             1 /* we only want one results file */),
         Marshallers.getStringMarshaller());
 
     MapReduceSpecification spec = MapReduceSpecification.of("VariantSimilarityMapreduce",
-        new GenomicsApiInput(datasetId, contig, start, end, shards),
+        new GenomicsApiInput(apiKey, datasetId, contig, start, end, shards),
         new VariantSimilarityMapper(),
         Marshallers.getStringMarshaller(),
         Marshallers.getIntegerMarshaller(),
         new SummingReducer(),
         output);
 
-    String jobId = MapReduceJob.start(spec, new MapReduceSettings().setBucketName(BUCKET_NAME));
+    String jobId = MapReduceJob.start(spec, new MapReduceSettings().setBucketName(bucketName));
 
     resp.sendRedirect("/_ah/pipeline/status.html?root=" + jobId);
   }
@@ -86,13 +89,15 @@ public class MainServlet extends HttpServlet {
   private static class GenomicsApiInput extends Input<VariantSimilarityInput> {
     private static final Logger LOG = Logger.getLogger(GenomicsApiInput.class.getName());
 
+    private final String apiKey;
     private final String datasetId;
     private final String contig;
     private final int start;
     private final int end;
     private final int shards;
 
-    public GenomicsApiInput(String datasetId, String contig, int start, int end, int shards) {
+    public GenomicsApiInput(String apiKey, String datasetId, String contig, int start, int end, int shards) {
+      this.apiKey = apiKey;
       this.datasetId = datasetId;
       this.contig = contig;
       this.start = start;
@@ -108,7 +113,7 @@ public class MainServlet extends HttpServlet {
       for (int i = 0; i < shards; i++) {
         int rangeStart = start + (rangeLength * i);
         int rangeEnd = Math.max(end, rangeStart + rangeLength);
-        readers.add(new GenomicsApiInputReader(datasetId, contig, rangeStart, rangeEnd));
+        readers.add(new GenomicsApiInputReader(apiKey, datasetId, contig, rangeStart, rangeEnd));
         LOG.info("Adding reader " + rangeStart + ":" + rangeEnd);
       }
 
@@ -119,6 +124,7 @@ public class MainServlet extends HttpServlet {
   private static class GenomicsApiInputReader extends InputReader<VariantSimilarityInput> {
     private static final Logger LOG = Logger.getLogger(GenomicsApiInputReader.class.getName());
 
+    private final String apiKey;
     private final String datasetId;
     private final String contig;
     private final int start;
@@ -127,11 +133,12 @@ public class MainServlet extends HttpServlet {
     private boolean firstTime = true;
     private String nextPageToken;
 
-    public GenomicsApiInputReader(String datasetId, String contig, int start, int end) {
+    public GenomicsApiInputReader(String apiKey, String datasetId, String contig, int start, int end) {
       this.datasetId = datasetId;
       this.contig = contig;
       this.start = start;
       this.end = end;
+      this.apiKey = apiKey;
     }
 
     private static Genomics getService() {
@@ -163,10 +170,15 @@ public class MainServlet extends HttpServlet {
       }
 
       try {
-        SearchVariantsResponse response = getService().variants().search(request).setKey(API_KEY).execute();
+        SearchVariantsResponse response = getService().variants().search(request).setKey(apiKey).execute();
+        List<Variant> variants = response.getVariants();
+        if (variants == null) {
+          variants = Lists.newArrayList();
+        }
+
         nextPageToken = response.getNextPageToken();
-        LOG.info("Got " + response.getVariants().size() + " variants");
-        return new VariantSimilarityInput(start, end, response.getVariants());
+        LOG.info("Got " + variants.size() + " variants");
+        return new VariantSimilarityInput(start, end, variants);
 
       } catch (Exception e) {
         throw new IOException(e);
@@ -185,7 +197,7 @@ public class MainServlet extends HttpServlet {
           String genotype = call.getInfo().get("GT").get(0); // TODO: Change to use real genotype field
           genotype = genotype.replaceAll("[\\\\|0]", "");
           if (!genotype.isEmpty()) {
-            samplesWithVariant.add(call.getCallsetId()); // TODO: Change to callsetName once available
+            samplesWithVariant.add(call.getCallsetName());
           }
         }
         LOG.info("Variant " + variant.getId() + " has " + samplesWithVariant.size() + " actual calls");
