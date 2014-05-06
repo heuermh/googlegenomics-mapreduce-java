@@ -18,6 +18,7 @@ package com.google.cloud.genomics.mapreduce;
 import com.google.api.client.extensions.appengine.http.UrlFetchTransport;
 import com.google.api.client.googleapis.extensions.appengine.auth.oauth2.AppIdentityCredential;
 import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.client.util.Maps;
 import com.google.api.services.genomics.Genomics;
 import com.google.api.services.genomics.model.Call;
 import com.google.api.services.genomics.model.SearchVariantsRequest;
@@ -33,6 +34,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.logging.Logger;
 
@@ -112,7 +114,7 @@ public class MainServlet extends HttpServlet {
       List<GenomicsApiInputReader> readers = Lists.newArrayList();
       for (int i = 0; i < shards; i++) {
         int rangeStart = start + (rangeLength * i);
-        int rangeEnd = Math.max(end, rangeStart + rangeLength);
+        int rangeEnd = Math.min(end, rangeStart + rangeLength);
         readers.add(new GenomicsApiInputReader(apiKey, datasetId, contig, rangeStart, rangeEnd));
         LOG.info("Adding reader " + rangeStart + ":" + rangeEnd);
       }
@@ -170,7 +172,9 @@ public class MainServlet extends HttpServlet {
       }
 
       try {
-        SearchVariantsResponse response = getService().variants().search(request).setKey(apiKey).execute();
+        SearchVariantsResponse response = getService().variants().search(request)
+            .setFields("nextPageToken,variants(id,calls(info,callsetName))")
+            .setKey(apiKey).execute();
         List<Variant> variants = response.getVariants();
         if (variants == null) {
           variants = Lists.newArrayList();
@@ -189,6 +193,13 @@ public class MainServlet extends HttpServlet {
   private static class VariantSimilarityMapper extends Mapper<VariantSimilarityInput, String, Integer> {
     private static final Logger LOG = Logger.getLogger(VariantSimilarityMapper.class.getName());
 
+    private Map<String, Integer> counts;
+
+    @Override
+    public void beginSlice() {
+      counts = Maps.newHashMap();
+    }
+
     @Override
     public void map(VariantSimilarityInput input) {
       for (Variant variant : input.variants) {
@@ -205,9 +216,19 @@ public class MainServlet extends HttpServlet {
         for (String s1 : samplesWithVariant) {
           for (String s2 : samplesWithVariant) {
             // TODO: Output can be reduced by half if we only output when s1 < s2
-            emit(s1 + "-" + s2, 1);
+            String key = s1 + "-" + s2;
+            Integer count = counts.get(key);
+            counts.put(key, count == null ? 1 : count + 1);
           }
         }
+      }
+    }
+
+    @Override
+    public void endSlice() {
+      LOG.info("Total map keys " + counts.size());
+      for (Map.Entry<String, Integer> entry : counts.entrySet()) {
+        emit(entry.getKey(), entry.getValue());
       }
     }
   }
