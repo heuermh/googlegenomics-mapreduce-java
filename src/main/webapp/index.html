@@ -16,15 +16,21 @@ limitations under the License.
 <html>
 <head>
   <title>Genomics Python Map Reduce</title>
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
-
   <!-- jQuery -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
 
   <!-- jQuery Validation -->
   <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js" type="text/javascript"></script>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
+
+  <!-- d3 -->
+  <script src="/d3.v3.min.js" type="text/javascript"></script>
+
+  <!-- underscore -->
+  <script src="/underscore-min.js" type="text/javascript"></script>
 
   <!-- Local Resources -->
   <script src="/custom.js" type="text/javascript"></script>
@@ -35,6 +41,21 @@ limitations under the License.
 
   input.error {
      border: 2px solid #c9302c;
+  }
+
+  /* svg styles */
+  .callset {
+    fill: darkblue;
+    fill-opacity: .5;
+    stroke: #333;
+  }
+
+  .grid .tick {
+    stroke: lightgrey;
+    opacity: 0.7;
+  }
+  .grid path {
+    stroke-width: 0;
   }
   </style>
 </head>
@@ -79,7 +100,7 @@ limitations under the License.
       <h3 class="panel-title">Plot PCA for a similarity file</h3>
     </div>
     <div class="panel-body">
-      <form id="pcaForm" name="pcaForm" action="/pca" method="POST">
+      <form id="pcaForm">
         <div class="form-group">
           <label for="bucket">Bucket:</label>
           <input class="form-control" type="text" name="bucket" id="bucket" value="cloud-genomics-mapreduce-tests" required/>
@@ -94,6 +115,73 @@ limitations under the License.
       </form>
     </div>
   </div>
+
+  <svg id="graph" style="width: 1000px; height: 600px"></svg>
 </div>
+
+<script>
+var results = "";
+$("#pcaForm").on("submit", function(event) {
+  event.preventDefault();
+  var button = $("#submitPca").button('loading');
+
+  $.post('/pca', $(this).serialize()).done(function(data) {
+    button.button('reset');
+    results = data;
+    graphResults(data);
+  }).error(function() {
+    button.button('reset');
+    alert('The PCA call failed.');
+  });
+});
+
+function graphResults(data) {
+  var svg = d3.select("#graph");
+
+  // Common variables
+  var width = 1000;
+  var height = 500;
+  var padding = 20;
+
+  var x = d3.scale.linear().domain(d3.extent(_.pluck(data, "graphX"))).range([padding, width - padding]);
+  var y = d3.scale.linear().domain(d3.extent(_.pluck(data, "graphY"))).range([padding, height - padding]);
+
+  var xAxis = d3.svg.axis().scale(x).orient("bottom").ticks(5);
+  var yAxis = d3.svg.axis().scale(y).orient("left").ticks(5);
+
+  // Tooltip
+  var tooltip = d3.select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden");
+
+  // Grid lines
+  svg.append("g")
+      .attr("class", "grid")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis.tickSize(-height, 0, 0).tickFormat(""));
+
+  svg.append("g")
+      .attr("class", "grid")
+      .call(yAxis.tickSize(-width, 0, 0).tickFormat(""));
+
+
+  // Callset circles
+  // (with basic hovering support)
+  var callsetContainer = svg.append("g");
+  var callsets = callsetContainer.selectAll(".callset").data(data);
+
+  callsets.enter().append("circle")
+      .attr("class", "callset")
+      .attr("r", "7")
+      .attr("cx", function(data) { return x(data.graphX); })
+      .attr("cy", function(data) { return y(data.graphY); })
+      .on("mouseover", function(data) { tooltip.text(data.name).style("visibility", "visible"); })
+      .on("mousemove", function() { tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px"); })
+      .on("mouseout", function() { tooltip.style("visibility", "hidden"); });
+}
+</script>
+
 </body>
 </html>
