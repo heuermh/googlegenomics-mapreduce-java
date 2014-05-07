@@ -172,6 +172,8 @@ public class MainServlet extends HttpServlet {
       }
 
       try {
+        // We request the smallest partial response that we can in order to reduce the amount of data
+        // we are fetching.
         SearchVariantsResponse response = getService().variants().search(request)
             .setFields("nextPageToken,variants(id,calls(info,callsetName))")
             .setKey(apiKey).execute();
@@ -197,6 +199,9 @@ public class MainServlet extends HttpServlet {
 
     @Override
     public void beginSlice() {
+      // We only emit counts once per slice in order to reduce the amount of rows we are writing overall
+      // We use begin/endSlice because this map is too large to serialize (App Engine has a hard limit of 1MB)
+      // in some cases, and so we can't use beginShard/endShard.
       counts = Maps.newHashMap();
     }
 
@@ -215,10 +220,12 @@ public class MainServlet extends HttpServlet {
 
         for (String s1 : samplesWithVariant) {
           for (String s2 : samplesWithVariant) {
-            // TODO: Output can be reduced by half if we only output when s1 < s2
-            String key = s1 + "-" + s2;
-            Integer count = counts.get(key);
-            counts.put(key, count == null ? 1 : count + 1);
+            // Reduce the emit size by half because our resulting matrix will be symmetric
+            if (s1.compareTo(s2) < 0) {
+              String key = s1 + "-" + s2;
+              Integer count = counts.get(key);
+              counts.put(key, count == null ? 1 : count + 1);
+            }
           }
         }
       }
@@ -230,6 +237,10 @@ public class MainServlet extends HttpServlet {
       for (Map.Entry<String, Integer> entry : counts.entrySet()) {
         emit(entry.getKey(), entry.getValue());
       }
+
+      // This mapper will be serialized, so we clear out all the counts prematurely
+      // so that our object doesn't get too large
+      counts.clear();
     }
   }
 

@@ -76,7 +76,14 @@ public class PcaServlet extends HttpServlet {
     int callsetCount = callsetIndicies.size();
     double[][] matrixData = new double[callsetCount][callsetCount];
     for (Map.Entry<Pair<Integer, Integer>, Integer> entry : callsetData.entrySet()) {
-      matrixData[entry.getKey().getFirst()][entry.getKey().getSecond()] = entry.getValue();
+      Integer c1 = entry.getKey().getFirst();
+      Integer c2 = entry.getKey().getSecond();
+      matrixData[c1][c2] = entry.getValue();
+      matrixData[c2][c1] = entry.getValue(); // The matrix is symmetric
+    }
+
+    for (int i = 0; i < callsetCount; i++) {
+      matrixData[i][i] = callsetCount; // TODO: Do we need this?
     }
 
     List<GraphResult> results = getPcaData(matrixData, callsetIndicies.inverse());
