@@ -43,6 +43,11 @@
 
   <dependencies>
     <dependency>
+      <groupId>com.google.apis</groupId>
+      <artifactId>google-api-services-genomics</artifactId>
+      <version>v1beta-rev2-1.18.0-rc</version>
+    </dependency>
+    <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>servlet-api</artifactId>
       <version>${javax.version}</version>
