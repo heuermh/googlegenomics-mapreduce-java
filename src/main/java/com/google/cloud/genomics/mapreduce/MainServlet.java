@@ -44,6 +44,7 @@ public class MainServlet extends HttpServlet {
   public static final String BUCKET_NAME_PROPERTY = "genomics-mapreduce.bucket-name";
   public static final String OUTPUT_FILE_NAME_PROPERTY = "genomics-mapreduce.output-file-name";
   public static final String SHARDS_PROPERTY = "genomics-mapreduce.shards";
+  public static final String QUEUE_NAME = "genomics-mapreduce-queue";
 
   @Override
   public void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -71,7 +72,8 @@ public class MainServlet extends HttpServlet {
         new SummingReducer(),
         output);
 
-    String jobId = MapReduceJob.start(spec, new MapReduceSettings().setBucketName(bucketName));
+    String jobId = MapReduceJob.start(spec, new MapReduceSettings()
+        .setWorkerQueueName(QUEUE_NAME).setBucketName(bucketName));
 
     resp.sendRedirect("/_ah/pipeline/status.html?root=" + jobId);
   }
