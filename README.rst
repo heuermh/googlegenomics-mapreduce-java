@@ -26,16 +26,17 @@ Once that's done, deploy with::
 Code layout
 -----------
 
-Most of the Java code is a generated client library. This includes everything under
-``com/google/api/services``. (This will eventually be replaced by a Maven dependency)
-
-MainServlet.java:
+`MainServlet.java <src/main/java/com/google/cloud/genomics/mapreduce/MainServlet.java>`_:
     currently all of the mapreduce code is in this file.
+    
+`PcaServlet.java <src/main/java/com/google/cloud/genomics/mapreduce/PcaServlet.java>`_:
+    takes the variant similarity data from the map reduce, runs a PCA analysis, and 
+    outputs the result as JSON so that it can be graphed inside of ``index.html``.
 
-WEB-INF/appengine-web.xml:
+`WEB-INF/appengine-web.xml <src/main/webapp/WEB-INF/appengine-web.xml>`_:
     is the appengine specific config, make sure to replace the dummy app engine project ID with your own value.
 
-WEB-INF/web.xml
+`WEB-INF/web.xml <src/main/webapp/WEB-INF/web.xml>`_
     sets up the 3 servlets used by this application. 2 are handled by common app engine code.
     
     
