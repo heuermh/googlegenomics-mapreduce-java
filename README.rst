@@ -14,8 +14,8 @@ To use, you will need to download `Apache Maven <http://maven.apache.org/downloa
 
 (note: currently authentication fails when running locally. fix coming)
 
-Before deploying, make sure the constants in the top of MainServlet are set to correct values
-(bucket_name, api_key, etc). The application tag in appengine-web.xml also needs to be set to a valid
+Before deploying, make sure the constants in `appengine-web.xml <src/main/webapp/WEB-INF/appengine-web.xml>`_ 
+are set to correct values (bucket-name, api-key, etc). The application tag also needs to be set to a valid
 app engine project ID.
 
 Once that's done, deploy with::
@@ -57,8 +57,6 @@ The Variant APIs are currently in trusted tester mode, so this sample isn't wide
 
 TODOs include:
 
-* Running over all Variants in a Dataset, not just a small shard of data
-* Outputting the PCA data as JSON so that a d3 graph can be displayed to the user 
 * Performance improvements
+* Running over all Variants in a Dataset, not just a small shard of data (depends on perf improvements)
 * The ability to run locally!
-* Better parameterization of user specific values (bucket, apikey, etc)
