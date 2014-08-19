@@ -66,6 +66,9 @@ public class PcaServlet extends HttpServlet {
     String file = new String(result.array());
     for (String line : file.split(":")) {
       String[] data = line.split("-");
+      if (data.length < 3) {
+        continue;
+      }
       int callset1 = getCallsetIndex(callsetIndicies, data[0]);
       int callset2 = getCallsetIndex(callsetIndicies, data[1]);
       Integer similarity = Integer.valueOf(data[2]);
