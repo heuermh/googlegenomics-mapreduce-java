@@ -16,7 +16,6 @@ limitations under the License.
 package com.google.cloud.genomics.mapreduce;
 
 import com.google.api.client.extensions.appengine.http.UrlFetchTransport;
-import com.google.api.client.googleapis.extensions.appengine.auth.oauth2.AppIdentityCredential;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.Maps;
 import com.google.api.services.genomics.Genomics;
@@ -24,7 +23,17 @@ import com.google.api.services.genomics.model.Call;
 import com.google.api.services.genomics.model.SearchVariantsRequest;
 import com.google.api.services.genomics.model.SearchVariantsResponse;
 import com.google.api.services.genomics.model.Variant;
-import com.google.appengine.tools.mapreduce.*;
+import com.google.appengine.tools.mapreduce.GoogleCloudStorageFileSet;
+import com.google.appengine.tools.mapreduce.Input;
+import com.google.appengine.tools.mapreduce.InputReader;
+import com.google.appengine.tools.mapreduce.MapReduceJob;
+import com.google.appengine.tools.mapreduce.MapReduceSettings;
+import com.google.appengine.tools.mapreduce.MapReduceSpecification;
+import com.google.appengine.tools.mapreduce.Mapper;
+import com.google.appengine.tools.mapreduce.Marshallers;
+import com.google.appengine.tools.mapreduce.Output;
+import com.google.appengine.tools.mapreduce.Reducer;
+import com.google.appengine.tools.mapreduce.ReducerInput;
 import com.google.appengine.tools.mapreduce.outputs.GoogleCloudStorageFileOutput;
 import com.google.appengine.tools.mapreduce.outputs.MarshallingOutput;
 import com.google.common.collect.Lists;
@@ -60,20 +69,22 @@ public class MainServlet extends HttpServlet {
     String apiKey = System.getProperty(API_KEY_PROPERTY);
 
     Output<String, GoogleCloudStorageFileSet> output = new MarshallingOutput<String, GoogleCloudStorageFileSet>(
-        new GoogleCloudStorageFileOutput(bucketName, outputFileName, "text/plain",
-            1 /* we only want one results file */),
+        new GoogleCloudStorageFileOutput(bucketName, outputFileName, "text/plain"),
         Marshallers.getStringMarshaller());
 
-    MapReduceSpecification spec = MapReduceSpecification.of("VariantSimilarityMapreduce",
-        new GenomicsApiInput(apiKey, datasetId, contig, start, end, shards),
-        new VariantSimilarityMapper(),
-        Marshallers.getStringMarshaller(),
-        Marshallers.getIntegerMarshaller(),
-        new SummingReducer(),
-        output);
+    MapReduceSpecification.Builder<VariantSimilarityInput, String, Integer, String,
+        GoogleCloudStorageFileSet> builder = new MapReduceSpecification.Builder<
+        VariantSimilarityInput, String, Integer, String, GoogleCloudStorageFileSet>()
+        .setJobName("VariantSimilarityMapreduce")
+        .setInput(new GenomicsApiInput(apiKey, datasetId, contig, start, end, shards))
+        .setMapper(new VariantSimilarityMapper())
+        .setKeyMarshaller(Marshallers.getStringMarshaller())
+        .setValueMarshaller(Marshallers.getIntegerMarshaller())
+        .setReducer(new SummingReducer())
+        .setOutput(output);
 
-    String jobId = MapReduceJob.start(spec, new MapReduceSettings()
-        .setWorkerQueueName(QUEUE_NAME).setBucketName(bucketName));
+    String jobId = MapReduceJob.start(builder.build(), new MapReduceSettings.Builder()
+        .setWorkerQueueName(QUEUE_NAME).setBucketName(bucketName).build());
 
     resp.sendRedirect("/_ah/pipeline/status.html?root=" + jobId);
   }
@@ -146,11 +157,7 @@ public class MainServlet extends HttpServlet {
     }
 
     private static Genomics getService() {
-      // TODO: This auth doesn't work when running locally
-      final AppIdentityCredential credential =
-          new AppIdentityCredential(Lists.newArrayList("https://www.googleapis.com/auth/genomics"));
-
-      return new Genomics.Builder(new UrlFetchTransport(), new JacksonFactory(), credential)
+      return new Genomics.Builder(new UrlFetchTransport(), new JacksonFactory(), null)
           .setRootUrl("https://www.googleapis.com/")
           .setApplicationName("mapreduce-java")
           .build();
