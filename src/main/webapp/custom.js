@@ -35,8 +35,8 @@ $(function() {
         "Start must be greater than 0.");
     $("#coverageForm").validate({
         rules: {
-            datasetId: "required",
-            contig: "required",
+            variantSetId: "required",
+            referenceName: "required",
             start: {
                 required: true,
                 number: true,
@@ -50,8 +50,8 @@ $(function() {
             }
         },
         messages: {
-            datasetId: "Please provide a Dataset Id.",
-            contig: "Please provide a Contig.",
+            variantSetId: "Please provide a Variant set ID.",
+            referenceName: "Please provide a Reference name.",
             start: {
                 required: "Please provide a Start position."
             },

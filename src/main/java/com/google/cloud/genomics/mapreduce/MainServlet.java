@@ -58,8 +58,8 @@ public class MainServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest req, HttpServletResponse resp)
       throws IOException {
-    String datasetId = req.getParameter("datasetId");
-    String contig = req.getParameter("contig");
+    String variantSetId = req.getParameter("variantSetId");
+    String referenceName = req.getParameter("referenceName");
     Integer start = Integer.valueOf(req.getParameter("start"));
     Integer end = Integer.valueOf(req.getParameter("end"));
 
@@ -76,7 +76,7 @@ public class MainServlet extends HttpServlet {
         GoogleCloudStorageFileSet> builder = new MapReduceSpecification.Builder<
         VariantSimilarityInput, String, Integer, String, GoogleCloudStorageFileSet>()
         .setJobName("VariantSimilarityMapreduce")
-        .setInput(new GenomicsApiInput(apiKey, datasetId, contig, start, end, shards))
+        .setInput(new GenomicsApiInput(apiKey, variantSetId, referenceName, start, end, shards))
         .setMapper(new VariantSimilarityMapper())
         .setKeyMarshaller(Marshallers.getStringMarshaller())
         .setValueMarshaller(Marshallers.getIntegerMarshaller())
@@ -94,7 +94,8 @@ public class MainServlet extends HttpServlet {
     public final Integer sequenceEnd;
     public final List<Variant> variants;
 
-    public VariantSimilarityInput(Integer sequenceStart, Integer sequenceEnd, List<Variant> variants) {
+    public VariantSimilarityInput(Integer sequenceStart, Integer sequenceEnd,
+        List<Variant> variants) {
       this.sequenceStart = sequenceStart;
       this.sequenceEnd = sequenceEnd;
       this.variants = variants;
@@ -105,16 +106,17 @@ public class MainServlet extends HttpServlet {
     private static final Logger LOG = Logger.getLogger(GenomicsApiInput.class.getName());
 
     private final String apiKey;
-    private final String datasetId;
-    private final String contig;
+    private final String variantSetId;
+    private final String referenceName;
     private final int start;
     private final int end;
     private final int shards;
 
-    public GenomicsApiInput(String apiKey, String datasetId, String contig, int start, int end, int shards) {
+    public GenomicsApiInput(String apiKey, String variantSetId, String referenceName,
+        int start, int end, int shards) {
       this.apiKey = apiKey;
-      this.datasetId = datasetId;
-      this.contig = contig;
+      this.variantSetId = variantSetId;
+      this.referenceName = referenceName;
       this.start = start;
       this.end = end;
       this.shards = shards;
@@ -128,7 +130,8 @@ public class MainServlet extends HttpServlet {
       for (int i = 0; i < shards; i++) {
         int rangeStart = start + (rangeLength * i);
         int rangeEnd = Math.min(end, rangeStart + rangeLength);
-        readers.add(new GenomicsApiInputReader(apiKey, datasetId, contig, rangeStart, rangeEnd));
+        readers.add(new GenomicsApiInputReader(apiKey, variantSetId, referenceName,
+            rangeStart, rangeEnd));
         LOG.info("Adding reader " + rangeStart + ":" + rangeEnd);
       }
 
@@ -140,17 +143,18 @@ public class MainServlet extends HttpServlet {
     private static final Logger LOG = Logger.getLogger(GenomicsApiInputReader.class.getName());
 
     private final String apiKey;
-    private final String datasetId;
-    private final String contig;
+    private final String variantSetId;
+    private final String referenceName;
     private final int start;
     private final int end;
 
     private boolean firstTime = true;
     private String nextPageToken;
 
-    public GenomicsApiInputReader(String apiKey, String datasetId, String contig, int start, int end) {
-      this.datasetId = datasetId;
-      this.contig = contig;
+    public GenomicsApiInputReader(String apiKey, String variantSetId, String referenceName,
+        int start, int end) {
+      this.variantSetId = variantSetId;
+      this.referenceName = referenceName;
       this.start = start;
       this.end = end;
       this.apiKey = apiKey;
@@ -171,10 +175,10 @@ public class MainServlet extends HttpServlet {
       firstTime = false;
 
       SearchVariantsRequest request = new SearchVariantsRequest()
-          .setDatasetId(datasetId)
-          .setContig(contig)
-          .setStartPosition((long) start)
-          .setEndPosition((long) end);
+          .setVariantSetIds(Lists.newArrayList(variantSetId))
+          .setReferenceName(referenceName)
+          .setStart((long) start)
+          .setEnd((long) end);
 
       if (nextPageToken != null) {
         request.setPageToken(nextPageToken);
@@ -222,7 +226,7 @@ public class MainServlet extends HttpServlet {
           String genotype = call.getInfo().get("GT").get(0); // TODO: Change to use real genotype field
           genotype = genotype.replaceAll("[\\\\|0]", "");
           if (!genotype.isEmpty()) {
-            samplesWithVariant.add(call.getCallsetName());
+            samplesWithVariant.add(call.getCallSetName());
           }
         }
         LOG.info("Variant " + variant.getId() + " has " + samplesWithVariant.size() + " actual calls");
