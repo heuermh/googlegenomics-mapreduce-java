@@ -4,6 +4,12 @@ mapreduce-java  |Build Status|_
 .. |Build Status| image:: https://travis-ci.org/googlegenomics/mapreduce-java.png?branch=master
 .. _Build Status: https://travis-ci.org/googlegenomics/mapreduce-java
 
+
+Note: The mapreduce code in googlegenomics will be replaced by 
+`Spark <https://github.com/googlegenomics/spark-examples>`_ and 
+Dataflow examples. This code is deprecated.
+
+
 Getting started
 ---------------
 
@@ -52,11 +58,4 @@ Goals
 
 Current status
 ~~~~~~~~~~~~~~
-This code is in active development. Currently, it generates a similarity matrix for Variant data. 
-The Variant APIs are currently in trusted tester mode, so this sample isn't widely runnable at this time.
-
-TODOs include:
-
-* Performance improvements
-* Running over all Variants in a Dataset, not just a small shard of data (depends on perf improvements)
-* The ability to run locally!
+Deprecated.
